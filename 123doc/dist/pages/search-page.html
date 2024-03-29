@@ -330,11 +330,29 @@
 
             <div class="pagination-wrapper">
                 <ul class="pagination">
-                    <li class="page-item"><p class="page-link">Về trước</p></li>
+                    <li class="page-item">
+                        <p
+                            class="page-link"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            data-bs-title="Về trang trước"
+                        >
+                            <i class="bi bi-caret-left-fill"></i>
+                        </p>
+                    </li>
                     <li class="page-item"><p class="page-link">1</p></li>
                     <li class="page-item"><p class="page-link">2</p></li>
                     <li class="page-item"><p class="page-link">3</p></li>
-                    <li class="page-item"><p class="page-link">Tiếp theo</p></li>
+                    <li class="page-item">
+                        <p
+                            class="page-link"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            data-bs-title="Trang tiếp theo"
+                        >
+                            <i class="bi bi-caret-right-fill"></i>
+                        </p>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -485,6 +503,7 @@
             crossorigin="anonymous"
         ></script>
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+        <script src="../js/constants.js"></script>
         <script src="../js/helpers.js"></script>
         <script src="../js/configs.js"></script>
         <script src="../js/lib/data.js"></script>
@@ -493,6 +512,7 @@
         <script>
             renderSearchResultText()
             renderSearchResultList(search_result_data)
+            renderPagination(5, search_result_data.length)
         </script>
     </body>
 </html>

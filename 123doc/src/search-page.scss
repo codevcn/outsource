@@ -121,7 +121,7 @@
                 border-radius: 5px;
 
                 @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
-                    height: 150px;
+                    height: 140px;
                 }
 
                 & .file-type-icon-wrapper {
@@ -214,11 +214,18 @@
         margin-top: 30px;
 
         & ul.pagination {
+            display: flex;
+            flex-wrap: wrap;
             margin: auto;
-            border: 1px rgb(228, 228, 228) solid;
-            border-radius: 8px;
 
             & li {
+                &.page-item.current {
+                    & p {
+                        background-color: colors.$doc123-regular-cl;
+                        color: white;
+                    }
+                }
+
                 & p {
                     cursor: pointer;
                     color: black;
@@ -227,9 +234,19 @@
                         font-size: 0.8rem;
                     }
 
+                    & i {
+                        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                            font-size: 0.8rem;
+                        }
+                    }
+
                     &:hover {
                         background-color: colors.$doc123-regular-cl;
                         color: white;
+
+                        & i {
+                            color: white;
+                        }
                     }
                 }
             }

@@ -15,7 +15,7 @@ const standOutPostsContainer = document.querySelector(
     '#main-section .stand-out-posts-section .stand-out-posts-grid-container'
 )
 
-const getCardEleOfStandOutPosts = (posts) => {
+const createCardEleOfStandOutPosts = (posts) => {
     return posts.map((post) => {
         const card = document.createElement('div')
         card.classList.add('grid-item-card')
@@ -24,7 +24,7 @@ const getCardEleOfStandOutPosts = (posts) => {
         cover.classList.add('grid-item-cover')
         cover.innerHTML = `
             <div class="icon-wrapper">
-                ${getIconForTypeOfPost(post.fileType)}
+                ${createIconForTypeOfPost(post.fileType)}
             </div>
             <div class="cover-img-wrapper">
                 <img src="${post.cover}" alt="post cover">
@@ -62,19 +62,19 @@ const getCardEleOfStandOutPosts = (posts) => {
 }
 
 const renderStandOutPosts = (posts) => {
-    for (const card of getCardEleOfStandOutPosts(posts)) {
+    for (const card of createCardEleOfStandOutPosts(posts)) {
         standOutPostsContainer.appendChild(card)
     }
 }
 
-const getCardEleOfNewestPosts = (posts) => {
+const createCardEleOfNewestPosts = (posts) => {
     return posts.map((post) => {
         const card = document.createElement('div')
         card.classList.add('list-card')
 
         const icon = document.createElement('div')
         icon.classList.add('list-card-icon')
-        icon.innerHTML = getIconForTypeOfPost(post.fileType)
+        icon.innerHTML = createIconForTypeOfPost(post.fileType)
 
         const title = document.createElement('h3')
         title.setAttribute('data-bs-toggle', 'tooltip')
@@ -112,25 +112,25 @@ const getCardEleOfNewestPosts = (posts) => {
 }
 
 const renderNewestPosts_economy = (posts) => {
-    for (const card of getCardEleOfNewestPosts(posts)) {
+    for (const card of createCardEleOfNewestPosts(posts)) {
         cardsContainer_economy.appendChild(card)
     }
 }
 
 const renderNewestPosts_science = (posts) => {
-    for (const card of getCardEleOfNewestPosts(posts)) {
+    for (const card of createCardEleOfNewestPosts(posts)) {
         cardsContainer_science.appendChild(card)
     }
 }
 
 const renderNewestPosts_technical = (posts) => {
-    for (const card of getCardEleOfNewestPosts(posts)) {
+    for (const card of createCardEleOfNewestPosts(posts)) {
         cardsContainer_technical.appendChild(card)
     }
 }
 
 const renderNewestPosts_enviroment = (posts) => {
-    for (const card of getCardEleOfNewestPosts(posts)) {
+    for (const card of createCardEleOfNewestPosts(posts)) {
         cardsContainer_enviroment.appendChild(card)
     }
 }
