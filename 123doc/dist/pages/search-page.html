@@ -270,7 +270,74 @@
         </div>
 
         <!-- :MARK Main Section -->
-        <div id="main-section"></div>
+        <div id="main-section">
+            <div class="search-result-text"></div>
+            <div class="search-result-filters">
+                <div class="search-result-filter-wrapper">
+                    <div class="search-result-filter" data-bs-toggle="dropdown">
+                        <p><span>Danh mục:</span><span class="filter-selection">Tất cả</span></p>
+                        <i class="bi bi-caret-down-fill"></i>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                        <li><a class="dropdown-item" href="#">Luận văn</a></li>
+                        <li><a class="dropdown-item" href="#">Báo cáo</a></li>
+                        <li><a class="dropdown-item" href="#">Công nghệ thông tin</a></li>
+                        <li><a class="dropdown-item" href="#">Ngoại ngữ</a></li>
+                        <li><a class="dropdown-item" href="#">Y tế - sức khỏe</a></li>
+                    </ul>
+                </div>
+                <div class="search-result-filter-wrapper">
+                    <div class="search-result-filter" data-bs-toggle="dropdown">
+                        <p><span>Sắp xếp:</span><span class="filter-selection">Tất cả</span></p>
+                        <i class="bi bi-caret-down-fill"></i>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                        <li><a class="dropdown-item" href="#">Mới đăng</a></li>
+                        <li><a class="dropdown-item" href="#">Xem nhiều</a></li>
+                        <li><a class="dropdown-item" href="#">Tải nhiều</a></li>
+                    </ul>
+                </div>
+                <div class="search-result-filter-wrapper">
+                    <div class="search-result-filter" data-bs-toggle="dropdown">
+                        <p><span>Loại file:</span><span class="filter-selection">Tất cả</span></p>
+                        <i class="bi bi-caret-down-fill"></i>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                        <li><a class="dropdown-item" href="#">.docx</a></li>
+                        <li><a class="dropdown-item" href="#">.ppt</a></li>
+                        <li><a class="dropdown-item" href="#">.pdf</a></li>
+                    </ul>
+                </div>
+                <div class="search-result-filter-wrapper">
+                    <div class="search-result-filter" data-bs-toggle="dropdown">
+                        <p><span>Độ dài:</span><span class="filter-selection">Tất cả</span></p>
+                        <i class="bi bi-caret-down-fill"></i>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
+                        <li><a class="dropdown-item" href="#">Từ 1 đến 4 trang</a></li>
+                        <li><a class="dropdown-item" href="#">Từ 5 đến 20 trang</a></li>
+                        <li><a class="dropdown-item" href="#">Từ 21 đến 100 trang</a></li>
+                        <li><a class="dropdown-item" href="#">Dài hơn 100 trang</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="search-result-list"></div>
+
+            <div class="pagination-wrapper">
+                <ul class="pagination">
+                    <li class="page-item"><p class="page-link">Về trước</p></li>
+                    <li class="page-item"><p class="page-link">1</p></li>
+                    <li class="page-item"><p class="page-link">2</p></li>
+                    <li class="page-item"><p class="page-link">3</p></li>
+                    <li class="page-item"><p class="page-link">Tiếp theo</p></li>
+                </ul>
+            </div>
+        </div>
 
         <!-- :MARK Chân trang -->
         <div id="footer">
@@ -417,15 +484,15 @@
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
             crossorigin="anonymous"
         ></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+        <script src="../js/helpers.js"></script>
         <script src="../js/configs.js"></script>
         <script src="../js/lib/data.js"></script>
-        <script src="../js/home-page.js"></script>
+        <script src="../js/layout.js"></script>
+        <script src="../js/search-page.js"></script>
         <script>
-            renderStandOutPosts(standOutPosts)
-            renderNewestPosts_economy(newestPosts)
-            renderNewestPosts_science(newestPosts)
-            renderNewestPosts_technical(newestPosts)
-            renderNewestPosts_enviroment(newestPosts)
+            renderSearchResultText()
+            renderSearchResultList(search_result_data)
         </script>
     </body>
 </html>

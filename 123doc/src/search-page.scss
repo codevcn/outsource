@@ -1,3 +1,183 @@
-.aminama{
-    outline: none;
+@use './colors';
+@use './fonts';
+@use './breakpoints';
+
+#main-section {
+    padding: 0 150px;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    background-color: colors.$doc123-regular-bg-cl;
+
+    & .search-result-text {
+        font-size: 1.5rem;
+
+        & .result-keyword {
+            font-weight: bold;
+        }
+    }
+
+    & .search-result-filters {
+        display: flex;
+        column-gap: 10px;
+        margin-top: 20px;
+
+        & .search-result-filter-wrapper {
+            width: 100%;
+
+            & ul {
+                border: 1.5px lightgray solid;
+                max-height: 600px;
+                overflow-y: auto;
+
+                & li {
+                    & a {
+                        &:hover {
+                            background-color: colors.$doc123-regular-cl;
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            & .search-result-filter {
+                display: flex;
+                width: 100%;
+                padding: 5px 10px;
+                position: relative;
+                border: 1px lightgray solid;
+                border-radius: 5px;
+                background-color: white;
+                cursor: pointer;
+
+                &:hover {
+                    border-color: colors.$doc123-regular-cl;
+                    outline: 1.5px colors.$doc123-regular-cl solid;
+                }
+
+                & i {
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                & p {
+                    display: flex;
+                    margin: auto;
+                    font-size: 1rem;
+                    column-gap: 7px;
+
+                    & .filter-selection {
+                        color: colors.$doc123-regular-cl;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    & .search-result-list {
+        margin-top: 30px;
+
+        & .search-result-card {
+            display: flex;
+            column-gap: 20px;
+            margin-top: 10px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            transition: box-shadow 0.2s;
+
+            &:hover {
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            & .cover-img-wrapper {
+                position: relative;
+                height: 182px;
+                aspect-ratio: 70/91;
+                border: 1px rgb(221, 221, 221) solid;
+                border-radius: 5px;
+
+                & .file-type-icon-wrapper {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+
+                    & i {
+                        font-size: 1.5rem;
+                    }
+                }
+                & .cover-img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            & .search-result-card-info {
+                & .search-result-title {
+                    font-size: 20px;
+                    width: fit-content;
+                    cursor: pointer;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                & .search-result-description {
+                    margin-top: 5px;
+                    overflow-wrap: break-word;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                    line-height: 1.5rem;
+                    font-size: 1rem;
+                }
+                & .search-result-upload-date {
+                    font-size: 0.9rem;
+                    margin-top: 10px;
+                    color: gray;
+                }
+                & .search-result-details {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 5px;
+                    column-gap: 10px;
+                    font-family: fonts.$doc123-regular-font;
+                    font-size: 0.8rem;
+                    color: gray;
+
+                    & i {
+                        font-size: 0.9rem;
+                        color: gray;
+                    }
+                }
+            }
+        }
+    }
+
+    & .pagination-wrapper {
+        display: flex;
+        margin-top: 30px;
+
+        & ul {
+            margin: auto;
+            border: 1px rgb(228, 228, 228) solid;
+            border-radius: 8px;
+
+            & li {
+                & p {
+                    cursor: pointer;
+                    color: black;
+
+                    &:hover {
+                        background-color: colors.$doc123-regular-cl;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
 }
