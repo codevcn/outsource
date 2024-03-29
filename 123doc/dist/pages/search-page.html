@@ -17,7 +17,8 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="../style/index.css" />
-        <link rel="stylesheet" href="../style/home-page.css" />
+        <link rel="stylesheet" href="../style/layout.css" />
+        <link rel="stylesheet" href="../style/search-page.css" />
     </head>
     <body>
         <!-- :MARK Phân loại Drawer -->
@@ -45,6 +46,17 @@
                     <a href="#" class="nav-item nav-item-4">Tài chính - Ngân hàng</a>
                     <a href="#" class="nav-item nav-item-5">Giáo dục - Đào tạo</a>
                 </div>
+
+                <div class="action-btns">
+                    <button
+                        class="login-register-btn"
+                        data-bs-toggle="modal"
+                        type="button"
+                        data-bs-target="#login-register-dialog"
+                    >
+                        Đăng nhập / Đăng ký
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -55,7 +67,7 @@
                     <img src="../img/app-logo.svg" alt="App Logo" />
                 </a>
                 <div
-                    class="dropdown-menu-icon-wrapper"
+                    class="drawer-menu-btn-wrapper"
                     data-bs-toggle="offcanvas"
                     type="button"
                     data-bs-target="#navigation-drawer"
@@ -131,7 +143,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="action-options">
+                            <div class="password-actions">
                                 <span></span>
                                 <div class="forgot-password-btn">Quên mật khẩu?</div>
                             </div>
@@ -258,12 +270,7 @@
         </div>
 
         <!-- :MARK Main Section -->
-        <div id="main-section">
-            <div class="search-result-header-text"></div>
-            <div class="search-result-filter">
-                
-            </div>
-        </div>
+        <div id="main-section"></div>
 
         <!-- :MARK Chân trang -->
         <div id="footer">
@@ -349,9 +356,9 @@
                 </a>
             </div>
 
-            <div class="footer-options-section">
-                <div class="footer-options-box customer-support">
-                    <h2 class="footer-options-title">Hỗ trợ khách hàng</h2>
+            <div class="footer-helps-section">
+                <div class="footer-help-box customer-support">
+                    <h2 class="footer-help-title">Hỗ trợ khách hàng</h2>
                     <div class="options">
                         <div class="option">
                             <i class="bi bi-envelope-fill"></i>
@@ -367,8 +374,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-options-box help">
-                    <h2 class="footer-options-title">Giúp đỡ</h2>
+                <div class="footer-help-box help">
+                    <h2 class="footer-help-title">Giúp đỡ</h2>
                     <div class="options">
                         <div class="option">
                             <span>Câu hỏi thường gặp</span>
@@ -384,8 +391,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-options-box introduction">
-                    <h2 class="footer-options-title">Giới thiệu</h2>
+                <div class="footer-help-box introduction">
+                    <h2 class="footer-help-title">Giới thiệu</h2>
                     <div class="options">
                         <div class="option">
                             <span>123doc là gì?</span>
@@ -412,7 +419,13 @@
         ></script>
         <script src="../js/configs.js"></script>
         <script src="../js/lib/data.js"></script>
-        <script src="../js/search-page.js"></script>
-        <script></script>
+        <script src="../js/home-page.js"></script>
+        <script>
+            renderStandOutPosts(standOutPosts)
+            renderNewestPosts_economy(newestPosts)
+            renderNewestPosts_science(newestPosts)
+            renderNewestPosts_technical(newestPosts)
+            renderNewestPosts_enviroment(newestPosts)
+        </script>
     </body>
 </html>
