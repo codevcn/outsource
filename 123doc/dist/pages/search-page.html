@@ -45,17 +45,6 @@
                     <a href="#" class="nav-item nav-item-4">Tài chính - Ngân hàng</a>
                     <a href="#" class="nav-item nav-item-5">Giáo dục - Đào tạo</a>
                 </div>
-
-                <div class="action-btns">
-                    <button
-                        class="login-register-btn"
-                        data-bs-toggle="modal"
-                        type="button"
-                        data-bs-target="#login-register-dialog"
-                    >
-                        Đăng nhập / Đăng ký
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -66,7 +55,7 @@
                     <img src="../img/app-logo.svg" alt="App Logo" />
                 </a>
                 <div
-                    class="drawer-menu-btn-wrapper"
+                    class="dropdown-menu-icon-wrapper"
                     data-bs-toggle="offcanvas"
                     type="button"
                     data-bs-target="#navigation-drawer"
@@ -142,7 +131,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="password-actions">
+                            <div class="action-options">
                                 <span></span>
                                 <div class="forgot-password-btn">Quên mật khẩu?</div>
                             </div>
@@ -270,33 +259,9 @@
 
         <!-- :MARK Main Section -->
         <div id="main-section">
-            <!-- :MARK Tài liệu nổi bật trong tuần -->
-            <div class="stand-out-posts-section">
-                <h2 class="section-title stand-out-posts-title">Tài liệu nổi bật trong tuần</h2>
-                <div class="stand-out-posts-grid-container"></div>
-            </div>
-
-            <!-- :MARK Tài liệu mới đăng -->
-            <div class="newest-posts-section">
-                <h2 class="section-title newest-posts-title">Tài liệu mới đăng</h2>
-                <div class="newest-posts-lists">
-                    <div class="category-list-box economy-category">
-                        <h2 class="category-title">Chuyên ngành kinh tế</h2>
-                        <div class="category-list"></div>
-                    </div>
-                    <div class="category-list-box science-category">
-                        <h2 class="category-title">Khoa học xã hội</h2>
-                        <div class="category-list"></div>
-                    </div>
-                    <div class="category-list-box technical-category">
-                        <h2 class="category-title">Kỹ thuật</h2>
-                        <div class="category-list"></div>
-                    </div>
-                    <div class="category-list-box enviroment-category">
-                        <h2 class="category-title">Công nghệ - Môi trường</h2>
-                        <div class="category-list"></div>
-                    </div>
-                </div>
+            <div class="search-result-header-text"></div>
+            <div class="search-result-filter">
+                
             </div>
         </div>
 
@@ -384,9 +349,9 @@
                 </a>
             </div>
 
-            <div class="footer-helps-section">
-                <div class="footer-help-box customer-support">
-                    <h2 class="footer-help-title">Hỗ trợ khách hàng</h2>
+            <div class="footer-options-section">
+                <div class="footer-options-box customer-support">
+                    <h2 class="footer-options-title">Hỗ trợ khách hàng</h2>
                     <div class="options">
                         <div class="option">
                             <i class="bi bi-envelope-fill"></i>
@@ -402,8 +367,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-help-box help">
-                    <h2 class="footer-help-title">Giúp đỡ</h2>
+                <div class="footer-options-box help">
+                    <h2 class="footer-options-title">Giúp đỡ</h2>
                     <div class="options">
                         <div class="option">
                             <span>Câu hỏi thường gặp</span>
@@ -419,8 +384,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-help-box introduction">
-                    <h2 class="footer-help-title">Giới thiệu</h2>
+                <div class="footer-options-box introduction">
+                    <h2 class="footer-options-title">Giới thiệu</h2>
                     <div class="options">
                         <div class="option">
                             <span>123doc là gì?</span>
@@ -447,13 +412,7 @@
         ></script>
         <script src="../js/configs.js"></script>
         <script src="../js/lib/data.js"></script>
-        <script src="../js/home-page.js"></script>
-        <script>
-            renderStandOutPosts(standOutPosts)
-            renderNewestPosts_economy(newestPosts)
-            renderNewestPosts_science(newestPosts)
-            renderNewestPosts_technical(newestPosts)
-            renderNewestPosts_enviroment(newestPosts)
-        </script>
+        <script src="../js/search-page.js"></script>
+        <script></script>
     </body>
 </html>

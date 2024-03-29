@@ -189,7 +189,7 @@ const getCardEleOfStandOutPosts = (posts) => {
                 <img src="${post.cover}" alt="post cover">
             </div>`
 
-        const title = document.createElement('h3')
+        const title = document.createElement('a')
         title.setAttribute('data-bs-toggle', 'tooltip')
         title.setAttribute('data-bs-placement', 'bottom')
         title.setAttribute('data-bs-title', post.title)
@@ -199,15 +199,15 @@ const getCardEleOfStandOutPosts = (posts) => {
         const details = document.createElement('div')
         details.classList.add('grid-item-details')
         details.innerHTML = `
-            <div class="pages-count-box">
+            <div class="pages-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số trang của tài liệu">
                 <i class="bi bi-file-earmark-text-fill"></i>
                 <span class="count">${post.pagesCount}</span>
             </div>
-            <div class="views-count-box">
+            <div class="views-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt xem tài liệu">
                 <i class="bi bi-eye-fill"></i>
                 <span class="count">${post.viewsCount}</span>
             </div>
-            <div class="downloads-count-box">
+            <div class="downloads-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt tải tài liệu xuống">
                 <i class="bi bi-download"></i>
                 <span class="count">${post.downloadsCount}</span>
             </div>`

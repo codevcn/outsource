@@ -40,4 +40,10 @@ i.bi.bi-file-ppt-fill {
 }
 i.bi.bi-filetype-pdf {
   color: rgb(226, 87, 76);
+}
+
+@media screen and (max-width: 580px) {
+  .tooltip .tooltip-inner {
+    font-size: 0.8rem;
+  }
 }/*# sourceMappingURL=index.css.map */
