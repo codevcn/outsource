@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a,
+p,
+div,
+main,
+h1,
+h2,
+h3,
+input,
+textarea,
+button {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+}
+
+input {
+  outline: none;
+}
+
+i.bi {
+  color: rgb(19, 20, 23);
+  font-size: 1rem;
+}
+i.bi.bi-file-word-fill {
+  color: rgb(8, 110, 202);
+}
+i.bi.bi-file-ppt-fill {
+  color: rgb(182, 47, 20);
+}
+i.bi.bi-filetype-pdf {
+  color: rgb(226, 87, 76);
+}/*# sourceMappingURL=index.css.map */
