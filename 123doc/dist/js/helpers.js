@@ -8,3 +8,12 @@ const getIconForTypeOfPost = (type_of_file) => {
             return `<i class="bi bi-filetype-pdf"></i>`
     }
 }
+
+const formatCount = (num) => {
+    if (num < 1000) {
+        return num.toString()
+    } else {
+        const formattedNum = (num / 1000).toFixed(1)
+        return `${formattedNum}K`
+    }
+}

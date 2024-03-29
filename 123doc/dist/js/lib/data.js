@@ -45,7 +45,7 @@ const search_result_data = [
     {
         title: 'ÔN TẬP KINH TẾ VĨ MÔ',
         fileType: 'ppt',
-        pagesCount: 11,
+        pagesCount: 35555,
         viewsCount: 4,
         downloadsCount: 0,
         cover: postCoverURL,

@@ -34,7 +34,7 @@
             left: 50%;
             transform: translateX(-50%);
 
-            @media screen and (max-width: breakpoints.$doc123-large-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-large-breakpoint-homepage) {
                 display: block;
             }
         }
@@ -77,12 +77,12 @@
     background-color: white;
     z-index: 99;
 
-    @media screen and (max-width: breakpoints.$doc123-medium-breakpoint) {
+    @media screen and (max-width: breakpoints.$doc123-medium-breakpoint-homepage) {
         padding-left: 50px;
         padding-right: 50px;
     }
 
-    @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
         padding-left: 5px;
         padding-right: 5px;
     }
@@ -98,7 +98,7 @@
             & img {
                 height: 32px;
 
-                @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                     height: 20px;
                 }
             }
@@ -110,7 +110,7 @@
             & i {
                 font-size: 30px;
 
-                @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                     font-size: 20px;
                 }
 
@@ -127,7 +127,7 @@
         height: 34px;
         width: 100%;
 
-        @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
             height: 30px;
             margin-left: 25px;
         }
@@ -144,7 +144,7 @@
             padding-left: 10px;
             min-width: 184px;
 
-            @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                 font-size: 0.85rem;
             }
 
@@ -158,7 +158,7 @@
                 border-color: colors.$doc123-regular-cl;
                 border-left: 5px colors.$doc123-regular-cl solid;
 
-                @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                     outline: 1px colors.$doc123-regular-cl solid;
                 }
             }
@@ -185,7 +185,7 @@
     & .action-btns {
         margin-left: 128px;
 
-        @media screen and (max-width: breakpoints.$doc123-large-breakpoint) {
+        @media screen and (max-width: breakpoints.$doc123-large-breakpoint-homepage) {
             display: none;
         }
 
@@ -419,7 +419,7 @@
         row-gap: 5px;
         column-gap: 5px;
 
-        @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
             font-size: 0.8rem;
         }
 
@@ -448,13 +448,13 @@
         margin-top: 50px;
         width: 100%;
 
-        @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
             flex-direction: column;
             align-items: center;
         }
 
         & .footer-help-box {
-            @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -485,7 +485,7 @@
             }
 
             & .options {
-                @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -548,7 +548,7 @@
         font-size: 0.9rem;
         text-align: center;
 
-        @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
             font-size: 0.8rem;
         }
     }

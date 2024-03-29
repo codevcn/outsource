@@ -1,4 +1,12 @@
-$doc123-large-breakpoint: 1230px;
-$doc123-big-breakpoint: 990px;
-$doc123-medium-breakpoint: 780px;
-$doc123-small-breakpoint: 580px;
+// util
+$doc123-primary-breakpoint: 600px;
+
+// home page
+$doc123-large-breakpoint-homepage: 1230px;
+$doc123-big-breakpoint-homepage: 990px;
+$doc123-medium-breakpoint-homepage: 780px;
+$doc123-small-breakpoint-homepage: 580px;
+
+// search page
+$doc123-medium-breakpoint-searchpage: 710px;
+$doc123-small-breakpoint-searchpage: 600px;

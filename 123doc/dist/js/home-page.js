@@ -42,15 +42,15 @@ const getCardEleOfStandOutPosts = (posts) => {
         details.innerHTML = `
             <div class="pages-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số trang của tài liệu">
                 <i class="bi bi-file-earmark-text-fill"></i>
-                <span class="count">${post.pagesCount}</span>
+                <span class="count">${formatCount(post.pagesCount)}</span>
             </div>
             <div class="views-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt xem tài liệu">
                 <i class="bi bi-eye-fill"></i>
-                <span class="count">${post.viewsCount}</span>
+                <span class="count">${formatCount(post.viewsCount)}</span>
             </div>
             <div class="downloads-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt tải tài liệu xuống">
                 <i class="bi bi-download"></i>
-                <span class="count">${post.downloadsCount}</span>
+                <span class="count">${formatCount(post.downloadsCount)}</span>
             </div>`
 
         card.appendChild(cover)
@@ -88,15 +88,15 @@ const getCardEleOfNewestPosts = (posts) => {
         details.innerHTML = `
             <div class="pages-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số trang của tài liệu">
                 <i class="bi bi-file-earmark-text-fill"></i>
-                <span class="count">${post.pagesCount}</span>
+                <span class="count">${formatCount(post.pagesCount)}</span>
             </div>
             <div class="views-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt xem tài liệu">
                 <i class="bi bi-eye-fill"></i>
-                <span class="count">${post.viewsCount}</span>
+                <span class="count">${formatCount(post.viewsCount)}</span>
             </div>
             <div class="downloads-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt tải tài liệu xuống">
                 <i class="bi bi-download"></i>
-                <span class="count">${post.downloadsCount}</span>
+                <span class="count">${formatCount(post.downloadsCount)}</span>
             </div>`
 
         const title_and_details = document.createElement('div')

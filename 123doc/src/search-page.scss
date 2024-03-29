@@ -8,6 +8,16 @@
     padding-bottom: 30px;
     background-color: colors.$doc123-regular-bg-cl;
 
+    @media screen and (max-width: breakpoints.$doc123-medium-breakpoint-searchpage) {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+
+    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
     & .search-result-text {
         font-size: 1.5rem;
 
@@ -18,16 +28,23 @@
 
     & .search-result-filters {
         display: flex;
+        flex-wrap: wrap;
         column-gap: 10px;
+        row-gap: 10px;
         margin-top: 20px;
 
         & .search-result-filter-wrapper {
             width: 100%;
+            flex: 1 1 182px;
 
-            & ul {
+            & ul.dropdown-menu {
                 border: 1.5px lightgray solid;
                 max-height: 600px;
                 overflow-y: auto;
+
+                @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                    font-size: 0.9rem;
+                }
 
                 & li {
                     & a {
@@ -67,6 +84,10 @@
                     font-size: 1rem;
                     column-gap: 7px;
 
+                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                        font-size: 0.9rem;
+                    }
+
                     & .filter-selection {
                         color: colors.$doc123-regular-cl;
                         font-weight: bold;
@@ -99,6 +120,10 @@
                 border: 1px rgb(221, 221, 221) solid;
                 border-radius: 5px;
 
+                @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                    height: 150px;
+                }
+
                 & .file-type-icon-wrapper {
                     position: absolute;
                     top: 0;
@@ -106,6 +131,10 @@
 
                     & i {
                         font-size: 1.5rem;
+
+                        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                            font-size: 1rem;
+                        }
                     }
                 }
                 & .cover-img {
@@ -119,6 +148,10 @@
                     font-size: 20px;
                     width: fit-content;
                     cursor: pointer;
+
+                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                        font-size: 1rem;
+                    }
 
                     &:hover {
                         text-decoration: underline;
@@ -134,12 +167,22 @@
                     -webkit-line-clamp: 3;
                     line-height: 1.5rem;
                     font-size: 1rem;
+
+                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                        font-size: 0.8rem;
+                    }
                 }
+
                 & .search-result-upload-date {
                     font-size: 0.9rem;
                     margin-top: 10px;
                     color: gray;
+
+                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                        font-size: 0.7rem;
+                    }
                 }
+
                 & .search-result-details {
                     display: flex;
                     align-items: center;
@@ -149,9 +192,17 @@
                     font-size: 0.8rem;
                     color: gray;
 
+                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                        font-size: 0.6rem;
+                    }
+
                     & i {
                         font-size: 0.9rem;
                         color: gray;
+
+                        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                            font-size: 0.6rem;
+                        }
                     }
                 }
             }
@@ -162,7 +213,7 @@
         display: flex;
         margin-top: 30px;
 
-        & ul {
+        & ul.pagination {
             margin: auto;
             border: 1px rgb(228, 228, 228) solid;
             border-radius: 8px;
@@ -171,6 +222,10 @@
                 & p {
                     cursor: pointer;
                     color: black;
+
+                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-searchpage) {
+                        font-size: 0.8rem;
+                    }
 
                     &:hover {
                         background-color: colors.$doc123-regular-cl;

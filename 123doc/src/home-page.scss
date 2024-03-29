@@ -7,12 +7,12 @@
     padding: 0 150px;
     padding-top: 65px;
 
-    @media screen and (max-width: breakpoints.$doc123-medium-breakpoint) {
+    @media screen and (max-width: breakpoints.$doc123-medium-breakpoint-homepage) {
         padding-left: 50px;
         padding-right: 50px;
     }
 
-    @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
         padding-left: 5px;
         padding-right: 5px;
         padding-top: 40px;
@@ -26,7 +26,7 @@
         font-weight: bold;
         margin-bottom: 20px;
 
-        @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
             font-size: 20px;
         }
     }
@@ -35,7 +35,7 @@
         padding: 10px;
         padding-top: 30px;
 
-        @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
             padding-left: 0;
             padding-right: 0;
         }
@@ -46,17 +46,17 @@
             grid-gap: 10px; /* Khoảng cách giữa các ô là 10px */
             padding: 0 10px;
 
-            @media screen and (max-width: breakpoints.$doc123-large-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-large-breakpoint-homepage) {
                 grid-template-columns: repeat(3, 1fr);
                 padding: 0;
             }
 
-            @media screen and (max-width: breakpoints.$doc123-big-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-big-breakpoint-homepage) {
                 grid-template-columns: repeat(2, 1fr);
                 padding: 0;
             }
 
-            @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                 grid-template-columns: repeat(2, 1fr);
                 padding: 0;
             }
@@ -82,7 +82,7 @@
                         width: 144px;
                         aspect-ratio: 3/4;
 
-                        @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                        @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                             width: 80px;
                         }
 
@@ -96,7 +96,7 @@
                         & i {
                             font-size: 1.2rem;
 
-                            @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                            @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                                 font-size: 0.9rem;
                             }
                         }
@@ -119,7 +119,7 @@
                     margin-top: 15px;
                     color: black;
 
-                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                         font-size: 0.8rem;
                         line-height: 1.3rem;
                     }
@@ -159,15 +159,15 @@
             grid-row-gap: 30px;
             margin-top: 20px;
 
-            @media screen and (max-width: breakpoints.$doc123-large-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-large-breakpoint-homepage) {
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            @media screen and (max-width: breakpoints.$doc123-big-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-big-breakpoint-homepage) {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+            @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                 grid-template-columns: repeat(1, 1fr);
             }
 
@@ -201,7 +201,7 @@
                     font-size: 18px;
                     border-radius: 5px;
 
-                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                         font-size: 1rem;
                         padding: 10px;
                     }
@@ -231,7 +231,7 @@
                             cursor: pointer;
                             font-weight: normal;
 
-                            @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+                            @media screen and (max-width: breakpoints.$doc123-small-breakpoint-homepage) {
                                 font-size: 0.85rem;
                             }
 

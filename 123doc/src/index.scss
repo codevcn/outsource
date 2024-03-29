@@ -49,7 +49,7 @@ i.bi {
 
 .tooltip {
     & .tooltip-inner {
-        @media screen and (max-width: breakpoints.$doc123-small-breakpoint) {
+        @media screen and (max-width: breakpoints.$doc123-primary-breakpoint) {
             font-size: 0.8rem;
         }
     }

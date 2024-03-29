@@ -42,7 +42,7 @@ i.bi.bi-filetype-pdf {
   color: rgb(226, 87, 76);
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 600px) {
   .tooltip .tooltip-inner {
     font-size: 0.8rem;
   }
