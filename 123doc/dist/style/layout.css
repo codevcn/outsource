@@ -5,7 +5,7 @@
 #navigation-drawer .offcanvas-body .login-register-btn {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.9rem;
-  padding: 5px 15px;
+  padding: 4px 15px;
   font-weight: bold;
   text-transform: uppercase;
   width: -moz-max-content;
@@ -55,7 +55,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 150px;
+  padding: 2px 150px;
   border-bottom: 1px rgb(223, 223, 223) solid;
   position: fixed;
   width: 100%;
@@ -123,7 +123,7 @@
   height: 100%;
   box-sizing: border-box;
   padding: 4px 5px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   outline: none;
   width: 100%;
   padding-left: 10px;
@@ -173,7 +173,7 @@
 #nav-bar .action-btns .login-register-btn {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.9rem;
-  padding: 5px 15px;
+  padding: 4px 15px;
   font-weight: bold;
   text-transform: uppercase;
   width: -moz-max-content;
@@ -520,5 +520,33 @@
 @media screen and (max-width: 580px) {
   #copyright p {
     font-size: 0.8rem;
+  }
+}
+
+#scroll-to-top-box {
+  position: fixed;
+  bottom: 70px;
+  right: 25px;
+}
+#scroll-to-top-box .scroll-to-top-btn {
+  background-color: white;
+  border-radius: 50%;
+  border: 3px white solid;
+}
+#scroll-to-top-box .scroll-to-top-btn i {
+  display: flex;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 40px;
+  color: #ffaa00;
+  cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  #scroll-to-top-box {
+    bottom: 50px;
+    right: 15px;
+  }
+  #scroll-to-top-box .scroll-to-top-btn i {
+    font-size: 30px;
   }
 }/*# sourceMappingURL=layout.css.map */

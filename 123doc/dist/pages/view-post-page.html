@@ -18,7 +18,7 @@
         />
         <link rel="stylesheet" href="../style/index.css" />
         <link rel="stylesheet" href="../style/layout.css" />
-        <link rel="stylesheet" href="../style/search-page.css" />
+        <link rel="stylesheet" href="../style/view-post-page.css" />
     </head>
     <body>
         <!-- :MARK Cuộn lên trên cùng -->
@@ -284,89 +284,119 @@
 
         <!-- :MARK Main Section -->
         <div id="main-section">
-            <div class="search-result-text"></div>
-            <div class="search-result-filters">
-                <div class="search-result-filter-wrapper">
-                    <div class="search-result-filter" data-bs-toggle="dropdown">
-                        <p><span>Danh mục:</span><span class="filter-selection">Tất cả</span></p>
-                        <i class="bi bi-caret-down-fill"></i>
-                    </div>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                        <li><a class="dropdown-item" href="#">Luận văn</a></li>
-                        <li><a class="dropdown-item" href="#">Báo cáo</a></li>
-                        <li><a class="dropdown-item" href="#">Công nghệ thông tin</a></li>
-                        <li><a class="dropdown-item" href="#">Ngoại ngữ</a></li>
-                        <li><a class="dropdown-item" href="#">Y tế - sức khỏe</a></li>
-                    </ul>
-                </div>
-                <div class="search-result-filter-wrapper">
-                    <div class="search-result-filter" data-bs-toggle="dropdown">
-                        <p><span>Sắp xếp:</span><span class="filter-selection">Tất cả</span></p>
-                        <i class="bi bi-caret-down-fill"></i>
-                    </div>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                        <li><a class="dropdown-item" href="#">Mới đăng</a></li>
-                        <li><a class="dropdown-item" href="#">Xem nhiều</a></li>
-                        <li><a class="dropdown-item" href="#">Tải nhiều</a></li>
-                    </ul>
-                </div>
-                <div class="search-result-filter-wrapper">
-                    <div class="search-result-filter" data-bs-toggle="dropdown">
-                        <p><span>Loại file:</span><span class="filter-selection">Tất cả</span></p>
-                        <i class="bi bi-caret-down-fill"></i>
-                    </div>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                        <li><a class="dropdown-item" href="#">.docx</a></li>
-                        <li><a class="dropdown-item" href="#">.ppt</a></li>
-                        <li><a class="dropdown-item" href="#">.pdf</a></li>
-                    </ul>
-                </div>
-                <div class="search-result-filter-wrapper">
-                    <div class="search-result-filter" data-bs-toggle="dropdown">
-                        <p><span>Độ dài:</span><span class="filter-selection">Tất cả</span></p>
-                        <i class="bi bi-caret-down-fill"></i>
-                    </div>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                        <li><a class="dropdown-item" href="#">Từ 1 đến 4 trang</a></li>
-                        <li><a class="dropdown-item" href="#">Từ 5 đến 20 trang</a></li>
-                        <li><a class="dropdown-item" href="#">Từ 21 đến 100 trang</a></li>
-                        <li><a class="dropdown-item" href="#">Dài hơn 100 trang</a></li>
-                    </ul>
-                </div>
+            <div class="breadcrumb-container">
+                <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <i class="bi bi-house-fill"></i>
+                            <a style="margin-left: 5px" href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item current">
+                            <a href="#">Library</a>
+                        </li>
+                    </ol>
+                </nav>
             </div>
 
-            <div class="search-result-list"></div>
+            <!-- :MARK Post Secion -->
+            <div class="post-section">
+                <div class="post-title-box"></div>
+                <div class="post-details-box"></div>
+                <div class="post-top-actions-box">
+                    <div class="user-action">
+                        <div class="user-avatar-wrapper"></div>
+                        <div class="action-box">
+                            <div class="name-of-user"></div>
+                            <button class="report-violation">Báo cáo tài liệu vi phạm</button>
+                        </div>
+                    </div>
+                    <div class="post-action">
+                        <button
+                            class="add-to-collection"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            data-bs-title="Thêm tài liệu vào bộ sưu tập"
+                        >
+                            Thêm vào BST
+                        </button>
+                        <div class="download">
+                            <button
+                                class="download-text"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Tải tài liệu xuống"
+                            >
+                                Tải xuống
+                            </button>
+                            <span
+                                class="downloads-count-wrapper"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Số lượt tải tài liệu xuống"
+                            >
+                                <span class="downloads-count-value"></span>
+                            </span>
+                        </div>
+                        <div class="purchase">
+                            <span><i class="bi bi-cash"></i></span>
+                            <span class="purchase-amount"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-sildes-box"></div>
+                <div class="post-bottom-actions-box">
+                    <div class="action-box">
+                        <button class="post-bottom-action view-more">
+                            <span>XEM THÊM</span>
+                        </button>
+                        <div class="post-bottom-action download">
+                            <button
+                                class="download-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Tải tài liệu xuống"
+                            ></button>
+                            <span
+                                class="downloads-count"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Số lượt tải tài liệu xuống"
+                            ></span>
+                        </div>
+                    </div>
+                    <p class="action-text"></p>
+                </div>
+                <div class="post-description-box">
+                    <h2 class="post-description-title">Thông tin tài liệu</h2>
+                    <div class="description-and-details">
+                        <div class="post-description"></div>
+                        <div class="post-details"></div>
+                        <div class="view-more"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <div class="pagination-wrapper">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <p
-                            class="page-link"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                            data-bs-title="Về trang trước"
-                        >
-                            <i class="bi bi-caret-left-fill"></i>
-                        </p>
-                    </li>
-                    <li class="page-item"><p class="page-link">1</p></li>
-                    <li class="page-item"><p class="page-link">2</p></li>
-                    <li class="page-item"><p class="page-link">3</p></li>
-                    <li class="page-item">
-                        <p
-                            class="page-link"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="bottom"
-                            data-bs-title="Trang tiếp theo"
-                        >
-                            <i class="bi bi-caret-right-fill"></i>
-                        </p>
-                    </li>
-                </ul>
+        <!-- :MARK Extension Bar -->
+        <div id="extension-bar">
+            <div class="current-viewed-slide-page-box">
+                <span class="box-text">Bạn đang xem trang số</span>
+                <div class="current-viewed-slide-page"></div>
+            </div>
+
+            <div class="download-box">
+                <button
+                    class="download-btn"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    data-bs-title="Tải tài liệu xuống"
+                ></button>
+                <span
+                    class="downloads-count"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    data-bs-title="Số lượt tải tài liệu xuống"
+                ></span>
             </div>
         </div>
 
@@ -521,11 +551,15 @@
         <script src="../js/configs.js"></script>
         <script src="../js/lib/data.js"></script>
         <script src="../js/layout.js"></script>
-        <script src="../js/search-page.js"></script>
+        <script src="../js/view-post-page.js"></script>
         <script>
-            renderSearchResultText()
-            renderSearchResultList(search_result_data)
-            renderPagination(5, search_result_data.length)
+            renderMainSection(main_post_data)
+
+            // Sử dụng hàm để lấy số thứ tự của slide hiện tại
+            window.addEventListener('scroll', displayCurrentViewedSildePage)
+
+            // Tạo action nhảy đến slide page cho extension bar
+            createJumpToSlidePageEvent()
         </script>
     </body>
 </html>

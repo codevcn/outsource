@@ -37,20 +37,22 @@ const createCardEleOfStandOutPosts = (posts) => {
         title.classList.add('grid-item-title')
         title.textContent = post.title
 
+        const post_details = post.details
+
         const details = document.createElement('div')
         details.classList.add('grid-item-details')
         details.innerHTML = `
             <div class="pages-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số trang của tài liệu">
                 <i class="bi bi-file-earmark-text-fill"></i>
-                <span class="count">${formatCount(post.pagesCount)}</span>
+                <span class="count">${formatCount(post_details.pagesCount)}</span>
             </div>
             <div class="views-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt xem tài liệu">
                 <i class="bi bi-eye-fill"></i>
-                <span class="count">${formatCount(post.viewsCount)}</span>
+                <span class="count">${formatCount(post_details.viewsCount)}</span>
             </div>
             <div class="downloads-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt tải tài liệu xuống">
                 <i class="bi bi-download"></i>
-                <span class="count">${formatCount(post.downloadsCount)}</span>
+                <span class="count">${formatCount(post_details.downloadsCount)}</span>
             </div>`
 
         card.appendChild(cover)
@@ -83,20 +85,22 @@ const createCardEleOfNewestPosts = (posts) => {
         title.classList.add('list-card-title')
         title.textContent = post.title
 
+        const post_details = post.details
+
         const details = document.createElement('div')
         details.classList.add('list-card-details')
         details.innerHTML = `
             <div class="pages-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số trang của tài liệu">
                 <i class="bi bi-file-earmark-text-fill"></i>
-                <span class="count">${formatCount(post.pagesCount)}</span>
+                <span class="count">${formatCount(post_details.pagesCount)}</span>
             </div>
             <div class="views-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt xem tài liệu">
                 <i class="bi bi-eye-fill"></i>
-                <span class="count">${formatCount(post.viewsCount)}</span>
+                <span class="count">${formatCount(post_details.viewsCount)}</span>
             </div>
             <div class="downloads-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt tải tài liệu xuống">
                 <i class="bi bi-download"></i>
-                <span class="count">${formatCount(post.downloadsCount)}</span>
+                <span class="count">${formatCount(post_details.downloadsCount)}</span>
             </div>`
 
         const title_and_details = document.createElement('div')

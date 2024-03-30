@@ -49,21 +49,24 @@ const createSearchResultCards = (posts) => {
         const uploadDate = document.createElement('p')
         uploadDate.classList.add('search-result-upload-date')
         uploadDate.textContent =
-            'Ngày tải lên: ' + dayjs(post.updateDate).format('DD/MM/YYYY, HH:mm')
+            'Ngày tải lên: ' + dayjs(post.uploadDate).format('DD/MM/YYYY, HH:mm')
+
+        const post_details = post.details
+
         const details = document.createElement('div')
         details.classList.add('search-result-details')
         details.innerHTML = `
             <div class="pages-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số trang của tài liệu">
                 <i class="bi bi-file-earmark-text-fill"></i>
-                <span class="count">${formatCount(post.pagesCount)}</span>
+                <span class="count">${formatCount(post_details.pagesCount)}</span>
             </div>
             <div class="views-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt xem tài liệu">
                 <i class="bi bi-eye-fill"></i>
-                <span class="count">${formatCount(post.viewsCount)}</span>
+                <span class="count">${formatCount(post_details.viewsCount)}</span>
             </div>
             <div class="downloads-count-box" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Số lượt tải tài liệu xuống">
                 <i class="bi bi-download"></i>
-                <span class="count">${formatCount(post.downloadsCount)}</span>
+                <span class="count">${formatCount(post_details.downloadsCount)}</span>
             </div>`
 
         const card_info = document.createElement('div')

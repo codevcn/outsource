@@ -17,3 +17,20 @@ const formatCount = (num) => {
         return `${formattedNum}K`
     }
 }
+
+const formatNumberWithDot = (number) => {
+    const numberString = number.toString()
+    const numberStringLength = numberString.length
+    const chunks = []
+    let count = 0
+    for (let i = numberStringLength - 1; i >= 0; i--) {
+        if (count === 3) {
+            chunks.push('.')
+            count = 1
+        } else {
+            count++
+        }
+        chunks.push(numberString[i])
+    }
+    return chunks.reverse().join('')
+}

@@ -174,7 +174,7 @@
             & .category-list-box {
                 &.economy-category {
                     & .category-title {
-                        background-color: colors.$doc123-regular-cl;
+                        background-color: colors.$doc123-primary-cl;
                     }
                 }
                 &.science-category {
@@ -236,7 +236,7 @@
                             }
 
                             &:hover {
-                                color: colors.$doc123-regular-cl;
+                                color: colors.$doc123-primary-cl;
                             }
                         }
 

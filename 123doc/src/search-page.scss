@@ -49,7 +49,7 @@
                 & li {
                     & a {
                         &:hover {
-                            background-color: colors.$doc123-regular-cl;
+                            background-color: colors.$doc123-primary-cl;
                             color: white;
                         }
                     }
@@ -67,8 +67,8 @@
                 cursor: pointer;
 
                 &:hover {
-                    border-color: colors.$doc123-regular-cl;
-                    outline: 1.5px colors.$doc123-regular-cl solid;
+                    border-color: colors.$doc123-primary-cl;
+                    outline: 1.5px colors.$doc123-primary-cl solid;
                 }
 
                 & i {
@@ -89,7 +89,7 @@
                     }
 
                     & .filter-selection {
-                        color: colors.$doc123-regular-cl;
+                        color: colors.$doc123-primary-cl;
                         font-weight: bold;
                     }
                 }
@@ -221,7 +221,7 @@
             & li {
                 &.page-item.current {
                     & p {
-                        background-color: colors.$doc123-regular-cl;
+                        background-color: colors.$doc123-primary-cl;
                         color: white;
                     }
                 }
@@ -241,7 +241,7 @@
                     }
 
                     &:hover {
-                        background-color: colors.$doc123-regular-cl;
+                        background-color: colors.$doc123-primary-cl;
                         color: white;
 
                         & i {
