@@ -269,7 +269,6 @@ $doc123-body-width: 71.5%;
                 }
 
                 & .post-bottom-action {
-                    //:MARK
                     flex: 1;
                     border-radius: 5px;
                     overflow: hidden;
@@ -395,7 +394,7 @@ $doc123-body-width: 71.5%;
             font-size: 1.1rem;
 
             @media screen and (max-width: breakpoints.$doc123-medium-breakpoint-viewPostPage) {
-                display: none;;
+                display: none;
             }
         }
 

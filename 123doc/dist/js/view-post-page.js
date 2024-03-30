@@ -35,7 +35,7 @@ const renderTitle = (post) => {
 
     const fileTypeWrapper = document.createElement('div')
     fileTypeWrapper.classList.add('file-type-wrapper')
-    fileTypeWrapper.innerHTML = getIconForTypeOfPost(post.fileType)
+    fileTypeWrapper.innerHTML = createIconForTypeOfPost(post.fileType)
 
     postTitle.appendChild(title)
     postTitle.appendChild(fileTypeWrapper)

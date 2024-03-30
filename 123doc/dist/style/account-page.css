@@ -1,0 +1,140 @@
+#main-section {
+  padding-top: 50px;
+  background-color: #f8f8f8;
+}
+#main-section .background-section .background-tab {
+  background-image: url("../img/bg-tab.png");
+  background-repeat: repeat-x;
+  background-color: #00a888;
+  height: 96px;
+  width: 100%;
+}
+#main-section .background-section .user-info-and-docs-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: white;
+}
+#main-section .background-section .user-info-and-docs-info .user-info {
+  display: flex;
+  align-items: end;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+}
+#main-section .background-section .user-info-and-docs-info .user-info .user-avatar-wrapper {
+  border: 4px white solid;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-top: -4rem;
+}
+#main-section .background-section .user-info-and-docs-info .user-info .user-avatar-wrapper img {
+  height: 88px;
+  width: 88px;
+}
+#main-section .background-section .user-info-and-docs-info .user-info .name-of-user {
+  font-size: 1.7rem;
+}
+#main-section .background-section .user-info-and-docs-info .docs-info {
+  display: flex;
+  align-items: center;
+}
+#main-section .background-section .user-info-and-docs-info .docs-info .divider {
+  margin: 0 20px;
+  height: 100%;
+  width: 1px;
+  background-color: lightgray;
+}
+#main-section .background-section .user-info-and-docs-info .docs-info .views-count,
+#main-section .background-section .user-info-and-docs-info .docs-info .docs-count,
+#main-section .background-section .user-info-and-docs-info .docs-info .downloads-count {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: gray;
+}
+#main-section .background-section .user-info-and-docs-info .docs-info .views-count div,
+#main-section .background-section .user-info-and-docs-info .docs-info .docs-count div,
+#main-section .background-section .user-info-and-docs-info .docs-info .downloads-count div {
+  margin: 0 auto;
+  margin-top: 2px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#main-section .background-section .user-info-and-docs-info .docs-info .views-count .count-value,
+#main-section .background-section .user-info-and-docs-info .docs-info .docs-count .count-value,
+#main-section .background-section .user-info-and-docs-info .docs-info .downloads-count .count-value {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: black;
+}
+#main-section .navigation-and-profile {
+  display: flex;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  padding: 0 10px;
+  width: 100%;
+}
+#main-section .navigation-and-profile .navigation-section {
+  width: 25%;
+  margin-top: 4rem;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  border-radius: 5px;
+  padding: 0.75rem 0.625rem;
+  border: 1px #e5e7eb solid;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 1.1rem;
+  color: gray;
+  cursor: pointer;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item:not(:nth-of-type(1)) {
+  margin-top: 10px;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item.current {
+  background-color: #00a888;
+  color: white;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item.current i {
+  color: white;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item:hover {
+  background-color: #00a888;
+  color: white;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item:hover i {
+  color: white;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item:active {
+  border-color: #00a888;
+  background-color: white;
+  color: #00a888;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item:active i {
+  color: #00a888;
+}
+#main-section .navigation-and-profile .navigation-section .navigation-item i {
+  font-size: 1.4rem;
+  color: gray;
+}
+#main-section .navigation-and-profile .navigation-section .img-decoration {
+  margin-top: 15px;
+}
+#main-section .navigation-and-profile .profile-section {
+  width: 75%;
+}
+#main-section .navigation-and-profile .profile-section .profile-section-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 18px 0;
+  padding-left: 10px;
+}
+#main-section .navigation-and-profile .profile-section .profile-box {
+  padding: 15px;
+  border-radius: 5px;
+  background-color: white;
+}/*# sourceMappingURL=account-page.css.map */

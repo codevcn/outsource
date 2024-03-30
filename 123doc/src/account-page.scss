@@ -1,0 +1,164 @@
+@use './colors';
+@use './fonts';
+@use './breakpoints';
+
+$navigation-section-width: 25%;
+
+@mixin navigation-item-current {
+    background-color: colors.$doc123-primary-cl;
+    color: white;
+
+    & i {
+        color: white;
+    }
+}
+
+#main-section {
+    padding-top: 50px;
+    background-color: colors.$doc123-regular-bg-cl;
+
+    & .background-section {
+        & .background-tab {
+            background-image: url('../img/bg-tab.png');
+            background-repeat: repeat-x;
+            background-color: colors.$doc123-primary-cl;
+            height: 96px;
+            width: 100%;
+        }
+
+        & .user-info-and-docs-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background-color: white;
+
+            & .user-info {
+                display: flex;
+                align-items: end;
+                column-gap: 15px;
+
+                & .user-avatar-wrapper {
+                    border: 4px white solid;
+                    width: fit-content;
+                    margin-top: -4rem;
+
+                    & img {
+                        height: 88px;
+                        width: 88px;
+                    }
+                }
+
+                & .name-of-user {
+                    font-size: 1.7rem;
+                }
+            }
+
+            & .docs-info {
+                display: flex;
+                align-items: center;
+
+                & .divider {
+                    margin: 0 20px;
+                    height: 100%;
+                    width: 1px;
+                    background-color: lightgray;
+                }
+
+                & .views-count,
+                .docs-count,
+                .downloads-count {
+                    text-transform: uppercase;
+                    font-size: 0.7rem;
+                    font-weight: 500;
+                    color: gray;
+
+                    & div {
+                        margin: 0 auto;
+                        margin-top: 2px;
+                        width: fit-content;
+                    }
+
+                    & .count-value {
+                        font-size: 0.9rem;
+                        font-weight: bold;
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+
+    & .navigation-and-profile {
+        display: flex;
+        column-gap: 10px;
+        padding: 0 10px;
+        width: 100%;
+
+        & .navigation-section {
+            width: $navigation-section-width;
+            margin-top: 4rem;
+
+            & .navigation-item {
+                display: flex;
+                align-items: center;
+                column-gap: 10px;
+                border-radius: 5px;
+                padding: 0.75rem 0.625rem;
+                border: 1px #e5e7eb solid;
+                box-sizing: border-box;
+                background-color: white;
+                font-size: 1.1rem;
+                color: gray;
+                cursor: pointer;
+
+                &:not(:nth-of-type(1)) {
+                    margin-top: 10px;
+                }
+
+                &.current {
+                    @include navigation-item-current;
+                }
+
+                &:hover {
+                    @include navigation-item-current;
+                }
+
+                &:active {
+                    border-color: colors.$doc123-primary-cl;
+                    background-color: white;
+                    color: colors.$doc123-primary-cl;
+
+                    & i {
+                        color: colors.$doc123-primary-cl;
+                    }
+                }
+
+                & i {
+                    font-size: 1.4rem;
+                    color: gray;
+                }
+            }
+
+            & .img-decoration {
+                margin-top: 15px;
+            }
+        }
+
+        & .profile-section {
+            width: calc(100% - $navigation-section-width);
+
+            & .profile-section-title {
+                font-size: 1.5rem;
+                font-weight: 500;
+                margin: 18px 0;
+                padding-left: 10px;
+            }
+
+            & .profile-box {
+                padding: 15px;
+                border-radius: 5px;
+                background-color: white;
+            }
+        }
+    }
+}

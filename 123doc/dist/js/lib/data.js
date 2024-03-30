@@ -1,6 +1,55 @@
 const postCoverURL =
     'https://media.store123doc.com/images/document/13/ly/ok/medium_oka1373430547.jpg'
 
+const user_profile_data = {
+    displayedName: 'Lth Loi',
+    avatar: null,
+    docsInfo: {
+        viewsCount: 23001,
+        docsCount: 100,
+        downloadsCount: 0,
+    },
+    personalInfo: {
+        dateOfBirth: '01/01/2000',
+        gender: null,
+        address: null,
+    },
+    accountEmail: 'example@gmail.com',
+    linkedAccount: {
+        google: {
+            gmail: 'example@gmail.com',
+        },
+    },
+    contractedInfo: null,
+    taxDeclarationInfo: null,
+    loginHistory: [
+        {
+            divice: 'Chome - Windows',
+            type: 'Google',
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+        {
+            divice: 'Chome - Windows',
+            type: 'Google',
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+        {
+            divice: 'Chome - Mobile',
+            type: 'Facebook',
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+        {
+            divice: 'Chome - Windows',
+            type: 'Google',
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+    ],
+}
+
 const main_post_data = {
     user: {
         avatar: null,

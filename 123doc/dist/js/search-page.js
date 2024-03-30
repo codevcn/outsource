@@ -31,7 +31,7 @@ const createSearchResultCards = (posts) => {
         cover.classList.add('cover-img')
         const file_type_icon_wrapper = document.createElement('div')
         file_type_icon_wrapper.classList.add('file-type-icon-wrapper')
-        file_type_icon_wrapper.innerHTML = getIconForTypeOfPost(post.fileType)
+        file_type_icon_wrapper.innerHTML = createIconForTypeOfPost(post.fileType)
         const cover_wrapper = document.createElement('div')
         cover_wrapper.classList.add('cover-img-wrapper')
         cover_wrapper.appendChild(cover)
