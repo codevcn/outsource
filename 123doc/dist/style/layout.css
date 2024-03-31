@@ -209,12 +209,13 @@
   -moz-column-gap: 5px;
        column-gap: 5px;
   align-items: center;
-  color: red;
+  color: rgb(255, 64, 64);
   font-size: 1rem;
 }
 #login-register-dialog .modal-dialog .modal-content .modal-body .form-login .message i {
   color: inherit;
   font-size: 1rem;
+  color: rgb(255, 64, 64);
 }
 #login-register-dialog .modal-dialog .modal-content .modal-body .form-group .message {
   display: flex;

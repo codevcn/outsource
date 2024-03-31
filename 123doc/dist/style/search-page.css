@@ -44,7 +44,10 @@
     font-size: 0.9rem;
   }
 }
-#main-section .search-result-filters .search-result-filter-wrapper ul.dropdown-menu li a:hover {
+#main-section .search-result-filters .search-result-filter-wrapper ul.dropdown-menu li .dropdown-item {
+  cursor: pointer;
+}
+#main-section .search-result-filters .search-result-filter-wrapper ul.dropdown-menu li .dropdown-item:hover, #main-section .search-result-filters .search-result-filter-wrapper ul.dropdown-menu li .dropdown-item:active {
   background-color: #00a888;
   color: white;
 }

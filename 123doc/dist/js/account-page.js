@@ -6,16 +6,32 @@ const bgSection_userAvatar = bgSection_userAndDocsInfo.querySelector(
 )
 const bgSection_nameOfUser = bgSection_userAndDocsInfo.querySelector('.user-info .name-of-user')
 const bgSection_docsInfo = bgSection_userAndDocsInfo.querySelector('.docs-info')
+const profileSection = document.querySelector(
+    '#main-section .navigation-and-profile .profile-section .profile-box'
+)
+const profileSection_displayedNameEditor = profileSection.querySelector(
+    '.profile-item.displayed-name .profile-item-editor'
+)
+const profileSection_personalInfoEditor = profileSection.querySelector(
+    '.profile-item.personal-info .profile-item-editor'
+)
+const profileSection_accountEmailEditor = profileSection.querySelector(
+    '.profile-item.account-email .profile-item-editor'
+)
+const profileSection_linkedAccountList = profileSection.querySelector(
+    '.profile-item.linked-account .linked-accounts-list'
+)
+const profileSection_linkedAccountOAuth = profileSection.querySelector(
+    '.profile-item.linked-account .linked-account-oauth'
+)
 
-const renderBackgroundSection = (user_profile_data) => {
+const renderBackgroundSection = (docsInfo) => {
     const user_avatar_img = document.createElement('img')
     user_avatar_img.classList.add('user-avatar-img')
     user_avatar_img.src = user_profile_data.avatar || '../img/default-user-avatar.svg'
     bgSection_userAvatar.appendChild(user_avatar_img)
 
     bgSection_nameOfUser.textContent = user_profile_data.displayedName
-
-    const docsInfo = user_profile_data.docsInfo
 
     bgSection_docsInfo.querySelector('.views-count .count-value').textContent = formatCount(
         docsInfo.viewsCount
@@ -28,6 +44,151 @@ const renderBackgroundSection = (user_profile_data) => {
     )
 }
 
+const updateDisplayedNameFail = (error) => {
+    profileSection_displayedNameEditor.querySelector(
+        '.card-editor .form-group .message'
+    ).innerHTML = `
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span class="warning-text">${error.message}</span>`
+}
+
+const updateDisplayedName = async (value) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error('Có lỗi gì đó'))
+        }, 500)
+    })
+}
+
+const updateDisplayedNameHanlder = async () => {
+    const value = profileSection_displayedNameEditor.querySelector(
+        '.card-editor .form-group input'
+    ).value
+
+    if (!value) {
+        updateDisplayedNameFail({ message: 'Bạn chưa nhập tên!' })
+        return
+    }
+
+    profileSection_displayedNameEditor
+        .querySelector('.card-editor .actions .action-save')
+        .classList.toggle('inactive')
+    profileSection_displayedNameEditor.querySelector(
+        '.card-editor .actions .action-save'
+    ).innerHTML = `
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>`
+
+    try {
+        await updateDisplayedName(value)
+        profileSection_displayedNameEditor.querySelector(
+            '.card-editor .actions .action-save'
+        ).innerHTML = 'Lưu'
+        profileSection_displayedNameEditor
+            .querySelector('.card-editor .actions .action-save')
+            .classList.toggle('inactive')
+    } catch (error) {
+        profileSection_displayedNameEditor
+            .querySelector('.card-editor .actions .action-save')
+            .classList.toggle('inactive')
+        profileSection_displayedNameEditor.querySelector(
+            '.card-editor .actions .action-save'
+        ).innerHTML = 'Lưu'
+        updateDisplayedNameFail(error)
+    }
+}
+
+const openCloseInfoEditor = (target) => {
+    const parentEle = target.closest('.profile-item')
+    parentEle.querySelector('.profile-item-editor .profile-item-value').classList.toggle('inactive')
+    parentEle.querySelector('.profile-item-editor .collapse-edit').classList.toggle('inactive')
+}
+
+const renderDisplayedName = (user_profile_data) => {
+    const value = document.createElement('span')
+    value.classList.add('value')
+    value.textContent = user_profile_data.displayedName
+
+    profileSection_displayedNameEditor.querySelector('.profile-item-value').appendChild(value)
+    profileSection_displayedNameEditor.querySelector(
+        '.collapse-edit .card-editor .form-group input'
+    ).value = user_profile_data.displayedName
+}
+
+const renderPersonalInfo = (personalInfo) => {
+    profileSection_personalInfoEditor.querySelector(
+        '.profile-item-value .dateOfBirth .value'
+    ).innerHTML = personalInfo.dateOfBirth || `<span class="value-unset">Chưa được đặt</span>`
+    profileSection_personalInfoEditor.querySelector(
+        '.profile-item-value .gender .value'
+    ).innerHTML = personalInfo.gender || `<span class="value-unset">Chưa được đặt</span>`
+    profileSection_personalInfoEditor.querySelector(
+        '.profile-item-value .address .value'
+    ).innerHTML = personalInfo.address || `<span class="value-unset">Chưa được đặt</span>` //collapse-edit
+
+    flatpickr('.flatpickr-date-picker')
+}
+
+const renderAccountEmail = (user_profile_data) => {
+    const value = document.createElement('span')
+    value.classList.add('value')
+    value.textContent = user_profile_data.accountEmail
+
+    profileSection_accountEmailEditor.querySelector('.profile-item-value').appendChild(value)
+}
+
+const renderLinkedAccounts = (linkedAccounts) => {
+    const { google, facebook, zalo } = linkedAccounts
+
+    if (google) {
+        profileSection_linkedAccountList.querySelector(
+            '.linked-account-item.google .account'
+        ).textContent = google.email
+        profileSection_linkedAccountOAuth
+            .querySelector('.oauth-options .oauth-option.google')
+            .classList.add('inactive')
+    } else {
+        profileSection_linkedAccountList
+            .querySelector('.linked-account-item.google')
+            .classList.add('inactive')
+    }
+
+    if (facebook) {
+        profileSection_linkedAccountList.querySelector(
+            '.linked-account-item.facebook .account'
+        ).textContent = facebook.email
+        profileSection_linkedAccountOAuth
+            .querySelector('.oauth-options .oauth-option.facebook')
+            .classList.add('inactive')
+    } else {
+        profileSection_linkedAccountList
+            .querySelector('.linked-account-item.facebook')
+            .classList.add('inactive')
+    }
+
+    if (zalo) {
+        profileSection_linkedAccountList.querySelector(
+            '.linked-account-item.zalo .account'
+        ).textContent = zalo.email
+        profileSection_linkedAccountOAuth
+            .querySelector('.oauth-options .oauth-option.zalo')
+            .classList.add('inactive')
+    } else {
+        profileSection_linkedAccountList
+            .querySelector('.linked-account-item.zalo')
+            .classList.add('inactive')
+    }
+}
+
+const renderProfileSection = (user_profile_data) => {
+    renderDisplayedName(user_profile_data)
+    renderPersonalInfo(user_profile_data.personalInfo)
+    renderAccountEmail(user_profile_data)
+    renderLinkedAccounts(user_profile_data.linkedAccounts)
+}
+
 const renderAccountPage = (user_profile_data) => {
-    renderBackgroundSection(user_profile_data)
+    renderBackgroundSection(user_profile_data.docsInfo)
+    renderProfileSection(user_profile_data)
 }

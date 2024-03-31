@@ -15,9 +15,9 @@ const user_profile_data = {
         address: null,
     },
     accountEmail: 'example@gmail.com',
-    linkedAccount: {
+    linkedAccounts: {
         google: {
-            gmail: 'example@gmail.com',
+            email: 'example@gmail.com',
         },
     },
     contractedInfo: null,

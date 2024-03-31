@@ -41,6 +41,8 @@ $navigation-section-width: 25%;
                     border: 4px white solid;
                     width: fit-content;
                     margin-top: -4rem;
+                    border-radius: 5px;
+                    overflow: hidden;
 
                     & img {
                         height: 88px;
@@ -141,6 +143,7 @@ $navigation-section-width: 25%;
 
             & .img-decoration {
                 margin-top: 15px;
+                height: 60px;
             }
         }
 
@@ -158,6 +161,315 @@ $navigation-section-width: 25%;
                 padding: 15px;
                 border-radius: 5px;
                 background-color: white;
+
+                & .divider {
+                    width: 100%;
+                    border: 1px #e5e7eb solid;
+                    margin: 20px 0 10px;
+                }
+
+                & .profile-item {
+                    &.personal-info {
+                        & .profile-item-editor {
+                            & .card-editor {
+                                & .card-editor-item-row {
+                                    display: flex;
+                                    align-items: center;
+                                    margin-top: 10px;
+                                    font-size: 1rem;
+
+                                    & label {
+                                        width: 224px;
+                                    }
+
+                                    & .form-group {
+                                        & input {
+                                            font-size: 0.9rem;
+                                            padding: 5px 10px;
+                                        }
+                                    }
+
+                                    &.gender {
+                                        & .dropdown {
+                                            & button {
+                                                display: flex;
+                                                column-gap: 5px;
+                                                padding: 5px 15px;
+                                                border: 1px lightgray solid;
+                                                background-color: white;
+                                                border-radius: 5px;
+
+                                                &:hover {
+                                                    background-color: colors.$doc123-primary-cl;
+                                                    color: white;
+                                                    border-color: colors.$doc123-primary-cl;
+
+                                                    & i {
+                                                        color: white;
+                                                    }
+                                                }
+
+                                                & i {
+                                                    color: gray;
+                                                }
+                                            }
+
+                                            & .dropdown-menu {
+                                                & li {
+                                                    & .dropdown-item {
+                                                        cursor: pointer;
+
+                                                        &:hover,
+                                                        &:active {
+                                                            background-color: colors.$doc123-primary-cl;
+                                                            color: white;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                & .actions {
+                                    margin-left: 225px;
+                                }
+                            }
+                        }
+                    }
+
+                    &.linked-account {
+                        & .linked-accounts-list {
+                            & .linked-account-item {
+                                display: flex;
+                                align-items: center;
+                                column-gap: 15px;
+                                margin-top: 15px;
+
+                                &.inactive {
+                                    display: none;
+                                }
+
+                                & .platform-icon {
+                                    height: 2rem;
+                                    width: 2rem;
+
+                                    & img {
+                                        height: 100%;
+                                        width: 100%;
+                                    }
+                                }
+
+                                & .account {
+                                    border-radius: 5px;
+                                    border: 1px colors.$doc123-primary-cl solid;
+                                    padding: 5px 30px;
+                                }
+
+                                & .action-unlink-btn {
+                                    border: 2px colors.$doc123-secondary-cl solid;
+                                    border-radius: 5px;
+                                    background-color: colors.$doc123-secondary-cl;
+                                    color: white;
+                                    padding: 5px 20px;
+
+                                    &:hover {
+                                        background-color: white;
+                                        color: colors.$doc123-secondary-cl;
+                                    }
+                                }
+                            }
+                        }
+
+                        & .linked-account-oauth {
+                            & .oauth-title {
+                                margin-top: 10px;
+                                font-size: 1rem;
+                            }
+
+                            & .oauth-message {
+                                margin-top: 5px;
+                                font-size: 0.8rem;
+                                color: gray;
+                            }
+
+                            & .oauth-options {
+                                display: flex;
+                                flex-wrap: wrap;
+                                row-gap: 10px;
+                                column-gap: 15px;
+                                margin-top: 10px;
+
+                                & .oauth-option {
+                                    display: flex;
+                                    column-gap: 7px;
+                                    border: 1px #e5e7eb solid;
+                                    padding: 6px 20px;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    background-color: white;
+
+                                    & strong {
+                                        font-weight: normal;
+                                    }
+
+                                    &.inactive {
+                                        display: none;
+                                    }
+
+                                    &:hover {
+                                        background-color: #f5f5f5;
+                                    }
+
+                                    & img {
+                                        height: 1.4rem;
+                                        width: 1.4rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    & .profile-item-title {
+                        text-transform: uppercase;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                    }
+
+                    & .profile-item-title-container {
+                        display: flex;
+                        justify-content: space-between;
+
+                        & button.profile-item-edit {
+                            cursor: pointer;
+                            background-color: white;
+
+                            &:hover {
+                                color: colors.$doc123-primary-cl;
+
+                                & i {
+                                    color: colors.$doc123-primary-cl;
+                                }
+                            }
+                        }
+                    }
+
+                    & .profile-item-editor {
+                        margin-top: 5px;
+
+                        & .profile-item-value {
+                            font-size: 1.1rem;
+
+                            &.inactive {
+                                display: none;
+                            }
+
+                            & .item-row {
+                                margin-top: 10px;
+                                font-size: 1rem;
+
+                                & label {
+                                    width: 224px;
+                                }
+
+                                & .value-unset {
+                                    font-style: italic;
+                                    color: gray;
+                                }
+                            }
+                        }
+
+                        & .collapse-edit {
+                            margin-top: 5px;
+                            max-height: auto;
+
+                            &.inactive {
+                                display: none;
+                            }
+                        }
+
+                        & .card-editor {
+                            & .form-group {
+                                & input {
+                                    font-size: 1.3rem;
+                                    border: 1px lightgray solid;
+                                    border-radius: 5px;
+                                    padding: 5px 15px;
+                                    min-width: 300px;
+
+                                    &:focus,
+                                    &:hover {
+                                        outline: 1.5px colors.$doc123-primary-cl solid;
+                                        border-color: colors.$doc123-primary-cl;
+                                    }
+                                }
+
+                                & .message {
+                                    display: flex;
+                                    column-gap: 5px;
+                                    align-items: center;
+                                    color: colors.$doc123-regular-error-cl;
+                                    font-size: 1rem;
+                                    margin-top: 3px;
+                                    padding-left: 5px;
+
+                                    & i {
+                                        color: inherit;
+                                        font-size: 0.9rem;
+                                        color: colors.$doc123-regular-error-cl;
+                                    }
+                                }
+                            }
+
+                            & .actions {
+                                display: flex;
+                                column-gap: 10px;
+                                margin-top: 10px;
+
+                                & .action-save,
+                                .action-cancel {
+                                    display: flex;
+                                    font-size: 1.1rem;
+                                    padding: 5px 15px;
+                                    border-radius: 5px;
+                                    color: white;
+                                    width: 65px;
+
+                                    &.inactive {
+                                        pointer-events: none;
+                                        opacity: 0.5;
+                                    }
+                                }
+
+                                & .action-save {
+                                    background-color: colors.$doc123-primary-cl;
+                                    border: 2px colors.$doc123-primary-cl solid;
+
+                                    &:hover {
+                                        background-color: white;
+                                        color: colors.$doc123-primary-cl;
+                                    }
+
+                                    & .spinner-border {
+                                        height: 1.5rem;
+                                        width: 1.5rem;
+                                        margin: auto;
+                                    }
+                                }
+
+                                & .action-cancel {
+                                    background-color: colors.$doc123-secondary-cl;
+                                    border: 2px colors.$doc123-secondary-cl solid;
+
+                                    &:hover {
+                                        background-color: white;
+                                        color: colors.$doc123-secondary-cl;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

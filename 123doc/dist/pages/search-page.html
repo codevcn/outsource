@@ -74,7 +74,7 @@
         </div>
 
         <!-- :MARK Thanh điều hướng -->
-        <div id="nav-bar">
+        <nav id="nav-bar">
             <div class="logo-box">
                 <a class="logo-img-wrapper" href="/">
                     <img src="../img/app-logo.svg" alt="App Logo" />
@@ -107,7 +107,7 @@
                     Đăng nhập / Đăng ký
                 </button>
             </div>
-        </div>
+        </nav>
 
         <div
             class="modal fade"
@@ -118,7 +118,7 @@
         >
             <div class="modal-dialog">
                 <!-- :MARK login section -->
-                <div class="modal-content modal-content-login">
+                <section class="modal-content modal-content-login">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="login-register-dialog-label">Đăng nhập</h1>
                         <button
@@ -173,9 +173,9 @@
                             >
                         </div>
                     </div>
-                </div>
+                </section>
                 <!-- :MARK register section -->
-                <div class="modal-content modal-content-register inactive">
+                <section class="modal-content modal-content-register inactive">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="login-register-dialog-label">Đăng ký</h1>
                         <button
@@ -278,26 +278,26 @@
                             <span class="login-btn-text" onclick="switchToLogin()">Đăng nhập</span>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
 
         <!-- :MARK Main Section -->
-        <div id="main-section">
+        <main id="main-section">
             <div class="search-result-text"></div>
-            <div class="search-result-filters">
+            <section class="search-result-filters">
                 <div class="search-result-filter-wrapper">
                     <div class="search-result-filter" data-bs-toggle="dropdown">
                         <p><span>Danh mục:</span><span class="filter-selection">Tất cả</span></p>
                         <i class="bi bi-caret-down-fill"></i>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                        <li><a class="dropdown-item" href="#">Luận văn</a></li>
-                        <li><a class="dropdown-item" href="#">Báo cáo</a></li>
-                        <li><a class="dropdown-item" href="#">Công nghệ thông tin</a></li>
-                        <li><a class="dropdown-item" href="#">Ngoại ngữ</a></li>
-                        <li><a class="dropdown-item" href="#">Y tế - sức khỏe</a></li>
+                        <li><div class="dropdown-item">Tất cả</div></li>
+                        <li><div class="dropdown-item">Luận văn</div></li>
+                        <li><div class="dropdown-item">Báo cáo</div></li>
+                        <li><div class="dropdown-item">Công nghệ thông tin</div></li>
+                        <li><div class="dropdown-item">Ngoại ngữ</div></li>
+                        <li><div class="dropdown-item">Y tế - sức khỏe</div></li>
                     </ul>
                 </div>
                 <div class="search-result-filter-wrapper">
@@ -306,10 +306,10 @@
                         <i class="bi bi-caret-down-fill"></i>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                        <li><a class="dropdown-item" href="#">Mới đăng</a></li>
-                        <li><a class="dropdown-item" href="#">Xem nhiều</a></li>
-                        <li><a class="dropdown-item" href="#">Tải nhiều</a></li>
+                        <li><div class="dropdown-item">Tất cả</div></li>
+                        <li><div class="dropdown-item">Mới đăng</div></li>
+                        <li><div class="dropdown-item">Xem nhiều</div></li>
+                        <li><div class="dropdown-item">Tải nhiều</div></li>
                     </ul>
                 </div>
                 <div class="search-result-filter-wrapper">
@@ -318,10 +318,10 @@
                         <i class="bi bi-caret-down-fill"></i>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                        <li><a class="dropdown-item" href="#">.docx</a></li>
-                        <li><a class="dropdown-item" href="#">.ppt</a></li>
-                        <li><a class="dropdown-item" href="#">.pdf</a></li>
+                        <li><div class="dropdown-item">Tất cả</div></li>
+                        <li><div class="dropdown-item">.docx</div></li>
+                        <li><div class="dropdown-item">.ppt</div></li>
+                        <li><div class="dropdown-item">.pdf</div></li>
                     </ul>
                 </div>
                 <div class="search-result-filter-wrapper">
@@ -330,18 +330,18 @@
                         <i class="bi bi-caret-down-fill"></i>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Tất cả</a></li>
-                        <li><a class="dropdown-item" href="#">Từ 1 đến 4 trang</a></li>
-                        <li><a class="dropdown-item" href="#">Từ 5 đến 20 trang</a></li>
-                        <li><a class="dropdown-item" href="#">Từ 21 đến 100 trang</a></li>
-                        <li><a class="dropdown-item" href="#">Dài hơn 100 trang</a></li>
+                        <li><div class="dropdown-item">Tất cả</div></li>
+                        <li><div class="dropdown-item">Từ 1 đến 4 trang</div></li>
+                        <li><div class="dropdown-item">Từ 5 đến 20 trang</div></li>
+                        <li><div class="dropdown-item">Từ 21 đến 100 trang</div></li>
+                        <li><div class="dropdown-item">Dài hơn 100 trang</div></li>
                     </ul>
                 </div>
-            </div>
+            </section>
 
-            <div class="search-result-list"></div>
+            <section class="search-result-list"></section>
 
-            <div class="pagination-wrapper">
+            <section class="pagination-wrapper">
                 <ul class="pagination">
                     <li class="page-item">
                         <p
@@ -367,16 +367,16 @@
                         </p>
                     </li>
                 </ul>
-            </div>
-        </div>
+            </section>
+        </main>
 
         <!-- :MARK Chân trang -->
-        <div id="footer">
+        <footer id="footer">
             <div class="logo-img-wrapper">
                 <img src="../img/app-logo.svg" alt="App Logo" />
             </div>
 
-            <div class="quick-menu-section">
+            <section class="quick-menu-section">
                 <a href="#" rel="dofollow" title="Tài liệu" class="quick-menu-item"> Tài liệu </a>
                 <a href="#" rel="dofollow" title="Mục lục" class="quick-menu-item"> Mục lục </a>
                 <a href="/bai-viet" rel="dofollow" title="Bài viết" class="quick-menu-item">
@@ -452,9 +452,9 @@
                 >
                     soạn văn tế nghĩa sĩ cần giuộc
                 </a>
-            </div>
+            </section>
 
-            <div class="footer-helps-section">
+            <section class="footer-helps-section">
                 <div class="footer-help-box customer-support">
                     <h2 class="footer-help-title">Hỗ trợ khách hàng</h2>
                     <div class="options">
@@ -467,7 +467,7 @@
                             <span>Facebook</span>
                         </div>
                         <div class="option">
-                            <img src="../img/zalo-icon.svg" alt="zalo option" />
+                            <img src="../img/zalo-uncolored-icon.svg" alt="zalo option" />
                             <span>Zalo</span>
                         </div>
                     </div>
@@ -497,8 +497,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </footer>
 
         <!-- :MARK Bản quyền -->
         <div id="copyright">

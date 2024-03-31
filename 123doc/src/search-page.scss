@@ -47,8 +47,11 @@
                 }
 
                 & li {
-                    & a {
-                        &:hover {
+                    & .dropdown-item {
+                        cursor: pointer;
+
+                        &:hover,
+                        &:active {
                             background-color: colors.$doc123-primary-cl;
                             color: white;
                         }
@@ -188,7 +191,7 @@
                     align-items: center;
                     margin-top: 5px;
                     column-gap: 10px;
-                    font-family: fonts.$doc123-regular-font;
+                    font-family: fonts.$doc123-primary-font;
                     font-size: 0.8rem;
                     color: gray;
 

@@ -16,6 +16,12 @@
             integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
             crossorigin="anonymous"
         />
+        <!-- Datepicker -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <link rel="stylesheet" href="../style/index.css" />
         <link rel="stylesheet" href="../style/layout.css" />
         <link rel="stylesheet" href="../style/account-page.css" />
@@ -61,7 +67,7 @@
         </div>
 
         <!-- :MARK Thanh điều hướng -->
-        <div id="nav-bar">
+        <nav id="nav-bar">
             <div class="logo-box">
                 <a class="logo-img-wrapper" href="/">
                     <img src="../img/app-logo.svg" alt="App Logo" />
@@ -94,7 +100,7 @@
                     Đăng nhập / Đăng ký
                 </button>
             </div>
-        </div>
+        </nav>
 
         <div
             class="modal fade"
@@ -105,7 +111,7 @@
         >
             <div class="modal-dialog">
                 <!-- :MARK login section -->
-                <div class="modal-content modal-content-login">
+                <section class="modal-content modal-content-login">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="login-register-dialog-label">Đăng nhập</h1>
                         <button
@@ -160,9 +166,9 @@
                             >
                         </div>
                     </div>
-                </div>
+                </section>
                 <!-- :MARK register section -->
-                <div class="modal-content modal-content-register inactive">
+                <section class="modal-content modal-content-register inactive">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="login-register-dialog-label">Đăng ký</h1>
                         <button
@@ -265,13 +271,13 @@
                             <span class="login-btn-text" onclick="switchToLogin()">Đăng nhập</span>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
 
         <!-- :MARK Main Section -->
-        <div id="main-section">
-            <div class="background-section">
+        <main id="main-section">
+            <section class="background-section">
                 <div class="background-tab"></div>
                 <div class="user-info-and-docs-info">
                     <div class="user-info">
@@ -295,9 +301,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
             <div class="navigation-and-profile">
-                <div class="navigation-section">
+                <section class="navigation-section">
                     <div class="navigation-item overview">
                         <i class="bi bi-tv"></i>
                         <span>Tổng quan</span>
@@ -321,98 +327,254 @@
                     <div class="img-decoration">
                         <img src="../img/bg-light.png" alt="Light Background" />
                     </div>
-                </div>
-                <div class="profile-section">
+                </section>
+                <section class="profile-section">
                     <h2 class="profile-section-title">Thông tin cá nhân</h2>
                     <div class="profile-box">
                         <div class="profile-item displayed-name">
                             <div class="profile-item-title-container">
                                 <h2 class="profile-item-title">Tên hiển thị</h2>
-                                <div class="profile-item-edit">
+                                <button
+                                    class="profile-item-edit"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="left"
+                                    data-bs-title="Sửa thông tin"
+                                    onclick="openCloseInfoEditor(this)"
+                                >
                                     <i class="bi bi-gear-fill"></i>
                                     <span>Sửa</span>
+                                </button>
+                            </div>
+                            <div class="profile-item-editor">
+                                <div class="profile-item-value"></div>
+                                <div class="collapse-edit inactive">
+                                    <div class="card card-body card-editor">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Nhập tên mới..." />
+                                            <p class="message"></p>
+                                        </div>
+                                        <div class="actions">
+                                            <button
+                                                class="action-save"
+                                                onclick="updateDisplayedNameHanlder()"
+                                            >
+                                                Lưu
+                                            </button>
+                                            <button
+                                                class="action-cancel"
+                                                onclick="openCloseInfoEditor(this)"
+                                            >
+                                                Hủy
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="profile-item-value"></div>
-                            <!-- :MARK del -->
                         </div>
                         <div class="divider"></div>
                         <div class="profile-item personal-info">
                             <div class="profile-item-title-container">
                                 <h2 class="profile-item-title">Thông tin</h2>
-                                <div class="profile-item-edit">
+                                <button
+                                    class="profile-item-edit"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="left"
+                                    data-bs-title="Sửa thông tin"
+                                    onclick="openCloseInfoEditor(this)"
+                                >
                                     <i class="bi bi-gear-fill"></i>
                                     <span>Sửa</span>
+                                </button>
+                            </div>
+                            <div class="profile-item-editor">
+                                <div class="profile-item-value">
+                                    <div class="item-row dateOfBirth">
+                                        <label>Ngày sinh</label>
+                                        <span class="value"></span>
+                                    </div>
+                                    <div class="item-row gender">
+                                        <label>Giới tính</label>
+                                        <span class="value"></span>
+                                    </div>
+                                    <div class="item-row address">
+                                        <label>Địa chỉ</label>
+                                        <span class="value"></span>
+                                    </div>
+                                </div>
+                                <div class="collapse-edit inactive">
+                                    <div class="card card-body card-editor">
+                                        <div class="card-editor-item-row dateOfBirth">
+                                            <label>Ngày sinh</label>
+                                            <div class="form-group">
+                                                <input class="flatpickr-date-picker" placeholder="Nhấp để chọn ngày sinh" />
+                                                <p class="message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="card-editor-item-row gender">
+                                            <label>Giới tính</label>
+                                            <div class="dropdown">
+                                                <button data-bs-toggle="dropdown">
+                                                    <p>Không xác định</p>
+                                                    <i class="bi bi-caret-down-fill"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <div class="dropdown-item">Nam</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="dropdown-item">Nữ</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="dropdown-item">Khác</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="card-editor-item-row address">
+                                            <label>Địa chỉ</label>
+                                            <div class="form-group">
+                                                <input
+                                                    placeholder="Ví dụ: Lê Văn Việt, P. Hiệp Phú, TPHCM"
+                                                />
+                                                <p class="message"></p>
+                                            </div>
+                                        </div>
+                                        <div class="actions">
+                                            <button class="action-save" onclick="">Lưu</button>
+                                            <button
+                                                class="action-cancel"
+                                                onclick="openCloseInfoEditor(this)"
+                                            >
+                                                Hủy
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="profile-item-value"></div>
-                            <!-- :MARK del -->
                         </div>
                         <div class="divider"></div>
                         <div class="profile-item account-email">
                             <h2 class="profile-item-title">Email tài khoản</h2>
-                            <div class="profile-item-value"></div>
-                            <!-- :MARK del -->
+                            <div class="profile-item-editor">
+                                <div class="profile-item-value"></div>
+                            </div>
                         </div>
                         <div class="divider"></div>
                         <div class="profile-item linked-account">
                             <h2 class="profile-item-title">Tài khoản liên kết</h2>
-                            <div class="linked-account-list"></div>
-                            <div class="link-account-action">
-                                <h3>Liên kết tài khoản của bạn với:</h3>
-                                <p class="">
+                            <div class="linked-accounts-list">
+                                <div class="linked-account-item google">
+                                    <div class="platform-icon">
+                                        <img src="../img/google-icon.svg" alt="Google" />
+                                    </div>
+                                    <div class="account"></div>
+                                    <button class="action-unlink-btn">Bỏ liên kết</button>
+                                </div>
+                                <div class="linked-account-item facebook">
+                                    <div class="platform-icon">
+                                        <img src="../img/facebook-icon.svg" alt="Facebook" />
+                                    </div>
+                                    <div class="account"></div>
+                                    <button class="action-unlink-btn">Bỏ liên kết</button>
+                                </div>
+                                <div class="linked-account-item zalo">
+                                    <div class="platform-icon">
+                                        <img src="../img/zalo-icon.svg" alt="Zalo" />
+                                    </div>
+                                    <div class="account"></div>
+                                    <button class="action-unlink-btn">Bỏ liên kết</button>
+                                </div>
+                            </div>
+                            <div class="linked-account-oauth">
+                                <h3 class="oauth-title">Liên kết tài khoản của bạn với:</h3>
+                                <p class="oauth-message">
                                     Bằng việc liên kết tài khoản, bạn có thể đăng nhập 123doc bằng
-                                    một trong các hình thức đã liên kết
+                                    một trong các hình thức đã liên kết.
                                 </p>
                                 <div class="oauth-options">
-                                    <div class="oauth-option">
-                                        <i class="bi bi-facebook"></i>
-                                        <span>Facebook</span>
-                                    </div>
-                                    <div class="oauth-option">
-                                        <img src="../img/zalo-icon.svg" alt="Đăng nhập Zalo" />
-                                        <span>Zalo</span>
-                                    </div>
+                                    <button
+                                        class="oauth-option google"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        data-bs-title="Liên kết tài khoản Google"
+                                    >
+                                        <img src="../img/google-icon.svg" alt="Google" />
+                                        <strong>Google</strong>
+                                    </button>
+                                    <button
+                                        class="oauth-option zalo"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        data-bs-title="Liên kết tài khoản Zalo"
+                                    >
+                                        <img src="../img/zalo-icon.svg" alt="Zalo" />
+                                        <strong>Zalo</strong>
+                                    </button>
+                                    <button
+                                        class="oauth-option facebook"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="bottom"
+                                        data-bs-title="Liên kết tài khoản Facebook"
+                                    >
+                                        <img src="../img/facebook-icon.svg" alt="Facebook" />
+                                        <strong>Facebook</strong>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         <div class="divider"></div>
                         <div class="profile-item password">
                             <div class="profile-item-title-container">
-                                <h2 class="profile-item-title">Thông tin</h2>
-                                <div class="profile-item-edit">
+                                <h2 class="profile-item-title">Mật khẩu</h2>
+                                <button
+                                    class="profile-item-edit"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="left"
+                                    data-bs-title="Sửa thông tin"
+                                    onclick="openCloseInfoEditor(this)"
+                                >
                                     <i class="bi bi-gear-fill"></i>
                                     <span>Sửa</span>
-                                </div>
+                                </button>
                             </div>
                             <div class="noticing-text">
                                 * Mật khẩu phải có tối thiểu 8 ký tự, bao gồm cả chữ hoa, chữ thường
                                 và số.
                             </div>
-                            <div class="change-password-container">
-                                <div class="password-form-group">
-                                    <label>Mật khẩu</label>
-                                    <div>
-                                        <div class="password-input-wrapper">
-                                            <input type="password" placeholder="***********" />
+                            <div class="profile-item-editor">
+                                <div class="collapse-edit inactive">
+                                    <div class="change-password-container">
+                                        <div class="password-form-group">
+                                            <label>Mật khẩu</label>
+                                            <div>
+                                                <div class="password-input-wrapper">
+                                                    <input
+                                                        type="password"
+                                                        placeholder="***********"
+                                                    />
+                                                </div>
+                                                <p class="message"></p>
+                                            </div>
                                         </div>
-                                        <p class="message"></p>
-                                    </div>
-                                </div>
-                                <div class="password-form-group">
-                                    <label>Nhập lại mật khẩu</label>
-                                    <div>
-                                        <div class="retype-password-input-wrapper">
-                                            <input type="password" placeholder="***********" />
+                                        <div class="password-form-group">
+                                            <label>Nhập lại mật khẩu</label>
+                                            <div>
+                                                <div class="retype-password-input-wrapper">
+                                                    <input
+                                                        type="password"
+                                                        placeholder="***********"
+                                                    />
+                                                </div>
+                                                <p class="message"></p>
+                                            </div>
                                         </div>
-                                        <p class="message"></p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span></span>
-                                    <div class="password-form-actions">
-                                        <button class="submit-btn">Cập nhật</button>
-                                        <button class="cancel-btn">Hủy</button>
+                                        <div>
+                                            <span></span>
+                                            <div class="password-form-actions">
+                                                <button class="submit-btn">Cập nhật</button>
+                                                <button class="cancel-btn">Hủy</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -430,17 +592,17 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </div>
+        </main>
 
         <!-- :MARK Chân trang -->
-        <div id="footer">
+        <footer id="footer">
             <div class="logo-img-wrapper">
                 <img src="../img/app-logo.svg" alt="App Logo" />
             </div>
 
-            <div class="quick-menu-section">
+            <section class="quick-menu-section">
                 <a href="#" rel="dofollow" title="Tài liệu" class="quick-menu-item"> Tài liệu </a>
                 <a href="#" rel="dofollow" title="Mục lục" class="quick-menu-item"> Mục lục </a>
                 <a href="/bai-viet" rel="dofollow" title="Bài viết" class="quick-menu-item">
@@ -516,9 +678,9 @@
                 >
                     soạn văn tế nghĩa sĩ cần giuộc
                 </a>
-            </div>
+            </section>
 
-            <div class="footer-helps-section">
+            <section class="footer-helps-section">
                 <div class="footer-help-box customer-support">
                     <h2 class="footer-help-title">Hỗ trợ khách hàng</h2>
                     <div class="options">
@@ -531,7 +693,7 @@
                             <span>Facebook</span>
                         </div>
                         <div class="option">
-                            <img src="../img/zalo-icon.svg" alt="zalo option" />
+                            <img src="../img/zalo-uncolored-icon.svg" alt="zalo option" />
                             <span>Zalo</span>
                         </div>
                     </div>
@@ -561,8 +723,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </footer>
 
         <!-- :MARK Bản quyền -->
         <div id="copyright">

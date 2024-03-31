@@ -3,7 +3,7 @@
 @use './breakpoints';
 
 @mixin login-register-style {
-    font-family: fonts.$doc123-regular-font;
+    font-family: fonts.$doc123-primary-font;
     font-size: 0.9rem;
     padding: 4px 15px;
     font-weight: bold;
@@ -224,12 +224,13 @@
                         display: flex;
                         column-gap: 5px;
                         align-items: center;
-                        color: red;
+                        color: colors.$doc123-regular-error-cl;
                         font-size: 1rem;
 
                         & i {
                             color: inherit;
                             font-size: 1rem;
+                            color: colors.$doc123-regular-error-cl;
                         }
                     }
                 }
@@ -429,7 +430,7 @@
             background-color: colors.$doc123-primary-cl;
             color: white;
             font-size: inherit;
-            font-family: fonts.$doc123-regular-font;
+            font-family: fonts.$doc123-primary-font;
             border: 1.5px colors.$doc123-primary-cl solid;
 
             &:hover {
@@ -469,7 +470,7 @@
                 margin-bottom: 15px;
                 font-size: 1rem;
                 color: gray;
-                font-family: fonts.$doc123-regular-font;
+                font-family: fonts.$doc123-primary-font;
                 position: relative;
                 width: fit-content;
 
@@ -495,7 +496,7 @@
                     display: flex;
                     column-gap: 5px;
                     align-items: center;
-                    font-family: fonts.$doc123-regular-font;
+                    font-family: fonts.$doc123-primary-font;
                     margin-top: 10px;
                     position: relative;
                     width: fit-content;
@@ -543,7 +544,7 @@
     background-color: #f8f8f8;
 
     & p {
-        font-family: fonts.$doc123-regular-font;
+        font-family: fonts.$doc123-primary-font;
         margin: auto;
         font-size: 0.9rem;
         text-align: center;
