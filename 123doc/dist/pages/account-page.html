@@ -21,7 +21,11 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
         />
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <!-- Toast -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css"
+        />
         <link rel="stylesheet" href="../style/index.css" />
         <link rel="stylesheet" href="../style/layout.css" />
         <link rel="stylesheet" href="../style/account-page.css" />
@@ -282,7 +286,7 @@
                 <div class="user-info-and-docs-info">
                     <div class="user-info">
                         <div class="user-avatar-wrapper"></div>
-                        <p class="name-of-user"></p>
+                        <p class="displayed-name-of-user"></p>
                     </div>
                     <div class="docs-info">
                         <div class="views-count">
@@ -356,7 +360,7 @@
                                         <div class="actions">
                                             <button
                                                 class="action-save"
-                                                onclick="updateDisplayedNameHanlder()"
+                                                onclick="updateDisplayedNameHandler()"
                                             >
                                                 Lưu
                                             </button>
@@ -388,7 +392,7 @@
                             </div>
                             <div class="profile-item-editor">
                                 <div class="profile-item-value">
-                                    <div class="item-row dateOfBirth">
+                                    <div class="item-row date-of-birth">
                                         <label>Ngày sinh</label>
                                         <span class="value"></span>
                                     </div>
@@ -403,29 +407,54 @@
                                 </div>
                                 <div class="collapse-edit inactive">
                                     <div class="card card-body card-editor">
-                                        <div class="card-editor-item-row dateOfBirth">
+                                        <div class="card-editor-item-row date-of-birth">
                                             <label>Ngày sinh</label>
                                             <div class="form-group">
-                                                <input class="flatpickr-date-picker" placeholder="Nhấp để chọn ngày sinh" />
+                                                <div class="input-wrapper">
+                                                    <input
+                                                        class="flatpickr-date-picker"
+                                                        placeholder="Nhấp để chọn ngày sinh"
+                                                    />
+                                                    <i class="bi bi-calendar2-date-fill"></i>
+                                                </div>
                                                 <p class="message"></p>
                                             </div>
                                         </div>
                                         <div class="card-editor-item-row gender">
                                             <label>Giới tính</label>
-                                            <div class="dropdown">
-                                                <button data-bs-toggle="dropdown">
+                                            <div class="dropdown gender-dropdown">
+                                                <button
+                                                    data-gender-picked=""
+                                                    data-bs-toggle="dropdown"
+                                                >
                                                     <p>Không xác định</p>
                                                     <i class="bi bi-caret-down-fill"></i>
                                                 </button>
+                                                <p class="message"></p>
                                                 <ul class="dropdown-menu">
                                                     <li>
-                                                        <div class="dropdown-item">Nam</div>
+                                                        <div
+                                                            class="dropdown-item"
+                                                            data-gender-value="male"
+                                                        >
+                                                            Nam
+                                                        </div>
                                                     </li>
                                                     <li>
-                                                        <div class="dropdown-item">Nữ</div>
+                                                        <div
+                                                            class="dropdown-item"
+                                                            data-gender-value="female"
+                                                        >
+                                                            Nữ
+                                                        </div>
                                                     </li>
                                                     <li>
-                                                        <div class="dropdown-item">Khác</div>
+                                                        <div
+                                                            class="dropdown-item"
+                                                            data-gender-value="other"
+                                                        >
+                                                            Khác
+                                                        </div>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -440,7 +469,12 @@
                                             </div>
                                         </div>
                                         <div class="actions">
-                                            <button class="action-save" onclick="">Lưu</button>
+                                            <button
+                                                class="action-save"
+                                                onclick="updatePersonalInfoHandler()"
+                                            >
+                                                Lưu
+                                            </button>
                                             <button
                                                 class="action-cancel"
                                                 onclick="openCloseInfoEditor(this)"
@@ -741,6 +775,12 @@
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
             crossorigin="anonymous"
         ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"
+            integrity="sha256-O11zcGEd6w4SQFlm8i/Uk5VAB+EhNNmynVLznwS6TJ4="
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
         <script src="../js/constants.js"></script>
         <script src="../js/helpers.js"></script>

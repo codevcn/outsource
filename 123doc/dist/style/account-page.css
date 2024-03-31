@@ -33,7 +33,7 @@
   height: 88px;
   width: 88px;
 }
-#main-section .background-section .user-info-and-docs-info .user-info .name-of-user {
+#main-section .background-section .user-info-and-docs-info .user-info .displayed-name-of-user {
   font-size: 1.7rem;
 }
 #main-section .background-section .user-info-and-docs-info .docs-info {
@@ -163,10 +163,12 @@
   display: flex;
   -moz-column-gap: 5px;
        column-gap: 5px;
+  justify-content: space-between;
   padding: 5px 15px;
   border: 1px lightgray solid;
   background-color: white;
   border-radius: 5px;
+  min-width: 100px;
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-item-row.gender .dropdown button:hover {
   background-color: #00a888;
@@ -178,6 +180,21 @@
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-item-row.gender .dropdown button i {
   color: gray;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-item-row.gender .dropdown .message {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  align-items: center;
+  color: rgb(255, 64, 64);
+  font-size: 1rem;
+  margin-top: 3px;
+  padding-left: 5px;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-item-row.gender .dropdown .message i {
+  color: inherit;
+  font-size: 0.9rem;
+  color: rgb(255, 64, 64);
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-item-row.gender .dropdown .dropdown-menu li .dropdown-item {
   cursor: pointer;
@@ -308,6 +325,16 @@
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .collapse-edit.inactive {
   display: none;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .input-wrapper {
+  position: relative;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .input-wrapper i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: gray;
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .form-group input {
   font-size: 1.3rem;
