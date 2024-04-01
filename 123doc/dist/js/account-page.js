@@ -9,29 +9,31 @@ const bgSection_nameOfUser = bgSection_userAndDocsInfo.querySelector(
 )
 const bgSection_docsInfo = bgSection_userAndDocsInfo.querySelector('.docs-info')
 const profileSection = document.querySelector(
-    '#main-section .navigation-and-profile .profile-section .profile-box'
+    '#main-section .navigation-and-profile .profile-section'
 )
 const profileSection_displayedNameEditor = profileSection.querySelector(
-    '.profile-item.displayed-name .profile-item-editor'
+    '.profile-box .profile-item.displayed-name .profile-item-editor'
 )
 const profileSection_personalInfoEditor = profileSection.querySelector(
-    '.profile-item.personal-info .profile-item-editor'
+    '.profile-box .profile-item.personal-info .profile-item-editor'
 )
 const profileSection_accountEmailEditor = profileSection.querySelector(
-    '.profile-item.account-email .profile-item-editor'
+    '.profile-box .profile-item.account-email .profile-item-editor'
 )
 const profileSection_linkedAccountList = profileSection.querySelector(
-    '.profile-item.linked-account .linked-accounts-list'
+    '.profile-box .profile-item.linked-account .linked-accounts-list'
 )
 const profileSection_linkedAccountOAuth = profileSection.querySelector(
-    '.profile-item.linked-account .linked-account-oauth'
+    '.profile-box .profile-item.linked-account .linked-account-oauth'
 )
 const personalInfo_genderPicker = profileSection_personalInfoEditor.querySelectorAll(
-    '.profile-item-editor .card-editor .card-editor-form-group.gender .dropdown-menu .dropdown-item'
+    '.profile-box .profile-item-editor .card-editor .card-editor-form-group.gender .dropdown-menu .dropdown-item'
 )
 const profileSection_passwordCardEditor = profileSection.querySelector(
-    '.profile-item.displayed-name .profile-item-editor .card-editor'
+    '.profile-box .profile-item.password .profile-item-editor .card-editor'
 )
+const loginHistorySection = profileSection.querySelector('.profile-box .profile-item.login-history')
+const deleteAccountBtn = profileSection.querySelector('.profile-box .delete-account button')
 
 const renderBackgroundSection = (docsInfo) => {
     const user_avatar_img = document.createElement('img')
@@ -60,25 +62,8 @@ const renderDisplayedName = (user_profile_data) => {
         user_profile_data.displayedName
 }
 
-const updateDisplayedNameDone = (result) => {
-    if (result instanceof Error) {
-        profileSection_displayedNameEditor.querySelector(
-            '.card-editor .input-container .message'
-        ).innerHTML = `
-            <i class="bi bi-exclamation-triangle-fill"></i>
-            <span class="warning-text">${result.message}</span>`
-    } else {
-        profileSection_displayedNameEditor.querySelector(
-            '.card-editor .input-container .message'
-        ).innerHTML = ''
-
-        renderDisplayedName({ displayedName: result.displayedName })
-
-        bgSection_nameOfUser.textContent = result.displayedName
-    }
-}
-
-const updateDisplayedName = async (value) => {
+const updateDisplayedName = async (new_dispayed_name) => {
+    // call api
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (dayjs().second() % 2 === 0) {
@@ -90,36 +75,61 @@ const updateDisplayedName = async (value) => {
     })
 }
 
+const setDisplayedNameWarningMessage = (message) => {
+    profileSection_displayedNameEditor.querySelector(
+        '.card-editor .input-container .message'
+    ).innerHTML = message
+        ? `
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span class="warning-text">${message}</span>`
+        : ''
+}
+
+const updateDisplayedNameDone = (result) => {
+    if (result instanceof Error) {
+        setDisplayedNameWarningMessage(result.message)
+    } else {
+        setDisplayedNameWarningMessage(null)
+        renderDisplayedName({ displayedName: result.displayedName })
+        bgSection_nameOfUser.textContent = result.displayedName
+    }
+}
+
+const validateUpdateDisplayedName = (new_dispayed_name) => {
+    if (!new_dispayed_name) {
+        setDisplayedNameWarningMessage('Bạn chưa nhập tên!')
+    } else {
+        setDisplayedNameWarningMessage(null)
+    }
+}
+
 const updateDisplayedNameHandler = async () => {
-    const value = profileSection_displayedNameEditor.querySelector(
+    const new_dispayed_name = profileSection_displayedNameEditor.querySelector(
         '.card-editor .input-container input'
     ).value
 
-    if (!value) {
-        updateDisplayedNameDone(new Error('Bạn chưa nhập tên!'))
-        return
-    }
+    if (!validateUpdateDisplayedName(new_dispayed_name)) {
+        const editor = profileSection_displayedNameEditor.querySelector(
+            '.card-editor .actions .action-save'
+        )
 
-    const editor = profileSection_displayedNameEditor.querySelector(
-        '.card-editor .actions .action-save'
-    )
-
-    editor.classList.toggle('inactive')
-    editor.innerHTML = `
+        editor.classList.toggle('inactive')
+        editor.innerHTML = `
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>`
 
-    try {
-        await updateDisplayedName(value)
-        updateDisplayedNameDone({ displayedName: value })
-        toast.success({ message: 'Đã cập nhật thông tin thành công!' })
-    } catch (error) {
-        updateDisplayedNameDone(error)
-    }
+        try {
+            await updateDisplayedName(new_dispayed_name)
+            updateDisplayedNameDone({ displayedName: new_dispayed_name })
+            toast.success({ message: 'Đã cập nhật thông tin thành công!' })
+        } catch (error) {
+            updateDisplayedNameDone(error)
+        }
 
-    editor.classList.toggle('inactive')
-    editor.innerHTML = 'Lưu'
+        editor.classList.toggle('inactive')
+        editor.innerHTML = 'Lưu'
+    }
 }
 
 const openCloseInfoEditor = (target) => {
@@ -223,6 +233,7 @@ const updatePersonalInfoDone = (result) => {
 }
 
 const updatePersonalInfo = async ({ dateOfBirth, gender, address }) => {
+    // call api
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (dayjs().second() % 2 === 0) {
@@ -246,11 +257,11 @@ const updatePersonalInfoHandler = async () => {
     ).value
 
     if (validateUpdatePersonalInfo({ dateOfBirth, gender, address })) {
-        const editor = profileSection_personalInfoEditor.querySelector(
+        const editor_action_save = profileSection_personalInfoEditor.querySelector(
             '.card-editor .actions .action-save'
         )
-        editor.classList.toggle('inactive')
-        editor.innerHTML = `
+        editor_action_save.classList.toggle('inactive')
+        editor_action_save.innerHTML = `
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>`
@@ -263,17 +274,15 @@ const updatePersonalInfoHandler = async () => {
             updatePersonalInfoDone(error)
         }
 
-        editor.classList.toggle('inactive')
-        editor.innerHTML = 'Lưu'
+        editor_action_save.classList.toggle('inactive')
+        editor_action_save.innerHTML = 'Lưu'
     }
 }
 
 const renderAccountEmail = (user_profile_data) => {
-    const value = document.createElement('span')
-    value.classList.add('value')
-    value.textContent = user_profile_data.accountEmail
-
-    profileSection_accountEmailEditor.querySelector('.profile-item-value').appendChild(value)
+    profileSection_accountEmailEditor.querySelector(
+        '.profile-item-value'
+    ).innerHTML = `<span className="value">${user_profile_data.accountEmail}</span>`
 }
 
 const renderLinkedAccounts = (linkedAccounts) => {
@@ -332,12 +341,24 @@ const hideShowPassword_cardEditor = (target, is_shown) => {
     }
 }
 
-const setPasswordWarningMessage_type = () => {
-    // :MARK >>>continue
+const setPasswordWarningMessage_type = (message) => {
+    profileSection_passwordCardEditor.querySelector(
+        '.card-editor-form-group.type-password .input-container .message'
+    ).innerHTML = message
+        ? `
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span class="warning-text">${message}</span>`
+        : ''
 }
 
-const setPasswordWarningMessage_retype = () => {
-    // :MARK >>>continue
+const setPasswordWarningMessage_retype = (message) => {
+    profileSection_passwordCardEditor.querySelector(
+        '.card-editor-form-group.retype-password .input-container .message'
+    ).innerHTML = message
+        ? `
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span class="warning-text">${message}</span>`
+        : ''
 }
 
 const validateUpdatePassword = ({ password, retypePassword }) => {
@@ -354,10 +375,37 @@ const validateUpdatePassword = ({ password, retypePassword }) => {
     } else {
         setPasswordWarningMessage_retype(null)
     }
+    if (password !== retypePassword) {
+        setPasswordWarningMessage_retype('Mật khẩu nhập lại không khớp!')
+        is_valid = false
+    }
     return is_valid
 }
 
-const updatePasswordHandler = () => {
+const updatePassword = async ({ password }) => {
+    // call api
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (dayjs().second() % 2 === 0) {
+                resolve({ success: true })
+            } else {
+                reject(new Error('Có lỗi gì đó!!!'))
+            }
+        }, 500)
+    })
+}
+
+const updatePasswordDone = (result) => {
+    if (result instanceof Error) {
+        setPasswordWarningMessage_type('Có lỗi gì đó!!!')
+        setPasswordWarningMessage_retype('Có lỗi gì đó!!!')
+    } else {
+        setPasswordWarningMessage_type(null)
+        setPasswordWarningMessage_retype(null)
+    }
+}
+
+const updatePasswordHandler = async () => {
     const password = profileSection_passwordCardEditor.querySelector(
         '.card-editor-form-group.type-password .input-container input'
     ).value
@@ -366,8 +414,254 @@ const updatePasswordHandler = () => {
     ).value
 
     if (validateUpdatePassword({ password, retypePassword })) {
-        // :MARK >>>continue
+        const editor_action_save =
+            profileSection_passwordCardEditor.querySelector('.actions .action-save')
+        editor_action_save.classList.toggle('inactive')
+        editor_action_save.innerHTML = `
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`
+
+        try {
+            await updatePassword({ password })
+            toast.success({ message: 'Cập nhật mật khẩu của bạn thành công!' })
+            updatePasswordDone(null)
+        } catch (error) {
+            updatePasswordDone(error)
+        }
+
+        editor_action_save.classList.toggle('inactive')
+        editor_action_save.innerHTML = 'Cập nhật'
     }
+}
+
+const setUpdateEmailWarningMessage = (message) => {
+    profileSection_accountEmailEditor.querySelector(
+        '.card-editor .card-editor-form-group.update-email .message'
+    ).innerHTML = message
+        ? `
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span class="warning-text">${message}</span>`
+        : ''
+}
+
+const validateUpdateEmail = (email) => {
+    let is_valid = true
+    if (!email) {
+        setUpdateEmailWarningMessage('Bạn chưa nhập email mới!')
+        is_valid = false
+    } else {
+        setUpdateEmailWarningMessage(null)
+    }
+    const email_regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/
+
+    if (email && !email_regex.test(email)) {
+        setUpdateEmailWarningMessage('Vui lòng nhập đúng định dạng email!')
+        is_valid = false
+    }
+
+    return is_valid
+}
+
+const updateEmailDone = (result) => {
+    if (result instanceof Error) {
+        setUpdateEmailWarningMessage('Có lỗi gì đó!!!')
+    } else {
+        setUpdateEmailWarningMessage(null)
+
+        renderAccountEmail({ accountEmail: result.email })
+    }
+}
+
+const updateEmail = async (email) => {
+    // call api
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (dayjs().second() % 2 === 0) {
+                resolve({ success: true })
+            } else {
+                reject(new Error('Có lỗi gì đó!!!'))
+            }
+        }, 500)
+    })
+}
+
+const updateEmailHandler = async () => {
+    const email = profileSection_accountEmailEditor.querySelector(
+        '.card-editor .card-editor-form-group.update-email .input-container input'
+    ).value
+
+    if (validateUpdateEmail(email)) {
+        const editor_action_save = profileSection_accountEmailEditor.querySelector(
+            '.card-editor .actions .action-save'
+        )
+        editor_action_save.classList.toggle('inactive')
+        editor_action_save.innerHTML = `
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`
+
+        try {
+            await updateEmail()
+            toast.success({ message: 'Cập nhật email của bạn thành công!' })
+            updateEmailDone({ email })
+        } catch (error) {
+            updateEmailDone(error)
+        }
+
+        editor_action_save.classList.toggle('inactive')
+        editor_action_save.innerHTML = 'Cập nhật'
+    }
+}
+
+const fetchLoginHistory = async () => {
+    // call api
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (dayjs().second() % 2 === 0) {
+                resolve(loginHistory_data)
+            } else {
+                reject(new Error('Có lỗi gì đó!'))
+            }
+        }, 500)
+    })
+}
+
+const setLoginHistoryWarningMessage = (message) => {
+    loginHistorySection.querySelector('.notify-text').innerHTML = message
+        ? `
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span class="warning-text">${message}</span>`
+        : ''
+}
+
+const renderLoginHistoryItem = (history) => {
+    const historyIcon = document.createElement('img')
+    historyIcon.src = '../img/history-item-icon.svg'
+    historyIcon.classList.add('history-item-icon-img')
+
+    const device = document.createElement('p')
+    device.classList.add('history-item-detail-device')
+    device.textContent = history.device
+
+    const message = document.createElement('p')
+    message.classList.add('history-item-detail-message')
+    message.textContent = history.message || 'Đăng nhập bằng ' + history.type
+
+    const location = document.createElement('p')
+    location.classList.add('history-item-detail-location')
+    location.textContent = `${history.location} - ${dayjs(history.date).format('DD/MM/YYYY HH:mm')}`
+
+    const historyDetail = document.createElement('div')
+    historyDetail.classList.add('history-item-detail')
+
+    historyDetail.appendChild(device)
+    historyDetail.appendChild(message)
+    historyDetail.appendChild(location)
+
+    const historyItem = document.createElement('div')
+    historyItem.classList.add('history-item')
+
+    historyItem.appendChild(historyIcon)
+    historyItem.appendChild(historyDetail)
+
+    return historyItem
+}
+
+const renderLoginHistory = async (loginHistoryData) => {
+    const statics_lists_container = loginHistorySection.querySelector('.statics-lists-container')
+    statics_lists_container.classList.add('shown-statics-lists')
+
+    const logged_in_history = statics_lists_container.querySelector(
+        '.statics-lists .statics-list-box.logged-in-history .statics-list'
+    )
+
+    const linking_accounts_history = statics_lists_container.querySelector(
+        '.statics-lists .statics-list-box.linking-accounts-history .statics-list'
+    )
+
+    for (const history of loginHistoryData.loggedInHistory) {
+        logged_in_history.appendChild(renderLoginHistoryItem(history))
+    }
+
+    for (const history of loginHistoryData.linkingAccountsHistory) {
+        linking_accounts_history.appendChild(renderLoginHistoryItem(history))
+    }
+}
+
+const showLoginHistory = async () => {
+    const statics_lists_container = loginHistorySection.querySelector('.statics-lists-container')
+
+    if (statics_lists_container.classList.contains('shown-statics-lists')) {
+        statics_lists_container.classList.remove('shown-statics-lists')
+        statics_lists_container.querySelector(
+            '.statics-list-box.logged-in-history .statics-list'
+        ).innerHTML = ''
+        statics_lists_container.querySelector(
+            '.statics-list-box.linking-accounts-history .statics-list'
+        ).innerHTML = ''
+        loginHistorySection.querySelector(
+            '.profile-item-title-container .profile-item-edit span'
+        ).textContent = 'Xem'
+        return
+    }
+
+    const show_btn = loginHistorySection.querySelector('.profile-item-title-container')
+    show_btn.classList.toggle('inactive')
+    let loginHistoryData
+    try {
+        loginHistoryData = await fetchLoginHistory()
+        renderLoginHistory(loginHistoryData)
+        setLoginHistoryWarningMessage(null)
+        loginHistorySection.querySelector(
+            '.profile-item-title-container .profile-item-edit span'
+        ).textContent = 'Đóng'
+    } catch (error) {
+        setLoginHistoryWarningMessage(error.message)
+    }
+    show_btn.classList.toggle('inactive')
+}
+
+const deleteAccount = async () => {
+    // call api
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (dayjs().second() % 2 === 0) {
+                resolve({ success: true })
+            } else {
+                reject(new Error('Có lỗi gì đó!'))
+            }
+        }, 500)
+    })
+}
+
+const deleteAccountHandler = () => {
+    toast.confirm(
+        {
+            message: 'Hành động này không thể hoàn tác.',
+            title: 'Bạn xác nhận sẽ xóa tài khoản?',
+            cancelButtonText: 'Hủy',
+            confirmButtonText: 'Xác nhận xóa',
+        },
+        async () => {
+            deleteAccountBtn.innerHTML = `
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>`
+            deleteAccountBtn.classList.toggle('inactive')
+
+            try {
+                await deleteAccount()
+            } catch (error) {
+                toast.error({ message: error.message })
+            }
+
+            deleteAccountBtn.innerHTML = `
+                <i class="bi bi-trash3"></i>
+                <span>Xóa tài khoản 123doc</span>`
+            deleteAccountBtn.classList.toggle('inactive')
+        }
+    )
 }
 
 const renderProfileSection = (user_profile_data) => {

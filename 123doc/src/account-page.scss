@@ -32,12 +32,16 @@ $form-group-input-label-gap: 14rem;
 
 @mixin card-editor-form-group {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     margin-top: 10px;
     font-size: 1rem;
 
     & label {
         width: $form-group-input-label-gap;
+
+        @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+            width: 80px;
+        }
     }
 
     & .input-container {
@@ -64,8 +68,14 @@ $form-group-input-label-gap: 14rem;
         & .user-info-and-docs-info {
             display: flex;
             justify-content: space-between;
+            column-gap: 20px;
+            row-gap: 20px;
             padding: 15px;
             background-color: white;
+
+            @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                flex-direction: column;
+            }
 
             & .user-info {
                 display: flex;
@@ -128,12 +138,22 @@ $form-group-input-label-gap: 14rem;
     & .navigation-and-profile {
         display: flex;
         column-gap: 10px;
+        row-gap: 20px;
         padding: 0 10px;
         width: 100%;
+
+        @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+            flex-direction: column;
+        }
 
         & .navigation-section {
             width: $navigation-section-width;
             margin-top: 4rem;
+
+            @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                width: 100%;
+                margin-top: 2rem;
+            }
 
             & .navigation-item {
                 display: flex;
@@ -184,6 +204,11 @@ $form-group-input-label-gap: 14rem;
 
         & .profile-section {
             width: calc(100% - $navigation-section-width);
+            margin-bottom: 20px;
+
+            @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                width: 100%;
+            }
 
             & .profile-section-title {
                 font-size: 1.5rem;
@@ -219,6 +244,7 @@ $form-group-input-label-gap: 14rem;
                     & .profile-item-title-container {
                         display: flex;
                         justify-content: space-between;
+                        align-items: center;
 
                         & button.profile-item-edit {
                             cursor: pointer;
@@ -250,6 +276,10 @@ $form-group-input-label-gap: 14rem;
 
                                 & label {
                                     width: $form-group-input-label-gap;
+
+                                    @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                        width: 80px;
+                                    }
                                 }
 
                                 & .value-unset {
@@ -273,6 +303,24 @@ $form-group-input-label-gap: 14rem;
                                     & .input-wrapper {
                                         position: relative;
 
+                                        &.default-browser-date {
+                                            display: none;
+
+                                            @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                                display: block;
+
+                                                & i {
+                                                    display: none;
+                                                }
+                                            }
+                                        }
+
+                                        &.flatpickr-date {
+                                            @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                                display: none;
+                                            }
+                                        }
+
                                         & i {
                                             position: absolute;
                                             top: 50%;
@@ -288,6 +336,11 @@ $form-group-input-label-gap: 14rem;
                                         border-radius: 5px;
                                         padding: 5px 15px;
                                         min-width: 300px;
+
+                                        @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                            width: 100%;
+                                            min-width: 0;
+                                        }
 
                                         &:focus,
                                         &:hover {
@@ -314,7 +367,6 @@ $form-group-input-label-gap: 14rem;
                                     padding: 5px 15px;
                                     border-radius: 5px;
                                     color: white;
-                                    width: 65px;
 
                                     &.inactive {
                                         pointer-events: none;
@@ -381,6 +433,10 @@ $form-group-input-label-gap: 14rem;
                                                 border-radius: 5px;
                                                 min-width: 100px;
 
+                                                @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                                    font-size: 0.9rem;
+                                                }
+
                                                 &:hover {
                                                     background-color: colors.$doc123-primary-cl;
                                                     color: white;
@@ -418,7 +474,33 @@ $form-group-input-label-gap: 14rem;
                                 }
 
                                 & .actions {
-                                    margin-left: 225px;
+                                    margin-left: $form-group-input-label-gap;
+
+                                    @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                        margin-left: 80px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.account-email {
+                        & .profile-item-editor {
+                            & .card-editor {
+                                & .card-editor-form-group {
+                                    & label {
+                                        @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                            display: none;
+                                        }
+                                    }
+                                }
+
+                                & .actions {
+                                    margin-left: $form-group-input-label-gap;
+
+                                    @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                        margin-left: 0;
+                                    }
                                 }
                             }
                         }
@@ -431,6 +513,13 @@ $form-group-input-label-gap: 14rem;
                                 align-items: center;
                                 column-gap: 15px;
                                 margin-top: 15px;
+
+                                @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                    flex-direction: column;
+                                    row-gap: 10px;
+                                    border-bottom: 1px lightgray solid;
+                                    padding-bottom: 10px;
+                                }
 
                                 &.inactive {
                                     display: none;
@@ -547,6 +636,181 @@ $form-group-input-label-gap: 14rem;
 
                                 & .actions {
                                     margin-left: $form-group-input-label-gap;
+
+                                    @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                        margin-left: 80px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.contracted-info {
+                        & .noticing-text {
+                            margin-top: 5px;
+                        }
+                    }
+
+                    & .profile-item-view-action {
+                        font-size: 1.1rem;
+                        text-transform: uppercase;
+                        color: gray;
+                        font-weight: 500;
+
+                        &:hover {
+                            color: colors.$doc123-primary-cl;
+                            text-decoration: underline;
+                        }
+                    }
+
+                    &.login-history {
+                        & .notify-text {
+                            @include error-message;
+                        }
+
+                        & .profile-item-title-container {
+                            &.inactive {
+                                pointer-events: none;
+                                opacity: 0.5;
+                            }
+                        }
+
+                        & .statics-lists-container {
+                            display: none;
+
+                            &.shown-statics-lists {
+                                display: block;
+                            }
+
+                            & .statics-lists {
+                                display: flex;
+                                column-gap: 15px;
+                                width: 100%;
+                                margin-top: 20px;
+
+                                @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                    flex-direction: column;
+                                    row-gap: 10px;
+                                }
+
+                                & .statics-list-box {
+                                    flex: 1;
+
+                                    &.linking-accounts-history {
+                                        @media screen and (max-width: breakpoints.$doc123-big-breakpoint-account-page) {
+                                            margin-top: 20px;
+                                        }
+                                    }
+
+                                    & .statics-list-title {
+                                        font-size: 1rem;
+                                    }
+
+                                    & .statics-list {
+                                        & .history-item {
+                                            display: flex;
+                                            column-gap: 15px;
+                                            align-items: baseline;
+                                            border-bottom: 1px lightgray solid;
+                                            padding: 10px 15px;
+                                            padding-top: 15px;
+
+                                            & .history-item-icon-img {
+                                                height: 1.5rem;
+                                                width: 1.5rem;
+                                                position: relative;
+                                                top: 20px;
+                                            }
+
+                                            & .history-item-detail {
+                                                display: flex;
+                                                flex-direction: column;
+                                                row-gap: 3px;
+                                                font-size: 1rem;
+
+                                                & .history-item-detail-device {
+                                                    font-size: 0.9em;
+                                                }
+
+                                                & .history-item-detail-message,
+                                                .history-item-detail-location {
+                                                    font-size: 0.8em;
+                                                    color: gray;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        & .view-more-btn {
+                            font-size: 1.1rem;
+                            padding: 5px 15px;
+                            border-radius: 5px;
+                            color: white;
+                            margin-top: 20px;
+                            background-color: colors.$doc123-primary-cl;
+                            border: 2px colors.$doc123-primary-cl solid;
+                            cursor: pointer;
+
+                            & a {
+                                display: block;
+                                font-weight: bold;
+                                text-align: center;
+                                width: 100%;
+                            }
+
+                            &:hover {
+                                background-color: white;
+                                color: colors.$doc123-primary-cl;
+                            }
+                        }
+                    }
+
+                    &.delete-account {
+                        & h2 {
+                            font-size: 1.2rem;
+                            color: red;
+                            font-weight: 500;
+                        }
+
+                        & button {
+                            $delete-account-btn-color: red;
+
+                            display: flex;
+                            align-items: center;
+                            column-gap: 7px;
+                            font-weight: 500;
+                            background-color: $delete-account-btn-color;
+                            padding: 8px 15px;
+                            color: white;
+                            border-radius: 5px;
+                            margin-top: 10px;
+                            font-size: 1rem;
+                            border: 2px $delete-account-btn-color solid;
+
+                            &.inactive {
+                                pointer-events: none;
+                                opacity: 0.5;
+                            }
+
+                            & i {
+                                color: white;
+                                font-size: 1rem;
+                            }
+
+                            & .spinner-border {
+                                height: 1.5rem;
+                                width: 1.5rem;
+                            }
+
+                            &:hover {
+                                background-color: white;
+                                color: $delete-account-btn-color;
+
+                                & i {
+                                    color: $delete-account-btn-color;
                                 }
                             }
                         }

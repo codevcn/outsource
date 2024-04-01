@@ -1,6 +1,54 @@
 const postCoverURL =
     'https://media.store123doc.com/images/document/13/ly/ok/medium_oka1373430547.jpg'
 
+const loginHistory_data = {
+    loggedInHistory: [
+        {
+            device: 'Chome - Windows',
+            type: 'Google',
+            message: null,
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+        {
+            device: 'Chome - Windows',
+            type: 'Google',
+            message: null,
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+        {
+            device: 'Chome - Mobile',
+            type: 'Facebook',
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+        {
+            device: 'Chome - Windows',
+            type: 'Google',
+            message: null,
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+    ],
+    linkingAccountsHistory: [
+        {
+            device: 'Chome - Windows',
+            type: 'Google',
+            message: null,
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+        {
+            device: 'Chome - Windows',
+            type: 'Google',
+            message: null,
+            location: 'Ho Chi Minh city, Viet Nam',
+            date: new Date(),
+        },
+    ],
+}
+
 const user_profile_data = {
     displayedName: 'Lth Loi',
     avatar: null,
@@ -22,32 +70,6 @@ const user_profile_data = {
     },
     contractedInfo: null,
     taxDeclarationInfo: null,
-    loginHistory: [
-        {
-            divice: 'Chome - Windows',
-            type: 'Google',
-            location: 'Ho Chi Minh city, Viet Nam',
-            date: new Date(),
-        },
-        {
-            divice: 'Chome - Windows',
-            type: 'Google',
-            location: 'Ho Chi Minh city, Viet Nam',
-            date: new Date(),
-        },
-        {
-            divice: 'Chome - Mobile',
-            type: 'Facebook',
-            location: 'Ho Chi Minh city, Viet Nam',
-            date: new Date(),
-        },
-        {
-            divice: 'Chome - Windows',
-            type: 'Google',
-            location: 'Ho Chi Minh city, Viet Nam',
-            date: new Date(),
-        },
-    ],
 }
 
 const main_post_data = {

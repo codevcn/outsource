@@ -12,8 +12,16 @@
 #main-section .background-section .user-info-and-docs-info {
   display: flex;
   justify-content: space-between;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 20px;
   padding: 15px;
   background-color: white;
+}
+@media screen and (max-width: 850px) {
+  #main-section .background-section .user-info-and-docs-info {
+    flex-direction: column;
+  }
 }
 #main-section .background-section .user-info-and-docs-info .user-info {
   display: flex;
@@ -73,12 +81,24 @@
   display: flex;
   -moz-column-gap: 10px;
        column-gap: 10px;
+  row-gap: 20px;
   padding: 0 10px;
   width: 100%;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile {
+    flex-direction: column;
+  }
 }
 #main-section .navigation-and-profile .navigation-section {
   width: 25%;
   margin-top: 4rem;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .navigation-section {
+    width: 100%;
+    margin-top: 2rem;
+  }
 }
 #main-section .navigation-and-profile .navigation-section .navigation-item {
   display: flex;
@@ -129,6 +149,12 @@
 }
 #main-section .navigation-and-profile .profile-section {
   width: 75%;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section {
+    width: 100%;
+  }
 }
 #main-section .navigation-and-profile .profile-section .profile-section-title {
   font-size: 1.5rem;
@@ -159,6 +185,7 @@
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-title-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-title-container button.profile-item-edit {
   cursor: pointer;
@@ -186,6 +213,11 @@
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .profile-item-value .item-row label {
   width: 14rem;
 }
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .profile-item-value .item-row label {
+    width: 80px;
+  }
+}
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .profile-item-value .item-row .value-unset {
   font-style: italic;
   color: gray;
@@ -198,12 +230,17 @@
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin-top: 10px;
   font-size: 1rem;
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group label {
   width: 14rem;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group label {
+    width: 80px;
+  }
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container input {
   font-size: 0.9rem;
@@ -211,6 +248,22 @@
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container .input-wrapper {
   position: relative;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container .input-wrapper.default-browser-date {
+  display: none;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container .input-wrapper.default-browser-date {
+    display: block;
+  }
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container .input-wrapper.default-browser-date i {
+    display: none;
+  }
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container .input-wrapper.flatpickr-date {
+    display: none;
+  }
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container .input-wrapper i {
   position: absolute;
@@ -225,6 +278,12 @@
   border-radius: 5px;
   padding: 5px 15px;
   min-width: 300px;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container input {
+    width: 100%;
+    min-width: 0;
+  }
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container input:focus, #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .card-editor-form-group .input-container input:hover {
   outline: 1.5px #00a888 solid;
@@ -258,7 +317,6 @@
   padding: 5px 15px;
   border-radius: 5px;
   color: white;
-  width: 65px;
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .actions .action-save.inactive,
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-editor .card-editor .actions .action-cancel.inactive {
@@ -291,12 +349,17 @@
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-form-group {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin-top: 10px;
   font-size: 1rem;
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-form-group label {
   width: 14rem;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-form-group label {
+    width: 80px;
+  }
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-form-group .input-container input {
   font-size: 0.9rem;
@@ -312,6 +375,11 @@
   background-color: white;
   border-radius: 5px;
   min-width: 100px;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-form-group.gender .dropdown button {
+    font-size: 0.9rem;
+  }
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .card-editor-form-group.gender .dropdown button:hover {
   background-color: #00a888;
@@ -347,7 +415,25 @@
   color: white;
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .actions {
-  margin-left: 225px;
+  margin-left: 14rem;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.personal-info .profile-item-editor .card-editor .actions {
+    margin-left: 80px;
+  }
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.account-email .profile-item-editor .card-editor .card-editor-form-group label {
+    display: none;
+  }
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.account-email .profile-item-editor .card-editor .actions {
+  margin-left: 14rem;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.account-email .profile-item-editor .card-editor .actions {
+    margin-left: 0;
+  }
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.linked-account .linked-accounts-list .linked-account-item {
   display: flex;
@@ -355,6 +441,14 @@
   -moz-column-gap: 15px;
        column-gap: 15px;
   margin-top: 15px;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.linked-account .linked-accounts-list .linked-account-item {
+    flex-direction: column;
+    row-gap: 10px;
+    border-bottom: 1px lightgray solid;
+    padding-bottom: 10px;
+  }
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.linked-account .linked-accounts-list .linked-account-item.inactive {
   display: none;
@@ -443,4 +537,158 @@
 }
 #main-section .navigation-and-profile .profile-section .profile-box .profile-item.password .profile-item-editor .card-editor .actions {
   margin-left: 14rem;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.password .profile-item-editor .card-editor .actions {
+    margin-left: 80px;
+  }
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.contracted-info .noticing-text {
+  margin-top: 5px;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-view-action {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: gray;
+  font-weight: 500;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item .profile-item-view-action:hover {
+  color: #00a888;
+  text-decoration: underline;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .notify-text {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  align-items: center;
+  color: rgb(255, 64, 64);
+  font-size: 1rem;
+  margin-top: 3px;
+  padding-left: 5px;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .notify-text i {
+  color: inherit;
+  font-size: 0.9rem;
+  color: rgb(255, 64, 64);
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .profile-item-title-container.inactive {
+  pointer-events: none;
+  opacity: 0.5;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container {
+  display: none;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container.shown-statics-lists {
+  display: block;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists {
+  display: flex;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+  width: 100%;
+  margin-top: 20px;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box {
+  flex: 1;
+}
+@media screen and (max-width: 850px) {
+  #main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box.linking-accounts-history {
+    margin-top: 20px;
+  }
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box .statics-list-title {
+  font-size: 1rem;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box .statics-list .history-item {
+  display: flex;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+  align-items: baseline;
+  border-bottom: 1px lightgray solid;
+  padding: 10px 15px;
+  padding-top: 15px;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box .statics-list .history-item .history-item-icon-img {
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+  top: 20px;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box .statics-list .history-item .history-item-detail {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+  font-size: 1rem;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box .statics-list .history-item .history-item-detail .history-item-detail-device {
+  font-size: 0.9em;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box .statics-list .history-item .history-item-detail .history-item-detail-message,
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .statics-lists-container .statics-lists .statics-list-box .statics-list .history-item .history-item-detail .history-item-detail-location {
+  font-size: 0.8em;
+  color: gray;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .view-more-btn {
+  font-size: 1.1rem;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+  margin-top: 20px;
+  background-color: #00a888;
+  border: 2px #00a888 solid;
+  cursor: pointer;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .view-more-btn a {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.login-history .view-more-btn:hover {
+  background-color: white;
+  color: #00a888;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.delete-account h2 {
+  font-size: 1.2rem;
+  color: red;
+  font-weight: 500;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.delete-account button {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 7px;
+       column-gap: 7px;
+  font-weight: 500;
+  background-color: red;
+  padding: 8px 15px;
+  color: white;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 1rem;
+  border: 2px red solid;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.delete-account button.inactive {
+  pointer-events: none;
+  opacity: 0.5;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.delete-account button i {
+  color: white;
+  font-size: 1rem;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.delete-account button .spinner-border {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.delete-account button:hover {
+  background-color: white;
+  color: red;
+}
+#main-section .navigation-and-profile .profile-section .profile-box .profile-item.delete-account button:hover i {
+  color: red;
 }/*# sourceMappingURL=account-page.css.map */

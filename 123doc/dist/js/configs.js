@@ -23,6 +23,22 @@ class CustomToast {
     info({ message }) {
         Swal.fire(message)
     }
+    confirm({ message, title, confirmButtonText, cancelButtonText }, callback) {
+        Swal.fire({
+            ...(title ? { title } : {}),
+            text: message,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#00a888',
+            cancelButtonColor: '#d33',
+            confirmButtonText,
+            cancelButtonText,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                callback()
+            }
+        })
+    }
 }
 
 const toast = new CustomToast()
