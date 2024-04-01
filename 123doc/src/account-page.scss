@@ -3,6 +3,7 @@
 @use './breakpoints';
 
 $navigation-section-width: 25%;
+$form-group-input-label-gap: 14rem;
 
 @mixin navigation-item-current {
     background-color: colors.$doc123-primary-cl;
@@ -26,6 +27,24 @@ $navigation-section-width: 25%;
         color: inherit;
         font-size: 0.9rem;
         color: colors.$doc123-regular-error-cl;
+    }
+}
+
+@mixin card-editor-form-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 1rem;
+
+    & label {
+        width: $form-group-input-label-gap;
+    }
+
+    & .input-container {
+        & input {
+            font-size: 0.9rem;
+            padding: 5px 10px;
+        }
     }
 }
 
@@ -185,25 +204,170 @@ $navigation-section-width: 25%;
                 }
 
                 & .profile-item {
+                    & .noticing-text {
+                        font-size: 0.8rem;
+                        color: gray;
+                        font-style: italic;
+                    }
+
+                    & .profile-item-title {
+                        text-transform: uppercase;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                    }
+
+                    & .profile-item-title-container {
+                        display: flex;
+                        justify-content: space-between;
+
+                        & button.profile-item-edit {
+                            cursor: pointer;
+                            background-color: white;
+
+                            &:hover {
+                                color: colors.$doc123-primary-cl;
+
+                                & i {
+                                    color: colors.$doc123-primary-cl;
+                                }
+                            }
+                        }
+                    }
+
+                    & .profile-item-editor {
+                        margin-top: 5px;
+
+                        & .profile-item-value {
+                            font-size: 1.1rem;
+
+                            &.inactive {
+                                display: none;
+                            }
+
+                            & .item-row {
+                                margin-top: 10px;
+                                font-size: 1rem;
+
+                                & label {
+                                    width: $form-group-input-label-gap;
+                                }
+
+                                & .value-unset {
+                                    font-style: italic;
+                                    color: gray;
+                                }
+                            }
+                        }
+
+                        & .card-editor {
+                            margin-top: 5px;
+
+                            &.inactive {
+                                display: none;
+                            }
+
+                            & .card-editor-form-group {
+                                @include card-editor-form-group;
+
+                                & .input-container {
+                                    & .input-wrapper {
+                                        position: relative;
+
+                                        & i {
+                                            position: absolute;
+                                            top: 50%;
+                                            right: 10px;
+                                            transform: translateY(-50%);
+                                            color: gray;
+                                        }
+                                    }
+
+                                    & input {
+                                        font-size: 1rem;
+                                        border: 1px lightgray solid;
+                                        border-radius: 5px;
+                                        padding: 5px 15px;
+                                        min-width: 300px;
+
+                                        &:focus,
+                                        &:hover {
+                                            outline: 1.5px colors.$doc123-primary-cl solid;
+                                            border-color: colors.$doc123-primary-cl;
+                                        }
+                                    }
+
+                                    & .message {
+                                        @include error-message;
+                                    }
+                                }
+                            }
+
+                            & .actions {
+                                display: flex;
+                                column-gap: 10px;
+                                margin-top: 10px;
+
+                                & .action-save,
+                                .action-cancel {
+                                    display: flex;
+                                    font-size: 1.1rem;
+                                    padding: 5px 15px;
+                                    border-radius: 5px;
+                                    color: white;
+                                    width: 65px;
+
+                                    &.inactive {
+                                        pointer-events: none;
+                                        opacity: 0.5;
+                                    }
+                                }
+
+                                & .action-save {
+                                    background-color: colors.$doc123-primary-cl;
+                                    border: 2px colors.$doc123-primary-cl solid;
+
+                                    &:hover {
+                                        background-color: white;
+                                        color: colors.$doc123-primary-cl;
+                                    }
+
+                                    & .spinner-border {
+                                        height: 1.5rem;
+                                        width: 1.5rem;
+                                        margin: auto;
+                                    }
+                                }
+
+                                & .action-cancel {
+                                    background-color: colors.$doc123-secondary-cl;
+                                    border: 2px colors.$doc123-secondary-cl solid;
+
+                                    &:hover {
+                                        background-color: white;
+                                        color: colors.$doc123-secondary-cl;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.displayed-name {
+                        & .profile-item-editor {
+                            & .card-editor {
+                                & .card-editor-form-group {
+                                    & input {
+                                        font-size: 1.3rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     &.personal-info {
                         & .profile-item-editor {
                             & .card-editor {
-                                & .card-editor-item-row {
-                                    display: flex;
-                                    align-items: center;
-                                    margin-top: 10px;
-                                    font-size: 1rem;
-
-                                    & label {
-                                        width: 224px;
-                                    }
-
-                                    & .form-group {
-                                        & input {
-                                            font-size: 0.9rem;
-                                            padding: 5px 10px;
-                                        }
-                                    }
+                                & .card-editor-form-group {
+                                    @include card-editor-form-group;
 
                                     &.gender {
                                         & .dropdown {
@@ -352,141 +516,37 @@ $navigation-section-width: 25%;
                         }
                     }
 
-                    & .profile-item-title {
-                        text-transform: uppercase;
-                        font-size: 1.1rem;
-                        font-weight: bold;
-                    }
-
-                    & .profile-item-title-container {
-                        display: flex;
-                        justify-content: space-between;
-
-                        & button.profile-item-edit {
-                            cursor: pointer;
-                            background-color: white;
-
-                            &:hover {
-                                color: colors.$doc123-primary-cl;
-
-                                & i {
-                                    color: colors.$doc123-primary-cl;
-                                }
-                            }
-                        }
-                    }
-
-                    & .profile-item-editor {
-                        margin-top: 5px;
-
-                        & .profile-item-value {
-                            font-size: 1.1rem;
-
-                            &.inactive {
-                                display: none;
-                            }
-
-                            & .item-row {
-                                margin-top: 10px;
-                                font-size: 1rem;
-
-                                & label {
-                                    width: 224px;
-                                }
-
-                                & .value-unset {
-                                    font-style: italic;
-                                    color: gray;
-                                }
-                            }
-                        }
-
-                        & .collapse-edit {
+                    &.password {
+                        & .profile-item-editor {
                             margin-top: 5px;
-                            max-height: auto;
 
-                            &.inactive {
-                                display: none;
-                            }
-                        }
+                            & .card-editor {
+                                & .card-editor-form-group {
+                                    & .input-container {
+                                        & .input-wrapper {
+                                            & .password-action {
+                                                position: absolute;
+                                                right: 0px;
+                                                top: 50%;
+                                                transform: translateY(-50%);
+                                                cursor: pointer;
+                                                transition: transform 0.2s;
 
-                        & .card-editor {
-                            & .input-wrapper {
-                                position: relative;
+                                                &.inactive {
+                                                    display: none;
+                                                }
 
-                                & i {
-                                    position: absolute;
-                                    top: 50%;
-                                    right: 10px;
-                                    transform: translateY(-50%);
-                                    color: gray;
-                                }
-                            }
-
-                            & .form-group {
-                                & input {
-                                    font-size: 1.3rem;
-                                    border: 1px lightgray solid;
-                                    border-radius: 5px;
-                                    padding: 5px 15px;
-                                    min-width: 300px;
-
-                                    &:focus,
-                                    &:hover {
-                                        outline: 1.5px colors.$doc123-primary-cl solid;
-                                        border-color: colors.$doc123-primary-cl;
+                                                & i {
+                                                    color: #484848;
+                                                    font-size: 1.2rem;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
 
-                                & .message {
-                                    @include error-message;
-                                }
-                            }
-
-                            & .actions {
-                                display: flex;
-                                column-gap: 10px;
-                                margin-top: 10px;
-
-                                & .action-save,
-                                .action-cancel {
-                                    display: flex;
-                                    font-size: 1.1rem;
-                                    padding: 5px 15px;
-                                    border-radius: 5px;
-                                    color: white;
-                                    width: 65px;
-
-                                    &.inactive {
-                                        pointer-events: none;
-                                        opacity: 0.5;
-                                    }
-                                }
-
-                                & .action-save {
-                                    background-color: colors.$doc123-primary-cl;
-                                    border: 2px colors.$doc123-primary-cl solid;
-
-                                    &:hover {
-                                        background-color: white;
-                                        color: colors.$doc123-primary-cl;
-                                    }
-
-                                    & .spinner-border {
-                                        height: 1.5rem;
-                                        width: 1.5rem;
-                                        margin: auto;
-                                    }
-                                }
-
-                                & .action-cancel {
-                                    background-color: colors.$doc123-secondary-cl;
-                                    border: 2px colors.$doc123-secondary-cl solid;
-
-                                    &:hover {
-                                        background-color: white;
-                                        color: colors.$doc123-secondary-cl;
-                                    }
+                                & .actions {
+                                    margin-left: $form-group-input-label-gap;
                                 }
                             }
                         }

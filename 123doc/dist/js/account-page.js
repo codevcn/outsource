@@ -27,7 +27,10 @@ const profileSection_linkedAccountOAuth = profileSection.querySelector(
     '.profile-item.linked-account .linked-account-oauth'
 )
 const personalInfo_genderPicker = profileSection_personalInfoEditor.querySelectorAll(
-    '.profile-item-editor .card-editor .card-editor-item-row.gender .dropdown-menu .dropdown-item'
+    '.profile-item-editor .card-editor .card-editor-form-group.gender .dropdown-menu .dropdown-item'
+)
+const profileSection_passwordCardEditor = profileSection.querySelector(
+    '.profile-item.displayed-name .profile-item-editor .card-editor'
 )
 
 const renderBackgroundSection = (docsInfo) => {
@@ -49,21 +52,27 @@ const renderBackgroundSection = (docsInfo) => {
     )
 }
 
+const renderDisplayedName = (user_profile_data) => {
+    profileSection_displayedNameEditor.querySelector(
+        '.profile-item-value'
+    ).innerHTML = `<span className="value">${user_profile_data.displayedName}</span>`
+    profileSection_displayedNameEditor.querySelector('.card-editor .input-container input').value =
+        user_profile_data.displayedName
+}
+
 const updateDisplayedNameDone = (result) => {
     if (result instanceof Error) {
         profileSection_displayedNameEditor.querySelector(
-            '.card-editor .form-group .message'
+            '.card-editor .input-container .message'
         ).innerHTML = `
             <i class="bi bi-exclamation-triangle-fill"></i>
             <span class="warning-text">${result.message}</span>`
     } else {
         profileSection_displayedNameEditor.querySelector(
-            '.card-editor .form-group .message'
+            '.card-editor .input-container .message'
         ).innerHTML = ''
 
-        profileSection_displayedNameEditor.querySelector(
-            '.profile-item-value'
-        ).innerHTML = `<span className="value">${result.displayedName}</span>`
+        renderDisplayedName({ displayedName: result.displayedName })
 
         bgSection_nameOfUser.textContent = result.displayedName
     }
@@ -72,7 +81,7 @@ const updateDisplayedNameDone = (result) => {
 const updateDisplayedName = async (value) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (Math.floor(Math.random() * 2) > 0) {
+            if (dayjs().second() % 2 === 0) {
                 resolve({ success: true })
             } else {
                 reject(new Error('Có lỗi gì đó'))
@@ -83,7 +92,7 @@ const updateDisplayedName = async (value) => {
 
 const updateDisplayedNameHandler = async () => {
     const value = profileSection_displayedNameEditor.querySelector(
-        '.card-editor .form-group input'
+        '.card-editor .input-container input'
     ).value
 
     if (!value) {
@@ -91,50 +100,34 @@ const updateDisplayedNameHandler = async () => {
         return
     }
 
-    profileSection_displayedNameEditor
-        .querySelector('.card-editor .actions .action-save')
-        .classList.toggle('inactive')
-    profileSection_displayedNameEditor.querySelector(
+    const editor = profileSection_displayedNameEditor.querySelector(
         '.card-editor .actions .action-save'
-    ).innerHTML = `
+    )
+
+    editor.classList.toggle('inactive')
+    editor.innerHTML = `
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>`
 
     try {
         await updateDisplayedName(value)
-        profileSection_displayedNameEditor.querySelector(
-            '.card-editor .actions .action-save'
-        ).innerHTML = 'Lưu'
-        profileSection_displayedNameEditor
-            .querySelector('.card-editor .actions .action-save')
-            .classList.toggle('inactive')
         updateDisplayedNameDone({ displayedName: value })
         toast.success({ message: 'Đã cập nhật thông tin thành công!' })
     } catch (error) {
-        profileSection_displayedNameEditor
-            .querySelector('.card-editor .actions .action-save')
-            .classList.toggle('inactive')
-        profileSection_displayedNameEditor.querySelector(
-            '.card-editor .actions .action-save'
-        ).innerHTML = 'Lưu'
         updateDisplayedNameDone(error)
     }
+
+    editor.classList.toggle('inactive')
+    editor.innerHTML = 'Lưu'
 }
 
 const openCloseInfoEditor = (target) => {
     const parentEle = target.closest('.profile-item')
-    parentEle.querySelector('.profile-item-editor .profile-item-value').classList.toggle('inactive')
-    parentEle.querySelector('.profile-item-editor .collapse-edit').classList.toggle('inactive')
-}
-
-const renderDisplayedName = (user_profile_data) => {
-    profileSection_displayedNameEditor.querySelector(
-        '.profile-item-value'
-    ).innerHTML = `<span className="value">${user_profile_data.displayedName}</span>`
-    profileSection_displayedNameEditor.querySelector(
-        '.collapse-edit .card-editor .form-group input'
-    ).value = user_profile_data.displayedName
+    parentEle
+        .querySelector('.profile-item-editor .profile-item-value')
+        ?.classList.toggle('inactive')
+    parentEle.querySelector('.profile-item-editor .card-editor')?.classList.toggle('inactive')
 }
 
 const renderPersonalInfo = (personalInfo) => {
@@ -148,13 +141,15 @@ const renderPersonalInfo = (personalInfo) => {
         '.profile-item-value .address .value'
     ).innerHTML = personalInfo.address || `<span class="value-unset">Chưa được đặt</span>`
 
-    flatpickr('.flatpickr-date-picker')
+    flatpickr('.flatpickr-date-picker', { dateFormat: 'd-m-Y' })
 }
 const onPickGender_personalInfo = () => {
     for (const gender_item of personalInfo_genderPicker) {
         gender_item.addEventListener('click', function (e) {
             const target = e.target
-            const button = target.closest('.card-editor-item-row').querySelector('.dropdown button')
+            const button = target
+                .closest('.card-editor-form-group')
+                .querySelector('.dropdown button')
             button.querySelector('p').textContent = target.textContent
             button.setAttribute('data-gender-picked', target.getAttribute('data-gender-value'))
         })
@@ -163,7 +158,7 @@ const onPickGender_personalInfo = () => {
 
 const setPersonalInfoWarningMessage_dateOfBirth = (message) => {
     profileSection_personalInfoEditor.querySelector(
-        '.card-editor .card-editor-item-row.date-of-birth .form-group .message'
+        '.card-editor .card-editor-form-group.date-of-birth .input-container .message'
     ).innerHTML = message
         ? `
             <i class="bi bi-exclamation-triangle-fill"></i>
@@ -172,7 +167,7 @@ const setPersonalInfoWarningMessage_dateOfBirth = (message) => {
 }
 const setPersonalInfoWarningMessage_gender = (message) => {
     profileSection_personalInfoEditor.querySelector(
-        '.card-editor .card-editor-item-row.gender .gender-dropdown .message'
+        '.card-editor .card-editor-form-group.gender .gender-dropdown .message'
     ).innerHTML = message
         ? `
             <i class="bi bi-exclamation-triangle-fill"></i>
@@ -181,7 +176,7 @@ const setPersonalInfoWarningMessage_gender = (message) => {
 }
 const setPersonalInfoWarningMessage_address = (message) => {
     profileSection_personalInfoEditor.querySelector(
-        '.card-editor .card-editor-item-row.address .form-group .message'
+        '.card-editor .card-editor-form-group.address .input-container .message'
     ).innerHTML = message
         ? `
             <i class="bi bi-exclamation-triangle-fill"></i>
@@ -218,19 +213,22 @@ const updatePersonalInfoDone = (result) => {
         setPersonalInfoWarningMessage_gender('Có lỗi gì đó!!!')
         setPersonalInfoWarningMessage_address('Có lỗi gì đó!!!')
     } else {
+        const { dateOfBirth, gender, address } = result
         setPersonalInfoWarningMessage_dateOfBirth(null)
         setPersonalInfoWarningMessage_gender(null)
         setPersonalInfoWarningMessage_address(null)
+
+        renderPersonalInfo({ dateOfBirth, gender, address })
     }
 }
 
 const updatePersonalInfo = async ({ dateOfBirth, gender, address }) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (Math.floor(Math.random() * 2) > 0) {
+            if (dayjs().second() % 2 === 0) {
                 resolve({ success: true })
             } else {
-                reject(new Error('Có lỗi gì đó'))
+                reject(new Error('Có lỗi gì đó!!!'))
             }
         }, 500)
     })
@@ -238,23 +236,35 @@ const updatePersonalInfo = async ({ dateOfBirth, gender, address }) => {
 
 const updatePersonalInfoHandler = async () => {
     const dateOfBirth = profileSection_personalInfoEditor.querySelector(
-        '.card-editor .card-editor-item-row.date-of-birth .form-group input'
+        '.card-editor .card-editor-form-group.date-of-birth .input-container input'
     ).value
     const gender = profileSection_personalInfoEditor
-        .querySelector('.card-editor .card-editor-item-row.gender .gender-dropdown button')
+        .querySelector('.card-editor .card-editor-form-group.gender .gender-dropdown button')
         .getAttribute('data-gender-picked')
     const address = profileSection_personalInfoEditor.querySelector(
-        '.card-editor .card-editor-item-row.address .form-group input'
+        '.card-editor .card-editor-form-group.address .input-container input'
     ).value
 
     if (validateUpdatePersonalInfo({ dateOfBirth, gender, address })) {
+        const editor = profileSection_personalInfoEditor.querySelector(
+            '.card-editor .actions .action-save'
+        )
+        editor.classList.toggle('inactive')
+        editor.innerHTML = `
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`
+
         try {
-            await updatePersonalInfo()
+            await updatePersonalInfo({ dateOfBirth, gender, address })
             updatePersonalInfoDone({ dateOfBirth, gender, address })
             toast.success({ message: 'Cập nhật thông tin cá nhân của bạn thành công!' })
         } catch (error) {
             updatePersonalInfoDone(error)
         }
+
+        editor.classList.toggle('inactive')
+        editor.innerHTML = 'Lưu'
     }
 }
 
@@ -306,6 +316,57 @@ const renderLinkedAccounts = (linkedAccounts) => {
         profileSection_linkedAccountList
             .querySelector('.linked-account-item.zalo')
             .classList.add('inactive')
+    }
+}
+
+const hideShowPassword_cardEditor = (target, is_shown) => {
+    const password_input = target.parentElement.querySelector('input')
+    if (is_shown) {
+        password_input.type = 'text'
+        target.classList.add('inactive')
+        target.nextElementSibling.classList.remove('inactive')
+    } else {
+        password_input.type = 'password'
+        target.classList.add('inactive')
+        target.previousElementSibling.classList.remove('inactive')
+    }
+}
+
+const setPasswordWarningMessage_type = () => {
+    // :MARK >>>continue
+}
+
+const setPasswordWarningMessage_retype = () => {
+    // :MARK >>>continue
+}
+
+const validateUpdatePassword = ({ password, retypePassword }) => {
+    let is_valid = true
+    if (!password) {
+        setPasswordWarningMessage_type('Bạn chưa nhập mật khẩu!')
+        is_valid = false
+    } else {
+        setPasswordWarningMessage_type(null)
+    }
+    if (!retypePassword) {
+        setPasswordWarningMessage_retype('Bạn chưa nhập lại mật khẩu!')
+        is_valid = false
+    } else {
+        setPasswordWarningMessage_retype(null)
+    }
+    return is_valid
+}
+
+const updatePasswordHandler = () => {
+    const password = profileSection_passwordCardEditor.querySelector(
+        '.card-editor-form-group.type-password .input-container input'
+    ).value
+    const retypePassword = profileSection_passwordCardEditor.querySelector(
+        '.card-editor-form-group.retype-password .input-container input'
+    ).value
+
+    if (validateUpdatePassword({ password, retypePassword })) {
+        // :MARK >>>continue
     }
 }
 

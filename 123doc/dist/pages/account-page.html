@@ -351,26 +351,26 @@
                             </div>
                             <div class="profile-item-editor">
                                 <div class="profile-item-value"></div>
-                                <div class="collapse-edit inactive">
-                                    <div class="card card-body card-editor">
-                                        <div class="form-group">
+                                <div class="card card-body card-editor inactive">
+                                    <div class="card-editor-form-group">
+                                        <div class="input-container">
                                             <input type="text" placeholder="Nhập tên mới..." />
                                             <p class="message"></p>
                                         </div>
-                                        <div class="actions">
-                                            <button
-                                                class="action-save"
-                                                onclick="updateDisplayedNameHandler()"
-                                            >
-                                                Lưu
-                                            </button>
-                                            <button
-                                                class="action-cancel"
-                                                onclick="openCloseInfoEditor(this)"
-                                            >
-                                                Hủy
-                                            </button>
-                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <button
+                                            class="action-save"
+                                            onclick="updateDisplayedNameHandler()"
+                                        >
+                                            Lưu
+                                        </button>
+                                        <button
+                                            class="action-cancel"
+                                            onclick="openCloseInfoEditor(this)"
+                                        >
+                                            Hủy
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -405,83 +405,78 @@
                                         <span class="value"></span>
                                     </div>
                                 </div>
-                                <div class="collapse-edit inactive">
-                                    <div class="card card-body card-editor">
-                                        <div class="card-editor-item-row date-of-birth">
-                                            <label>Ngày sinh</label>
-                                            <div class="form-group">
-                                                <div class="input-wrapper">
-                                                    <input
-                                                        class="flatpickr-date-picker"
-                                                        placeholder="Nhấp để chọn ngày sinh"
-                                                    />
-                                                    <i class="bi bi-calendar2-date-fill"></i>
-                                                </div>
-                                                <p class="message"></p>
-                                            </div>
-                                        </div>
-                                        <div class="card-editor-item-row gender">
-                                            <label>Giới tính</label>
-                                            <div class="dropdown gender-dropdown">
-                                                <button
-                                                    data-gender-picked=""
-                                                    data-bs-toggle="dropdown"
-                                                >
-                                                    <p>Không xác định</p>
-                                                    <i class="bi bi-caret-down-fill"></i>
-                                                </button>
-                                                <p class="message"></p>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <div
-                                                            class="dropdown-item"
-                                                            data-gender-value="male"
-                                                        >
-                                                            Nam
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div
-                                                            class="dropdown-item"
-                                                            data-gender-value="female"
-                                                        >
-                                                            Nữ
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div
-                                                            class="dropdown-item"
-                                                            data-gender-value="other"
-                                                        >
-                                                            Khác
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="card-editor-item-row address">
-                                            <label>Địa chỉ</label>
-                                            <div class="form-group">
+                                <div class="card card-body card-editor inactive">
+                                    <div class="card-editor-form-group date-of-birth">
+                                        <label>Ngày sinh</label>
+                                        <div class="input-container">
+                                            <div class="input-wrapper">
                                                 <input
-                                                    placeholder="Ví dụ: Lê Văn Việt, P. Hiệp Phú, TPHCM"
+                                                    class="flatpickr-date-picker"
+                                                    placeholder="Nhấp để chọn ngày sinh"
                                                 />
-                                                <p class="message"></p>
+                                                <i class="bi bi-calendar2-date-fill"></i>
                                             </div>
+                                            <p class="message"></p>
                                         </div>
-                                        <div class="actions">
-                                            <button
-                                                class="action-save"
-                                                onclick="updatePersonalInfoHandler()"
-                                            >
-                                                Lưu
+                                    </div>
+                                    <div class="card-editor-form-group gender">
+                                        <label>Giới tính</label>
+                                        <div class="dropdown gender-dropdown">
+                                            <button data-gender-picked="" data-bs-toggle="dropdown">
+                                                <p>Không xác định</p>
+                                                <i class="bi bi-caret-down-fill"></i>
                                             </button>
-                                            <button
-                                                class="action-cancel"
-                                                onclick="openCloseInfoEditor(this)"
-                                            >
-                                                Hủy
-                                            </button>
+                                            <p class="message"></p>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <div
+                                                        class="dropdown-item"
+                                                        data-gender-value="male"
+                                                    >
+                                                        Nam
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div
+                                                        class="dropdown-item"
+                                                        data-gender-value="female"
+                                                    >
+                                                        Nữ
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div
+                                                        class="dropdown-item"
+                                                        data-gender-value="other"
+                                                    >
+                                                        Khác
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
+                                    </div>
+                                    <div class="card-editor-form-group address">
+                                        <label>Địa chỉ</label>
+                                        <div class="input-container">
+                                            <input
+                                                placeholder="Ví dụ: Lê Văn Việt, P. Hiệp Phú, TPHCM,..."
+                                            />
+                                            <p class="message"></p>
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <button
+                                            class="action-save"
+                                            onclick="updatePersonalInfoHandler()"
+                                        >
+                                            Lưu
+                                        </button>
+                                        <button
+                                            class="action-cancel"
+                                            onclick="openCloseInfoEditor(this)"
+                                        >
+                                            Hủy
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -576,39 +571,57 @@
                                 và số.
                             </div>
                             <div class="profile-item-editor">
-                                <div class="collapse-edit inactive">
-                                    <div class="change-password-container">
-                                        <div class="password-form-group">
-                                            <label>Mật khẩu</label>
-                                            <div>
-                                                <div class="password-input-wrapper">
-                                                    <input
-                                                        type="password"
-                                                        placeholder="***********"
-                                                    />
+                                <div class="update-password-box card-editor inactive">
+                                    <div class="card-editor-form-group type-password">
+                                        <label>Mật khẩu</label>
+                                        <div class="input-container">
+                                            <div class="input-wrapper">
+                                                <input type="password" placeholder="***********" />
+                                                <div
+                                                    class="password-action hidden"
+                                                    onclick="hideShowPassword_cardEditor(this,true)"
+                                                >
+                                                    <i class="bi bi-eye-slash-fill"></i>
                                                 </div>
-                                                <p class="message"></p>
-                                            </div>
-                                        </div>
-                                        <div class="password-form-group">
-                                            <label>Nhập lại mật khẩu</label>
-                                            <div>
-                                                <div class="retype-password-input-wrapper">
-                                                    <input
-                                                        type="password"
-                                                        placeholder="***********"
-                                                    />
+                                                <div
+                                                    class="password-action shown inactive"
+                                                    onclick="hideShowPassword_cardEditor(this,false)"
+                                                >
+                                                    <i class="bi bi-eye-fill"></i>
                                                 </div>
-                                                <p class="message"></p>
                                             </div>
+                                            <p class="message"></p>
                                         </div>
-                                        <div>
-                                            <span></span>
-                                            <div class="password-form-actions">
-                                                <button class="submit-btn">Cập nhật</button>
-                                                <button class="cancel-btn">Hủy</button>
+                                    </div>
+                                    <div class="card-editor-form-group retype-password">
+                                        <label>Nhập lại mật khẩu</label>
+                                        <div class="input-container">
+                                            <div class="input-wrapper">
+                                                <input type="password" placeholder="***********" />
+                                                <div
+                                                    class="password-action hidden"
+                                                    onclick="hideShowPassword_cardEditor(this,true)"
+                                                >
+                                                    <i class="bi bi-eye-slash-fill"></i>
+                                                </div>
+                                                <div
+                                                    class="password-action shown inactive"
+                                                    onclick="hideShowPassword_cardEditor(this,false)"
+                                                >
+                                                    <i class="bi bi-eye-fill"></i>
+                                                </div>
                                             </div>
+                                            <p class="message"></p>
                                         </div>
+                                    </div>
+                                    <div class="actions">
+                                        <button class="action-save" onclick="">Lưu</button>
+                                        <button
+                                            class="action-cancel"
+                                            onclick="openCloseInfoEditor(this)"
+                                        >
+                                            Hủy
+                                        </button>
                                     </div>
                                 </div>
                             </div>
