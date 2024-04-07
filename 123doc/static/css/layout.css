@@ -10,10 +10,6 @@
   text-transform: uppercase;
   width: -moz-max-content;
   width: max-content;
-  min-width: -moz-max-content;
-  min-width: max-content;
-  height: -moz-fit-content;
-  height: fit-content;
   border: 1.5px #00a888 solid;
   background-color: #00a888;
   border-radius: 5px;
@@ -110,7 +106,7 @@
   color: #ffaa00;
 }
 #nav-bar .search-bar {
-  margin-left: 50px;
+  margin-left: 75px;
   position: relative;
   height: 34px;
   width: 100%;
@@ -166,129 +162,6 @@
 #nav-bar .search-bar .search-icon-wrapper:hover i {
   color: #00a888;
 }
-#nav-bar .logined-user-actions {
-  display: flex;
-  align-items: center;
-  -moz-column-gap: 5px;
-       column-gap: 5px;
-  margin-left: 50px;
-}
-#nav-bar .logined-user-actions .deposit-btn,
-#nav-bar .logined-user-actions .upload-btn {
-  display: block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.9rem;
-  padding: 4px 15px;
-  font-weight: bold;
-  text-transform: uppercase;
-  width: -moz-max-content;
-  width: max-content;
-  min-width: -moz-max-content;
-  min-width: max-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  border: 1.5px #00a888 solid;
-  background-color: #00a888;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-}
-#nav-bar .logined-user-actions .deposit-btn:hover,
-#nav-bar .logined-user-actions .upload-btn:hover {
-  background-color: white;
-  color: #00a888;
-}
-#nav-bar .logined-user-actions .deposit-btn {
-  background-color: #ffaa00;
-  border-color: #ffaa00;
-}
-#nav-bar .logined-user-actions .deposit-btn:hover {
-  color: #ffaa00;
-}
-#nav-bar .logined-user-actions .user-info {
-  display: flex;
-  align-items: center;
-  -moz-column-gap: 5px;
-       column-gap: 5px;
-  margin-left: 5px;
-  position: relative;
-  cursor: pointer;
-}
-#nav-bar .logined-user-actions .user-info::after {
-  content: "";
-  width: 100%;
-  border: 2px #00a888 solid;
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 0;
-  transition: transform 0.2s;
-  transform: scaleX(0);
-}
-#nav-bar .logined-user-actions .user-info:hover {
-  color: #00a888;
-}
-#nav-bar .logined-user-actions .user-info:hover::after {
-  transform: scaleX(1);
-}
-#nav-bar .logined-user-actions .user-info .avatar-wrapper {
-  height: 2rem;
-  min-width: 2rem;
-  box-sizing: unset;
-}
-#nav-bar .logined-user-actions .user-info .avatar-wrapper img {
-  border-radius: 5px;
-  height: 100%;
-  width: 100%;
-}
-#nav-bar .logined-user-actions .user-info .name-of-user {
-  width: -moz-max-content;
-  width: max-content;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item {
-  display: flex;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
-  align-items: center;
-  cursor: pointer;
-  font-size: 0.9rem;
-  padding: 10px;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item.upload-zero-dong {
-  background-color: rgb(243, 243, 243);
-  font-weight: bold;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item.upload-zero-dong i {
-  font-size: 1.2rem;
-  color: #ffaa00;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item.logout i {
-  font-size: 1.1rem;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item:hover {
-  color: #00a888;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item:hover i {
-  color: #00a888;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item:active {
-  background-color: #00a888;
-  color: white;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item:active i {
-  color: white;
-}
-#nav-bar .logined-user-actions .dropdown-menu-user-info .dropdown-item .amount {
-  color: #ffaa00;
-  font-weight: bold;
-}
-#nav-bar .logined-user-actions .notification {
-  margin-left: 5px;
-  cursor: pointer;
-}
-#nav-bar .logined-user-actions .notification i {
-  color: #00a888;
-  font-size: 1.3rem;
-}
 #nav-bar .action-btns {
   margin-left: 128px;
 }
@@ -305,10 +178,6 @@
   text-transform: uppercase;
   width: -moz-max-content;
   width: max-content;
-  min-width: -moz-max-content;
-  min-width: max-content;
-  height: -moz-fit-content;
-  height: fit-content;
   border: 1.5px #00a888 solid;
   background-color: #00a888;
   border-radius: 5px;

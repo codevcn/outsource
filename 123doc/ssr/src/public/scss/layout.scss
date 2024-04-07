@@ -258,19 +258,6 @@
                 font-size: 0.9rem;
                 padding: 10px;
 
-                &:hover {
-                    color: colors.$doc123-primary-cl;
-
-                    & i {
-                        color: colors.$doc123-primary-cl;
-                    }
-                }
-
-                &:active {
-                    background-color: colors.$doc123-primary-cl;
-                    color: white;
-                }
-
                 &.upload-zero-dong {
                     background-color: rgb(243, 243, 243);
                     font-weight: bold;
@@ -284,6 +271,23 @@
                 &.logout {
                     & i {
                         font-size: 1.1rem;
+                    }
+                }
+
+                &:hover {
+                    color: colors.$doc123-primary-cl;
+
+                    & i {
+                        color: colors.$doc123-primary-cl;
+                    }
+                }
+
+                &:active {
+                    background-color: colors.$doc123-primary-cl;
+                    color: white;
+
+                    & i {
+                        color: white;
                     }
                 }
 

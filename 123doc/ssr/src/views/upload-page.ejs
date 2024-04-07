@@ -6,7 +6,38 @@
     </head>
     <body>
         <%- include('partials/header', { user: user , danhmuc: danhmuc }); %>
-        <main class="main-section"></main>
+        <main id="main-section">
+            <h2 class="title">
+                Đăng bán và chia sẻ tài liệu lên thư viện điện tử lớn nhất Việt Nam
+            </h2>
+            <h3 class="subtitle">
+                123Doc sẽ mang đến cho bạn hơn 10 triệu độc giả , thu nhập, danh tiếng và hơn thế
+                nữa
+            </h3>
+            <section class="upload-doc-section">
+                <h2 class="upload-doc-title">Tải tài liệu lên 123doc</h2>
+                <input
+                    class="upload-doc-input"
+                    id="upload-document-input"
+                    type="file"
+                    name="upload-doc"
+                    hidden
+                    onchange="uploadFileOnProgressHandler()"
+                />
+                <label class="upload-doc-btn" for="upload-document-input">Tải lên</label>
+                <div class="helper-text-box">
+                    <p class="helper-text">
+                        Chọn nút tải lên để chọn nhiều file từ máy tính của bạn hoặc kéo file thả
+                        vào đây
+                    </p>
+                    <p class="helper-subtext">Ấn nút Shift hoặc Ctrl để chọn nhiều file</p>
+                </div>
+            </section>
+            <section class="files-uploaded-section">
+                <div class="file-uploaded-progress"></div>
+                <div class="files-uploaded"></div>
+            </section>
+        </main>
         <%- include('partials/footer'); %>
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -24,6 +55,15 @@
         <script src="js/configs.js"></script>
         <script src="js/layout.js"></script>
         <script src="js/upload-page.js"></script>
-        <script></script>
     </body>
 </html>
+
+<div>
+    <select class="form-select" aria-label="document-price-select">
+        <option selected>Chọn giá bán</option>
+        <option value="2000">2.000đ</option>
+        <option value="3000">3.000đ</option>
+        <option value="50000">50.000đ</option>
+        <option value="550000">550.000đ</option>
+    </select>
+</div>

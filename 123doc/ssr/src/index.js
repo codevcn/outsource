@@ -17,9 +17,6 @@ app.use(express.static('src/public'))
 app.get('/upload-page', (req, res) => {
     res.render('upload-page', { user, danhmuc })
 })
-app.get('/', (req, res) => {
-    res.render('index', { user, danhmuc })
-})
 
 // Khởi động server
 app.listen(port, () => {
