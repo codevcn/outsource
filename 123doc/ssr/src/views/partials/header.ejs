@@ -1,0 +1,281 @@
+<!-- :MARK Phân loại Drawer -->
+<div
+    class="offcanvas offcanvas-start"
+    tabindex="-1"
+    id="navigation-drawer"
+    data-bs-scroll="true"
+    aria-labelledby="navigation-drawer-label"
+>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="navigation-drawer-label">Phân loại</h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+        ></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="nav-items">
+            <% danhmuc.forEach((category, index) => { %>
+            <a href="/category/<%= category.id %>" class="nav-item nav-item-<%= index %>"
+                ><%= category.name %></a
+            >
+            <% }); %>
+        </div>
+
+        <% if (user) { %>
+        <p>Đã login: <%= user.email %></p>
+        <% } else { %> Xử lí : Đã Đăng Nhập <% } %>
+    </div>
+</div>
+
+<!-- :MARK Thanh điều hướng -->
+<nav id="nav-bar">
+    <div class="logo-box">
+        <a class="logo-img-wrapper" href="/">
+            <img src="img/app-logo.svg" alt="App Logo" />
+        </a>
+        <div
+            class="drawer-menu-btn-wrapper"
+            data-bs-toggle="offcanvas"
+            type="button"
+            data-bs-target="#navigation-drawer"
+            aria-controls="navigation-drawer"
+        >
+            <i class="bi bi-list"></i>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm tài liệu..." />
+        <div class="search-icon-wrapper">
+            <i class="bi bi-search"></i>
+        </div>
+    </div>
+
+    <% if (user) { %>
+    <div class="logined-user-actions">
+        <a class="deposit-btn">Nạp tiền</a>
+        <a class="upload-btn">Tải lên</a>
+        <div class="user-info" data-bs-toggle="dropdown">
+            <div class="avatar-wrapper">
+                <img src="<%= user.avatar || 'img/default-user-avatar.svg' %>" alt="ảnh đại diện" />
+            </div>
+            <p class="name-of-user"><%= user.name %></p>
+        </div>
+        <ul class="dropdown-menu dropdown-menu-user-info">
+            <li>
+                <a class="dropdown-item upload-zero-dong" href="#">
+                    <i class="bi bi-cloud-arrow-up-fill"></i>
+                    <span>Đăng kí gói tải tài liệu 0đ</span>
+                </a>
+            </li>
+            <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+            <li><a class="dropdown-item" href="#">Quản lí tài liệu</a></li>
+            <li>
+                <a class="dropdown-item income" href="#">
+                    <span>Doanh thu:</span>
+                    <span class="amount"><%= user.balance %>đ</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item balance" href="#">
+                    <span>Số dư:</span>
+                    <spann class="amount"><%= user.income %>đ</spann>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item logout" href="#">
+                    <i class="bi bi-door-closed"></i>
+                    <span>Đăng xuất</span>
+                </a>
+            </li>
+        </ul>
+        <div class="notification">
+            <i class="bi bi-bell"></i>
+        </div>
+    </div>
+    <% } else { %>
+    <div class="action-btns">
+        <button
+            class="login-register-btn"
+            data-bs-toggle="modal"
+            type="button"
+            data-bs-target="#login-register-dialog"
+        >
+            Đăng nhập / Đăng ký
+        </button>
+    </div>
+    <% } %>
+</nav>
+
+<div
+    class="modal fade"
+    id="login-register-dialog"
+    tabindex="-1"
+    aria-labelledby="login-register-dialog-label"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <!-- :MARK login section -->
+        <section class="modal-content modal-content-login">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="login-register-dialog-label">Đăng nhập</h1>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body modal-body-login">
+                <form onsubmit="return submitLoginForm(event)" class="form-login">
+                    <div class="message"></div>
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                placeholder="Nhập email hoặc số điện thoại..."
+                                name="email"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <input type="password" placeholder="Nhập mật khẩu..." name="password" />
+                            <div
+                                class="password-action hidden"
+                                onclick="hideShowPassword(this,true)"
+                            >
+                                <i class="bi bi-eye-slash-fill"></i>
+                            </div>
+                            <div
+                                class="password-action shown inactive"
+                                onclick="hideShowPassword(this,false)"
+                            >
+                                <i class="bi bi-eye-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="password-actions">
+                        <span></span>
+                        <div class="forgot-password-btn">Quên mật khẩu?</div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Đăng nhập</span>
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </button>
+                </form>
+
+                <div class="register-btn">
+                    <span>Chưa có tài khoản?</span>
+                    <span class="register-btn-text" onclick="switchToRegister()">Đăng ký</span>
+                </div>
+            </div>
+        </section>
+        <!-- :MARK register section -->
+        <section class="modal-content modal-content-register inactive">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="login-register-dialog-label">Đăng ký</h1>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body modal-body-register">
+                <form onsubmit="return submitRegisterForm(event)" class="form-register">
+                    <div class="form-group full-name">
+                        <label><span>Tên đầy đủ</span><span class="required-dot">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="name" placeholder="Ví dụ: Nguyễn Văn A" />
+                        </div>
+                        <div class="message"></div>
+                    </div>
+                    <div class="form-group phone-number">
+                        <label><span>Số điện thoại</span><span class="required-dot">*</span></label>
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                name="phone-number"
+                                placeholder="Ví dụ: 03xxxxxxxx"
+                            />
+                        </div>
+                        <div class="message"></div>
+                    </div>
+                    <div class="form-group email">
+                        <label><span>Email</span><span class="required-dot">*</span></label>
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="Ví dụ: example@gmail.com"
+                            />
+                        </div>
+                        <div class="message"></div>
+                    </div>
+                    <div class="form-group password">
+                        <label><span>Mật khẩu</span><span class="required-dot">*</span></label>
+                        <div class="input-wrapper">
+                            <input type="password" name="password" placeholder="********" />
+                            <div
+                                class="password-action hidden"
+                                onclick="hideShowPassword(this,true)"
+                            >
+                                <i class="bi bi-eye-slash-fill"></i>
+                            </div>
+                            <div
+                                class="password-action shown inactive"
+                                onclick="hideShowPassword(this,false)"
+                            >
+                                <i class="bi bi-eye-fill"></i>
+                            </div>
+                        </div>
+                        <div class="message"></div>
+                    </div>
+                    <div class="form-group retype-password">
+                        <label
+                            ><span>Nhập lại mật khẩu</span
+                            ><span class="required-dot">*</span></label
+                        >
+                        <div class="input-wrapper">
+                            <input type="password" name="again-password" placeholder="********" />
+                            <div
+                                class="password-action hidden"
+                                onclick="hideShowPassword(this,true)"
+                            >
+                                <i class="bi bi-eye-slash-fill"></i>
+                            </div>
+                            <div
+                                class="password-action shown inactive"
+                                onclick="hideShowPassword(this,false)"
+                            >
+                                <i class="bi bi-eye-fill"></i>
+                            </div>
+                        </div>
+                        <div class="message"></div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span>Đăng ký</span>
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </button>
+                </form>
+
+                <div class="term-of-use-confirming">
+                    <span>Bằng cách nhấp vào Đăng ký, bạn đồng ý với</span>
+                    <span class="term-of-use-conditions">Điều khoản</span>
+                    <span>và</span>
+                    <span class="term-of-use-secure-info-policy">Chính sách bảo mật thông tin</span>
+                    <span>của chúng tôi</span>
+                </div>
+
+                <div class="login-btn">
+                    <span>Đã có tài khoản?</span>
+                    <span class="login-btn-text" onclick="switchToLogin()">Đăng nhập</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

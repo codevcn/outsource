@@ -1,0 +1,120 @@
+<footer id="footer">
+    <div class="logo-img-wrapper">
+        <img src="img/app-logo.svg" alt="App Logo" />
+    </div>
+
+    <section class="quick-menu-section">
+        <a href="#" rel="dofollow" title="Tài liệu" class="quick-menu-item"> Tài liệu </a>
+        <a href="#" rel="dofollow" title="Mục lục" class="quick-menu-item"> Mục lục </a>
+        <a href="/bai-viet" rel="dofollow" title="Bài viết" class="quick-menu-item"> Bài viết </a>
+        <a href="#" ref="dofollow" title="Tìm kiếm mới" class="quick-menu-item"> Tìm kiếm mới </a>
+        <a href="#" rel="dofollow" title="Luận Văn - Báo Cáo" class="quick-menu-item"> Luận Văn </a>
+        <a href="#" rel="dofollow" title="Tài liệu mới" class="quick-menu-item"> Tài liệu mới </a>
+        <a href="#" ref="dofollow" title="Chủ đề tài liệu mới đăng" class="quick-menu-item">
+            Chủ đề tài liệu mới đăng
+        </a>
+
+        <a
+            href="#"
+            ref="dofollow"
+            title="đánh nhau với cối xay gió ngữ văn 8"
+            class="quick-menu-item"
+        >
+            đánh nhau với cối xay gió ngữ văn 8
+        </a>
+        <a
+            href="#"
+            ref="dofollow"
+            title="đã có lần em cùng bố mẹ đi thăm mộ người thân trong ngày lễ tết"
+            class="quick-menu-item"
+        >
+            đã có lần em cùng bố mẹ đi thăm mộ người thân trong ngày lễ tết
+        </a>
+        <a
+            href="#"
+            ref="dofollow"
+            title="đặc điểm chung và vai trò của ngành ruột khoang"
+            class="quick-menu-item"
+        >
+            đặc điểm chung và vai trò của ngành ruột khoang
+        </a>
+        <a href="#" ref="dofollow" title="thuyết minh về con trâu" class="quick-menu-item">
+            thuyết minh về con trâu
+        </a>
+        <a href="#" ref="dofollow" title="lập dàn ý bài văn tự sự lớp 10" class="quick-menu-item">
+            lập dàn ý bài văn tự sự lớp 10
+        </a>
+        <a href="#" ref="dofollow" title="giải bài tập vật lý 8" class="quick-menu-item">
+            giải bài tập vật lý 8
+        </a>
+        <a href="#" ref="dofollow" title="chuyện cũ trong phủ chúa trịnh" class="quick-menu-item">
+            chuyện cũ trong phủ chúa trịnh
+        </a>
+        <a href="#" ref="dofollow" title="giải bài tập vật lý 9" class="quick-menu-item">
+            giải bài tập vật lý 9
+        </a>
+        <a href="#" ref="dofollow" title="soạn văn tế nghĩa sĩ cần giuộc" class="quick-menu-item">
+            soạn văn tế nghĩa sĩ cần giuộc
+        </a>
+    </section>
+
+    <section class="footer-helps-section">
+        <div class="footer-help-box customer-support">
+            <h2 class="footer-help-title">Hỗ trợ khách hàng</h2>
+            <div class="options">
+                <div class="option">
+                    <i class="bi bi-envelope-fill"></i>
+                    <span>info@123doc.org</span>
+                </div>
+                <div class="option">
+                    <i class="bi bi-facebook"></i>
+                    <span>Facebook</span>
+                </div>
+                <div class="option">
+                    <img src="img/zalo-uncolored-icon.svg" alt="zalo option" />
+                    <span>Zalo</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-help-box help">
+            <h2 class="footer-help-title">Giúp đỡ</h2>
+            <div class="options">
+                <div class="option">
+                    <span>Câu hỏi thường gặp</span>
+                </div>
+                <div class="option">
+                    <span>Điều khoản sử dụng</span>
+                </div>
+                <div class="option">
+                    <span>Quy định chính sách bán tài liệu</span>
+                </div>
+                <div class="option">
+                    <span>Hướng dẫn thanh toán</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-help-box introduction">
+            <h2 class="footer-help-title">Giới thiệu</h2>
+            <div class="options">
+                <div class="option">
+                    <span>123doc là gì?</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+
+<!-- :MARK Bản quyền -->
+<div id="copyright">
+    <p>Copyright © 2020 123DOC. Designed by 123DOC</p>
+</div>
+<script>
+    // Bắt sự kiện keypress trên thẻ input
+    searchInput.addEventListener('keypress', function (event) {
+        // Kiểm tra xem phím Enter đã được nhấn (keyCode 13) và giá trị input không rỗng
+        if (event.key === 'Enter' && this.value.trim() !== '') {
+            const searchQuery = encodeURIComponent(this.value.trim())
+            window.location.href = `/search?query=${searchQuery}` // Ví dụ: chuyển hướng đến trang tìm kiếm
+        }
+    })
+</script>

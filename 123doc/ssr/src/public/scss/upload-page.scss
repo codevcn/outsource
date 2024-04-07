@@ -1,0 +1,7 @@
+@use './breakpoints';
+@use './colors';
+@use './fonts';
+
+#main-section {
+    background-color: colors.$doc123-regular-bg-cl;
+}
