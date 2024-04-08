@@ -24,7 +24,10 @@
                     hidden
                     onchange="uploadFileOnProgressHandler()"
                 />
-                <label class="upload-doc-btn" for="upload-document-input">Tải lên</label>
+                <label class="upload-doc-btn" for="upload-document-input">
+                    <i class="bi bi-cloud-arrow-up-fill"></i>
+                    <span>Tải lên</span>
+                </label>
                 <div class="helper-text-box">
                     <p class="helper-text">
                         Chọn nút tải lên để chọn nhiều file từ máy tính của bạn hoặc kéo file thả
@@ -57,13 +60,3 @@
         <script src="js/upload-page.js"></script>
     </body>
 </html>
-
-<div>
-    <select class="form-select" aria-label="document-price-select">
-        <option selected>Chọn giá bán</option>
-        <option value="2000">2.000đ</option>
-        <option value="3000">3.000đ</option>
-        <option value="50000">50.000đ</option>
-        <option value="550000">550.000đ</option>
-    </select>
-</div>

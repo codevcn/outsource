@@ -2,6 +2,55 @@
 @use './colors';
 @use './fonts';
 
+$setting-up-container-width: 100%;
+$setting-up-container-min-width: 566px;
+
+@mixin input-styling {
+    width: $setting-up-container-width;
+    min-width: $setting-up-container-min-width;
+    padding: 3px 10px;
+    outline: none;
+    border: 1px lightgray solid;
+    border-radius: 5px;
+    padding: 5px 10px;
+
+    &:hover,
+    &:focus {
+        outline: 1.5px colors.$doc123-primary-cl solid;
+    }
+}
+
+@mixin select-btn-styling {
+    width: 100%;
+
+    & .form-select {
+        cursor: pointer;
+
+        &:hover {
+            outline: 1.5px colors.$doc123-primary-cl solid;
+        }
+
+        &:focus {
+            border-color: colors.$doc123-primary-cl;
+            box-shadow: 0 0 0 0.25rem colors.$doc123-primary-bshd-cl;
+        }
+    }
+}
+
+@mixin textarea-styling {
+    width: 100%;
+    outline: none;
+    resize: vertical;
+    border: 1px lightgray solid;
+    border-radius: 5px;
+    padding: 5px 10px;
+
+    &:hover,
+    &:focus {
+        outline: 1.5px colors.$doc123-primary-cl solid;
+    }
+}
+
 #main-section {
     background-color: colors.$doc123-regular-bg-cl;
     padding-top: 70px;
@@ -41,24 +90,39 @@
         }
 
         & .upload-doc-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             padding: 5px 80px;
-            background-color: colors.$doc123-primary-cl;
+            background-color: white;
             border-radius: 10px;
-            color: white;
+            color: colors.$doc123-primary-cl;
             font-weight: 500;
             cursor: pointer;
-            border: 3px colors.$doc123-primary-cl solid;
-            margin-top: 30px;
+            border: 3px colors.$doc123-primary-cl dashed;
+            margin-top: 20px;
             font-size: 1.5rem;
+            padding: 30px 100px;
+
+            & i {
+                display: flex;
+                font-size: 3rem;
+                color: colors.$doc123-primary-cl;
+            }
 
             &:hover {
-                background-color: white;
-                color: colors.$doc123-primary-cl;
+                background-color: colors.$doc123-primary-cl;
+                color: white;
+
+                & i {
+                    color: white;
+                }
             }
         }
 
         & .helper-text-box {
-            margin-top: 30px;
+            margin-top: 20px;
 
             &.inactive {
                 display: none;
@@ -86,7 +150,6 @@
             display: none;
             justify-content: space-between;
             flex-direction: column;
-            margin-top: 20px;
             background-color: colors.$doc123-light-primary-cl;
             list-style: none;
             padding: 15px;
@@ -139,20 +202,45 @@
             & .file-uploaded-box {
                 display: flex;
                 column-gap: 100px;
+                padding: 20px;
+                background-color: #f0f0f0;
 
-                & .doc-avatar-wrapper {
-                    display: flex;
-                    flex-direction: column;
-                    width: 150px;
-                    height: 180px;
+                & .doc-avatar-btn-wrapper {
+                    $doc-avatar-btn-linear-bg-cl: linear-gradient(
+                        to top left,
+                        colors.$doc123-primary-bshd-cl,
+                        colors.$doc123-primary-cl
+                    );
+                    $doc-avatar-btn-linear-bg-cl-reverse: linear-gradient(
+                        to bottom right,
+                        colors.$doc123-primary-bshd-cl,
+                        colors.$doc123-primary-cl
+                    );
 
-                    & i {
-                        font-size: 1.5rem;
-                    }
+                    height: fit-content;
 
-                    & img {
-                        width: 100%;
-                        height: 100%;
+                    & label {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-weight: bold;
+                        text-align: center;
+                        border: 2px $doc-avatar-btn-linear-bg-cl solid;
+                        box-sizing: border-box;
+                        width: 150px;
+                        height: 180px;
+                        background-color: transparent;
+                        cursor: pointer;
+                        border-radius: 5px;
+                        padding: 10px;
+                        background-image: $doc-avatar-btn-linear-bg-cl;
+
+                        & i {
+                            font-size: 2rem;
+                            color: white;
+                        }
                     }
                 }
 
@@ -161,15 +249,12 @@
                 }
 
                 & .doc-info-form-group {
-                    $input-width: 100%;
-                    $input-min-width: 566px;
-
                     display: flex;
                     justify-content: space-between;
                     align-items: start;
                     width: 100%;
                     column-gap: 50px;
-                    margin-top: 10px;
+                    margin-top: 20px;
 
                     & label {
                         width: 150px;
@@ -180,64 +265,54 @@
                         }
                     }
 
-                    & .input-wrapper {
-                        display: flex;
-                        justify-content: end;
-                        width: $input-width;
-
-                        & input {
-                            width: $input-width;
-                            min-width: $input-min-width;
-                            padding: 3px 10px;
-                            outline: none;
-                            border: 1px lightgray solid;
-                            border-radius: 5px;
-                            padding: 5px 10px;
-                        }
+                    & .setting-up-container {
+                        width: $setting-up-container-width;
                     }
 
-                    & .dropdown-btn {
-                        display: flex;
-                        justify-content: end;
-                        width: 100%;
-
-                        &:not(:nth-of-type(1)) {
-                            margin-top: 5px;
-                        }
-
-                        & .form-select {
-                            &:focus {
-                                border-color: colors.$doc123-primary-cl;
-                                box-shadow: 0 0 0 0.25rem colors.$doc123-primary-bshd-cl;
+                    &.doc-name {
+                        & .setting-up-container {
+                            & input {
+                                @include input-styling;
                             }
                         }
                     }
 
-                    & .textarea-wrapper {
-                        width: 100%;
+                    &.doc-catrgory {
+                        & .select-btn {
+                            @include select-btn-styling;
 
-                        & textarea {
-                            width: 100%;
-                            outline: none;
-                            resize: vertical;
-                            border: 1px lightgray solid;
-                            border-radius: 5px;
-                            padding: 5px 10px;
+                            &:not(:nth-of-type(1)) {
+                                margin-top: 5px;
+                            }
                         }
                     }
 
-                    &.doc-price {
+                    &.doc-description {
+                        & .setting-up-container {
+                            & textarea {
+                                @include textarea-styling;
+                            }
+                        }
+                    }
+
+                    &.doc-keyword {
+                        & .setting-up-container {
+                            & input {
+                                @include input-styling;
+                            }
+                        }
+                    }
+
+                    &.doc-price-and-preview {
                         margin-top: 15px;
 
-                        & .price-box {
+                        & .setting-up-container {
                             display: flex;
                             justify-content: space-between;
-                            width: 100%;
                             column-gap: 20px;
 
-                            & .price,
-                            .preview {
-                                width: 100%;
+                            & .select-btn {
+                                @include select-btn-styling;
                             }
 
                             & h6 {
@@ -246,13 +321,84 @@
                                 margin-bottom: 5px;
                             }
 
-                            & .form-select {
-                                &:focus {
-                                    border-color: colors.$doc123-primary-cl;
-                                    box-shadow: 0 0 0 0.25rem colors.$doc123-primary-bshd-cl;
+                            & .setting-up-value {
+                                display: flex;
+                                align-items: center;
+                                column-gap: 5px;
+                                margin-top: 5px;
+
+                                & input {
+                                    border: 1px lightgray solid;
+                                    width: 100%;
+                                    padding: 5px 10px;
+                                    min-width: 100px;
+                                    font-size: 0.9rem;
+
+                                    &:hover,
+                                    &:focus {
+                                        outline: 1.5px colors.$doc123-primary-cl solid;
+                                    }
+                                }
+
+                                & strong {
+                                    display: inline-block;
+                                    font-weight: normal;
+                                    font-size: 0.9rem;
+                                    min-width: max-content;
                                 }
                             }
                         }
+                    }
+
+                    &.doc-attaching {
+                        padding-top: 5px;
+
+                        & .setting-up-container {
+                            & .attaching-doc-btn {
+                                padding: 5px 10px;
+                                border: 1px colors.$doc123-secondary-cl solid;
+                                color: colors.$doc123-secondary-cl;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                font-size: 0.9rem;
+                                min-width: max-content;
+                                background-color: white;
+                                font-weight: bold;
+
+                                &:hover {
+                                    color: white;
+                                    background-color: colors.$doc123-secondary-cl;
+                                }
+                            }
+
+                            & .attaching-doc-helper-text {
+                                color: gray;
+                                font-size: 0.9rem;
+                            }
+
+                            & .file-name {
+                                @include input-styling;
+                                font-size: 0.9rem;
+                                margin-top: 10px;
+                            }
+                        }
+                    }
+                }
+
+                & .submit-btn {
+                    margin-top: 20px;
+                    border-radius: 5px;
+                    padding: 5px 30px;
+                    width: 100%;
+                    background-color: colors.$doc123-primary-cl;
+                    border: 2px colors.$doc123-primary-cl solid;
+                    font-size: 1.2rem;
+                    color: white;
+                    font-weight: bold;
+
+                    &:hover {
+                        color: colors.$doc123-primary-cl;
+                        background-color: white;
                     }
                 }
             }
