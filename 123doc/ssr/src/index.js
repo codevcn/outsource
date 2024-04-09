@@ -13,9 +13,12 @@ app.set('view engine', 'ejs')
 // Thiết lập thư mục chứa các file tĩnh (CSS, JS, hình ảnh, ...)
 app.use(express.static('src/public'))
 
-// Định nghĩa route để render trang index.ejs
+// Định nghĩa route 
 app.get('/upload-page', (req, res) => {
     res.render('upload-page', { user, danhmuc })
+})
+app.post('/upload-doc', (req, res, next) => {
+    res.status(200).json({ success: true })
 })
 
 // Khởi động server
