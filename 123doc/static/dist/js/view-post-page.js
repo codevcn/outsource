@@ -70,7 +70,7 @@ const renderTopActions = (post, user) => {
     topAction_userAvatar.appendChild(user_avatar_img)
     topAction_nameOfUser.textContent = user.name
     topAction_downloadsCount.textContent = post.details.downloadsCount
-    topAction_purchaseAmount.textContent = formatNumberWithDot(post.price.value) + 'đ'
+    topAction_purchaseAmount.textContent = formatNumberWithDelimiter(post.price.value) + 'đ'
 }
 
 const renderSlides = (slides) => {
@@ -89,7 +89,7 @@ const renderSlides = (slides) => {
 const renderBottomActions = (post) => {
     bottomAction_downloadBtnBox.querySelector('.download-btn').innerHTML = `
         <span>TẢI XUỐNG</span>
-        <span class="price">(${formatNumberWithDot(post.price.value)}đ - ${
+        <span class="price">(${formatNumberWithDelimiter(post.price.value)}đ - ${
         post.details.pagesCount
     } trang)</span>`
     bottomAction_downloadBtnBox.querySelector('.downloads-count').innerHTML =
@@ -114,7 +114,7 @@ const renderPostDescriptionAndDetails = (post) => {
 const renderExtensionBar = (post) => {
     extensionBar_downloadBox.querySelector('.download-btn').innerHTML = `
         <span>TẢI XUỐNG</span>
-        <span class="price">(${formatNumberWithDot(post.price.value)}đ - ${
+        <span class="price">(${formatNumberWithDelimiter(post.price.value)}đ - ${
         post.details.pagesCount
     } trang)</span>`
     extensionBar_downloadBox.querySelector('.downloads-count').innerHTML =

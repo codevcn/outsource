@@ -1,10 +1,11 @@
+@charset "UTF-8";
 #main-section {
   background-color: #f8f8f8;
   padding-top: 70px;
 }
 #main-section .title {
   font-size: 2rem;
-  font-weight: normal;
+  font-weight: 500;
   text-align: center;
   width: 100%;
   margin: 0;
@@ -79,7 +80,10 @@
   margin-top: 3px;
 }
 #main-section .uploaded-docs-section {
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 70px;
+  padding-right: 70px;
 }
 #main-section .uploaded-docs-section .upload-progress {
   display: flex;
@@ -88,10 +92,27 @@
   list-style: none;
   border-radius: 5px;
   box-sizing: border-box;
-  padding: 15px 50px;
+  padding: 15px 0;
+  padding-top: 0;
 }
 #main-section .uploaded-docs-section .upload-progress.inactive {
   display: none;
+}
+#main-section .uploaded-docs-section .upload-progress .upload-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+#main-section .uploaded-docs-section .upload-progress .upload-warning i {
+  display: flex;
+  font-size: 1.2rem;
+  color: red;
 }
 #main-section .uploaded-docs-section .upload-progress .upload-progress-content {
   width: 100%;
@@ -125,8 +146,362 @@
   background-color: #00a888;
   border-radius: inherit;
 }
-#main-section .uploaded-docs-section .uploaded-docs {
-  padding: 0 50px;
+#main-section .uploaded-docs-section .uploaded-docs-title {
+  font-size: 1.1rem;
+  margin-left: 10px;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+#main-section .uploaded-docs-section .uploaded-docs-title.inactive {
+  display: none;
+}
+#main-section .uploaded-docs-section .uploaded-docs-title .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: start;
+}
+#main-section .uploaded-docs-section .uploaded-docs-title .note {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  font-style: italic;
+  font-weight: 500;
+}
+#main-section .uploaded-docs-section .uploaded-docs-title .note strong {
+  color: red;
+}
+#main-section .uploaded-docs-section .uploaded-docs-title .note i {
+  font-size: 0.9rem;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section.inactive {
+  display: none;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .switch-btn-container {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  border: 1px lightgray solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .switch-btn-container .form-check-input {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin: 0;
+  border: 1px gray solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .switch-btn-container .form-check-input:checked {
+  background-color: #00a888;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .switch-btn-container .form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 253, 161, 0.25);
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .switch-btn-container .form-check-input:hover {
+  outline: 1.5px #00a888 solid;
+  border-color: #00a888;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .switch-btn-container label {
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info {
+  display: flex;
+  -moz-column-gap: 100px;
+       column-gap: 100px;
+  margin-top: 20px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  margin-top: 5px;
+  margin-bottom: 40px;
+  border: 1px lightgray solid;
+  border-radius: 5px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-avatar-btn-wrapper {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-avatar-btn-wrapper label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border: 2px linear-gradient(to top left, rgba(0, 168, 137, 0.2196078431), #00a888) solid;
+  box-sizing: border-box;
+  width: 150px;
+  height: 180px;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px;
+  background-image: linear-gradient(to top left, rgba(0, 168, 137, 0.2196078431), #00a888);
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-avatar-btn-wrapper label i {
+  font-size: 2rem;
+  color: white;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-box {
+  width: 100%;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
+  margin-top: 20px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group label {
+  width: 150px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group label .required-dot {
+  color: red;
+  font-weight: bold;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group .setting-up-container {
+  width: 100%;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group .setting-up-container .message {
+  display: flex;
+  align-items: baseline;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  margin-left: 10px;
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 3px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group .setting-up-container .message i {
+  color: red;
+  font-size: 0.9rem;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group:nth-of-type(1) {
+  margin-top: 0;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-name .setting-up-container input {
+  width: 100%;
+  min-width: 566px;
+  padding: 3px 10px;
+  outline: none;
+  border: 1px lightgray solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-name .setting-up-container input:hover, #main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-name .setting-up-container input:focus {
+  outline: 1.5px #00a888 solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container {
+  width: 100%;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container .form-select {
+  cursor: pointer;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container .form-select:hover {
+  outline: 1.5px #00a888 solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container .form-select:focus {
+  border-color: #00a888;
+  box-shadow: 0 0 0 0.25rem rgba(0, 168, 137, 0.2196078431);
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container:not(:nth-of-type(1)) {
+  margin-top: 5px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-description .setting-up-container textarea {
+  width: 100%;
+  outline: none;
+  resize: vertical;
+  border: 1px lightgray solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-description .setting-up-container textarea:hover, #main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-description .setting-up-container textarea:focus {
+  outline: 1.5px #00a888 solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-description .setting-up-container .message {
+  margin-top: 0;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-keyword .setting-up-container input {
+  width: 100%;
+  min-width: 566px;
+  padding: 3px 10px;
+  outline: none;
+  border: 1px lightgray solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-keyword .setting-up-container input:hover, #main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-keyword .setting-up-container input:focus {
+  outline: 1.5px #00a888 solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview {
+  margin-top: 15px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container {
+  display: flex;
+  justify-content: space-between;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .form-select-container {
+  width: 100%;
+  max-width: 323px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .form-select-container .form-select {
+  cursor: pointer;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .form-select-container .form-select:hover {
+  outline: 1.5px #00a888 solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .form-select-container .form-select:focus {
+  border-color: #00a888;
+  box-shadow: 0 0 0 0.25rem rgba(0, 168, 137, 0.2196078431);
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container h6 {
+  margin: 0;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  margin-top: 5px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value.inactive {
+  display: none;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value input {
+  border: 1px lightgray solid;
+  width: 100%;
+  padding: 5px 10px;
+  min-width: 200px;
+  font-size: 0.9rem;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value input:hover, #main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value input:focus {
+  outline: 1.5px #00a888 solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value strong {
+  display: inline-block;
+  font-weight: normal;
+  font-size: 0.9rem;
+  min-width: -moz-max-content;
+  min-width: max-content;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching {
+  padding-top: 5px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attaching-doc-btn {
+  padding: 5px 10px;
+  border: 1px #ffaa00 solid;
+  color: #ffaa00;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  background-color: white;
+  font-weight: bold;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attaching-doc-btn:hover {
+  color: white;
+  background-color: #ffaa00;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attaching-doc-helper-text {
+  color: gray;
+  font-size: 0.9rem;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .uploaded-doc-attaching-file-name {
+  width: 100%;
+  min-width: 566px;
+  padding: 3px 10px;
+  outline: none;
+  border: 1px lightgray solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  margin-top: 7px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .uploaded-doc-attaching-file-name:hover, #main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .uploaded-doc-attaching-file-name:focus {
+  outline: 1.5px #00a888 solid;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .warning {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .warning i {
+  color: red;
+  font-size: 0.9rem;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .on-progress {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .on-progress .progress-circle-bar {
+  transform: rotate(-90deg);
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .on-progress .progress-circle-bar .progress-circle-solid {
+  /* Không điền màu trong hình tròn */
+  fill: none;
+  /* Màu của nét vẽ */
+  stroke: #00a888;
+  /* Độ dày của nét vẽ */
+  stroke-width: 3;
+  /* Độ dài của nét vẽ (2 * pi * r) */
+  stroke-dasharray: 50.24;
+  /* Độ lệch của nét vẽ ban đầu */
+  stroke-dashoffset: 50.24;
+  /* Hiệu ứng chuyển tiếp */
+  transition: stroke-dashoffset 2s ease;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .submit-form-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 5px 30px;
+  width: 100%;
+  background-color: #00a888;
+  border: 2px #00a888 solid;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .submit-form-btn:hover {
+  color: #00a888;
+  background-color: white;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .submit-form-btn.inactive {
+  pointer-events: none;
+  opacity: 0.5;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info .submit-form-btn .spinner-border {
+  height: 28.8px;
+  width: 28.8px;
+}
+#main-section .uploaded-docs-section .add-info-for-all-docs-section .doc-avatar-and-doc-info.inactive {
+  display: none;
 }
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form {
   border-top: 3px #00a888 solid;
@@ -135,8 +510,8 @@
   padding: 20px;
   padding-top: 10px;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form.inactive {
-  display: none;
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form:nth-of-type(1) {
+  margin-top: 30px;
 }
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .uploaded-doc-form-title {
   padding: 5px;
@@ -198,6 +573,23 @@
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group .setting-up-container {
   width: 100%;
 }
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group .setting-up-container .message {
+  display: flex;
+  align-items: baseline;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  margin-left: 10px;
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 3px;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group .setting-up-container .message i {
+  color: red;
+  font-size: 0.9rem;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group:nth-of-type(1) {
+  margin-top: 0;
+}
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-name .setting-up-container input {
   width: 100%;
   min-width: 566px;
@@ -210,20 +602,20 @@
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-name .setting-up-container input:hover, #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-name .setting-up-container input:focus {
   outline: 1.5px #00a888 solid;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-catrgory .select-btn {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container {
   width: 100%;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-catrgory .select-btn .form-select {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container .form-select {
   cursor: pointer;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-catrgory .select-btn .form-select:hover {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container .form-select:hover {
   outline: 1.5px #00a888 solid;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-catrgory .select-btn .form-select:focus {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container .form-select:focus {
   border-color: #00a888;
   box-shadow: 0 0 0 0.25rem rgba(0, 168, 137, 0.2196078431);
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-catrgory .select-btn:not(:nth-of-type(1)) {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-category .form-select-container:not(:nth-of-type(1)) {
   margin-top: 5px;
 }
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-description .setting-up-container textarea {
@@ -236,6 +628,9 @@
 }
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-description .setting-up-container textarea:hover, #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-description .setting-up-container textarea:focus {
   outline: 1.5px #00a888 solid;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-description .setting-up-container .message {
+  margin-top: 0;
 }
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-keyword .setting-up-container input {
   width: 100%;
@@ -258,16 +653,17 @@
   -moz-column-gap: 20px;
        column-gap: 20px;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .select-btn {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .form-select-container {
   width: 100%;
+  max-width: 323px;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .select-btn .form-select {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .form-select-container .form-select {
   cursor: pointer;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .select-btn .form-select:hover {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .form-select-container .form-select:hover {
   outline: 1.5px #00a888 solid;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .select-btn .form-select:focus {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .form-select-container .form-select:focus {
   border-color: #00a888;
   box-shadow: 0 0 0 0.25rem rgba(0, 168, 137, 0.2196078431);
 }
@@ -283,11 +679,14 @@
        column-gap: 5px;
   margin-top: 5px;
 }
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value.inactive {
+  display: none;
+}
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value input {
   border: 1px lightgray solid;
   width: 100%;
   padding: 5px 10px;
-  min-width: 100px;
+  min-width: 200px;
   font-size: 0.9rem;
 }
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value input:hover, #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-price-and-preview .setting-up-container .setting-up-value input:focus {
@@ -323,7 +722,7 @@
   color: gray;
   font-size: 0.9rem;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .file-name {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .uploaded-doc-attaching-file-name {
   width: 100%;
   min-width: 566px;
   padding: 3px 10px;
@@ -332,12 +731,56 @@
   border-radius: 5px;
   padding: 5px 10px;
   font-size: 0.9rem;
-  margin-top: 10px;
+  margin-top: 7px;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .file-name:hover, #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .file-name:focus {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .uploaded-doc-attaching-file-name:hover, #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .uploaded-doc-attaching-file-name:focus {
   outline: 1.5px #00a888 solid;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .submit-btn {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .warning {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .warning i {
+  color: red;
+  font-size: 0.9rem;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .on-progress {
+  display: flex;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .on-progress .progress-circle-bar {
+  transform: rotate(-90deg);
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .on-progress .progress-circle-bar .progress-circle-solid {
+  /* Không điền màu trong hình tròn */
+  fill: none;
+  /* Màu của nét vẽ */
+  stroke: #00a888;
+  /* Độ dày của nét vẽ */
+  stroke-width: 3;
+  /* Độ dài của nét vẽ (2 * pi * r) */
+  stroke-dasharray: 50.24;
+  /* Độ lệch của nét vẽ ban đầu */
+  stroke-dashoffset: 50.24;
+  /* Hiệu ứng chuyển tiếp */
+  transition: stroke-dashoffset 2s ease;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .submit-form-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
   border-radius: 5px;
   padding: 5px 30px;
@@ -348,7 +791,15 @@
   color: white;
   font-weight: bold;
 }
-#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .submit-btn:hover {
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .submit-form-btn:hover {
   color: #00a888;
   background-color: white;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .submit-form-btn.inactive {
+  pointer-events: none;
+  opacity: 0.5;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-form .doc-avatar-and-doc-info .submit-form-btn .spinner-border {
+  height: 28.8px;
+  width: 28.8px;
 }/*# sourceMappingURL=upload-page.css.map */

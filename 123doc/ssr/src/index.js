@@ -13,12 +13,18 @@ app.set('view engine', 'ejs')
 // Thiết lập thư mục chứa các file tĩnh (CSS, JS, hình ảnh, ...)
 app.use(express.static('src/public'))
 
-// Định nghĩa route 
+// Định nghĩa route
 app.get('/upload-page', (req, res) => {
     res.render('upload-page', { user, danhmuc })
 })
 app.post('/upload-doc', (req, res, next) => {
-    res.status(200).json({ success: true })
+    // res.status(400).json({success:false})
+    res.status(200).json({
+        files: [
+            { id: 1, name: 'Yêu em dại khờ Lou Hoàng.exe' },
+            { id: 2, name: 'Yêu em quá lâu.mp3' },
+        ],
+    })
 })
 
 // Khởi động server

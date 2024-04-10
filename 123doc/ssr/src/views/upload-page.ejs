@@ -20,6 +20,13 @@
                     <i class="bi bi-cloud-arrow-up-fill"></i>
                     <span>Tải lên</span>
                 </label>
+                <input
+                    type="file"
+                    multiple
+                    id="uploaded-doc-input"
+                    hidden
+                    onchange="uploadFileOnProgressHandler()"
+                />
                 <div class="helper-text-box">
                     <p class="helper-text">
                         Chọn nút tải lên để chọn nhiều file từ máy tính của bạn hoặc kéo file thả
@@ -30,13 +37,167 @@
             </section>
             <section class="uploaded-docs-section">
                 <div class="upload-progress inactive"></div>
+                <div class="uploaded-docs-title inactive">
+                    <h3 class="title">Chỉnh sửa thông tin cho tài liệu bạn đã tải lên</h3>
+                    <p class="note">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        <span>
+                            Chú ý: Các trường với <strong>(*)</strong> là các trường bắt buộc.
+                        </span>
+                    </p>
+                </div>
+                <section class="add-info-for-all-docs-section inactive">
+                    <div class="switch-btn-container form-check form-switch">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="add-info-for-all-docs-input"
+                            onchange="openAddInfoForAllDocs()"
+                        />
+                        <label for="add-info-for-all-docs-input">
+                            Thêm thông tin cho toàn bộ tài liệu vừa tải lên
+                        </label>
+                    </div>
+                    <form
+                        class="doc-avatar-and-doc-info add-info-for-all-docs-form inactive"
+                        action="#"
+                        onsubmit="addInfoForAllDocsHandler(event)"
+                    >
+                        <div class="doc-avatar-btn-wrapper">
+                            <label
+                                onclick="clickInput(this)"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Thêm ảnh đại diện cho tài liệu của bạn"
+                            >
+                                <i class="bi bi-camera"></i>
+                                <span>Thêm ảnh đại diện</span></label
+                            ><input
+                                type="file"
+                                accept="image/*"
+                                name="uploaded-doc-avatar"
+                                hidden="true"
+                            />
+                        </div>
+                        <div class="doc-info-box">
+                            <div class="doc-info-form-group doc-category">
+                                <label>
+                                    Danh mục
+                                    <span class="required-dot">(*)</span>
+                                </label>
+                                <div style="width: 100%" class="setting-up-container">
+                                    <div class="form-select-container">
+                                        <select class="form-select" name="uploaded-doc-category">
+                                            <option value="none" selected="">- Danh mục -</option>
+                                            <option value="2000">Kỹ năng mềm</option>
+                                            <option value="3000">Mẫu slide</option>
+                                            <option value="50000">Kinh doanh - tiếp thị</option>
+                                            <option value="550000">Kinh tế - quản lí</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-select-container">
+                                        <select class="form-select" name="uploaded-doc-subcategory">
+                                            <option value="none" selected="">
+                                                - Danh mục con -
+                                            </option>
+                                            <option value="2000">Kỹ năng mềm</option>
+                                            <option value="3000">Mẫu slide</option>
+                                            <option value="50000">Kinh doanh - tiếp thị</option>
+                                            <option value="550000">Kinh tế - quản lí</option>
+                                        </select>
+                                    </div>
+                                    <div class="message"></div>
+                                </div>
+                            </div>
+                            <div class="doc-info-form-group doc-keyword">
+                                <label>
+                                    Từ khóa
+                                    <span class="required-dot">(*)</span>
+                                </label>
+                                <div class="setting-up-container">
+                                    <input
+                                        type="text"
+                                        name="uploaded-doc-keyword"
+                                        placeholder="Từ khóa..."
+                                    />
+                                    <div class="message"></div>
+                                </div>
+                            </div>
+                            <div class="doc-info-form-group doc-price-and-preview">
+                                <label>
+                                    Giá bán
+                                    <span class="required-dot">(*)</span>
+                                </label>
+                                <div class="setting-up-container">
+                                    <div class="form-select-container price">
+                                        <h6>Giá bán</h6>
+                                        <select
+                                            class="form-select"
+                                            onchange="selectDocPrice(this)"
+                                            name="uploaded-doc-price"
+                                        >
+                                            <option value="none" selected="">Chọn giá bán</option>
+                                            <option value="2000">2.000đ</option>
+                                            <option value="3000">3.000đ</option>
+                                            <option value="50000">50.000đ</option>
+                                            <option value="550000">550.000đ</option>
+                                            <option value="self-type">Tự đặt giá</option>
+                                        </select>
+                                        <div class="setting-up-value set-price inactive">
+                                            <input
+                                                type="text"
+                                                name="uploaded-doc-price-self-type"
+                                                placeholder="Nhập giá..."
+                                                oninput="selfTypeDocPrice(this)"
+                                            />
+                                            <strong>0đ</strong>
+                                        </div>
+                                        <div class="message"></div>
+                                    </div>
+                                    <div class="form-select-container preview">
+                                        <h6>Xem trước</h6>
+                                        <select
+                                            class="form-select"
+                                            onchange="selectDocPreview(this)"
+                                            name="uploaded-doc-preview"
+                                        >
+                                            <option value="none" selected="">
+                                                Số trang xem trước
+                                            </option>
+                                            <option value="20">20%</option>
+                                            <option value="50">50%</option>
+                                            <option value="self-type">Tự chọn</option>
+                                        </select>
+                                        <div class="setting-up-value set-preview inactive">
+                                            <input
+                                                type="text"
+                                                name="uploaded-doc-preview-self-type"
+                                                placeholder="Nhập số trang xem trước..."
+                                                oninput="selfTypeDocPreview(this)"
+                                            />
+                                            <strong>0 trang</strong>
+                                        </div>
+                                        <div class="message"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                type="submit"
+                                class="submit-form-btn"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Lưu thông tin cho toàn bộ tài liệu vừa tải lên"
+                            >
+                                Lưu thông tin
+                            </button>
+                        </div>
+                    </form>
+                </section>
                 <div class="uploaded-docs"></div>
             </section>
         </main>
         <%- include('partials/footer'); %> <%- include('partials/sharing-libs'); %>
         <script src="js/upload-page.js"></script>
-        <script>
-            uploadFileOnDone(false, { fileName: '' })
-        </script>
     </body>
 </html>
