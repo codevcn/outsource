@@ -1,11 +1,11 @@
 const uploadDocSection = document.querySelector('#main-section .upload-doc-section')
 const uploadDocHelperTextBox = uploadDocSection.querySelector('.helper-text-box')
-const docsUploadedSection = document.querySelector('#main-section .uploaded-docs-section')
-const uploadProgress = docsUploadedSection.querySelector('.upload-progress')
-const docsUploaded = document.querySelector('#main-section .uploaded-docs')
-const uploadedDocInput = document.getElementById('uploaded-doc-input')
-const uploadedDocsTitle = docsUploadedSection.querySelector('.uploaded-docs-title')
-const addInfoForAllDocsSection = docsUploadedSection.querySelector('.add-info-for-all-docs-section')
+const uploadedDocsSection = document.querySelector('#main-section .uploaded-docs-section')
+const uploadProgress = uploadedDocsSection.querySelector('.upload-progress')
+const uploadedDocs = document.querySelector('#main-section .uploaded-docs')
+const uploadedDocInput = document.getElementById('upload-docs-input')
+const uploadedDocsTitle = uploadedDocsSection.querySelector('.uploaded-docs-title')
+const addInfoForAllDocsSection = uploadedDocsSection.querySelector('.add-info-for-all-docs-section')
 const addInfoForAllDocs_form = addInfoForAllDocsSection.querySelector('.add-info-for-all-docs-form')
 
 const doc_price_and_preview_regex = /^[0-9]{1,}$/
@@ -41,7 +41,7 @@ const create_docAvatarBtn = () => {
 }
 
 const createFromGroupLabel = ({ labelText }, is_required) => {
-    return `<label>
+    return `<label class="form-group-title">
     ${labelText}
     ${is_required ? `<span class="required-dot">(*)</span>` : ''}
     </label>`
@@ -189,8 +189,8 @@ const create_formGroup_priceAndPreview = () => {
                 <h6>Xem trước</h6>
                 <select class="form-select" onchange="selectDocPreview(this)" name="uploaded-doc-preview">
                     <option value="none" selected>Số trang xem trước</option>
-                    <option value="20">20%</option>
-                    <option value="50">50%</option>
+                    <option value="20%">20%</option>
+                    <option value="50%">50%</option>
                     <option value="self-type">Tự chọn</option>
                 </select>
                 <div class="setting-up-value set-preview inactive">
@@ -249,7 +249,7 @@ const createAttachingDoc_progressBar = (target, { fileLoaded, fileNames }) => {
         </div>`
 }
 
-const uploadAttachingDocOnProgressHandler = async (target) => {
+const uploadAttachingDocOnProgressHandler = async (target, docId) => {
     const files = target.files
     if (files && files.length > 0) {
         uploadDocHelperTextBox.classList.add('inactive')
@@ -268,14 +268,9 @@ const uploadAttachingDocOnProgressHandler = async (target) => {
             fileNames.push(fileName)
         }
         const xhr = new XMLHttpRequest()
-        xhr.open('POST', '/upload-doc', true)
+        xhr.open('POST', '/upload-attaching-doc', true)
         xhr.upload.addEventListener('progress', ({ loaded, total }) => {
             const fileLoaded = Math.floor((loaded / total) * 100)
-            const fileTotal = Math.floor(total / 1000)
-            let fileSize
-            fileTotal < 1024
-                ? (fileSize = fileTotal + ' KB')
-                : (fileSize = (loaded / (1024 * 1024)).toFixed(2) + ' MB')
             createAttachingDoc_progressBar(target, { fileLoaded, fileNames })
             if (loaded == total) {
                 createAttachingDoc_progressBar(target, { fileNames, fileLoaded: 100 })
@@ -291,21 +286,22 @@ const uploadAttachingDocOnProgressHandler = async (target) => {
     }
 }
 
-const create_formGroup_attachingDoc = () => {
+const create_formGroup_attachingDoc = (docId) => {
     const formGroup = document.createElement('div')
     formGroup.className = 'doc-info-form-group doc-attaching'
     formGroup.innerHTML = `
         ${createFromGroupLabel({ labelText: 'File đính kèm' })}
         <div class="setting-up-container">
             <h6>Tài liệu tham khảo giá:</h6>
-            <div style="display: flex; align-items: center; column-gap: 10px">
+            <div class="attaching-doc-btn-container">
                 <label class="attaching-doc-btn" onclick="clickInput(this)">Thêm file đính kèm</label>
                 <input
                     type="file"
                     hidden
                     name="uploaded-doc-attaching"
                     multiple
-                    onchange="uploadAttachingDocOnProgressHandler(this)"
+                    onchange="uploadAttachingDocOnProgressHandler(this,${docId})"
+                    accept=".pdf,.ppt,.pptx,.doc,.docx,.xlsx"
                 />
                 <span class="attaching-doc-helper-text">Chỉ chấp nhận định dạng file ZIP/RAR (tối đa 32MB)</span>
             </div>
@@ -324,7 +320,8 @@ const create_submit_button = () => {
     return submit_btn
 }
 
-const uploadFile = async (data) => {
+const saveDocInfo = async (docId, data) => {
+    console.log('>>> api payload >>>', { docId, data })
     // call api
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -406,7 +403,7 @@ const setDocAttaching_warningMessage = (target, message) => {
         : ''
 }
 
-const validateUploadData = (
+const validateSaveDocInfo = (
     target,
     { docName, docCategory, docSubcategory, docDescription, docKeyword, docPrice, docPreview }
 ) => {
@@ -474,60 +471,30 @@ const validateUploadData = (
     return is_valid
 }
 
-async function saveUploadFile(e) {
-    e.preventDefault()
-    const { target } = e
-    const { elements } = target
-    const docAvatar = elements['uploaded-doc-avatar'].files
-    const docName = elements['uploaded-doc-name'].value
-    const docCategory = elements['uploaded-doc-category'].value
-    const docSubcategory = elements['uploaded-doc-subcategory'].value
-    const docDescription = elements['uploaded-doc-description'].value
-    const docKeyword = elements['uploaded-doc-keyword'].value
-    const docAttaching = elements['uploaded-doc-attaching'].files
-    const docAttachingName = elements['uploaded-doc-attaching'].files
-    let docPrice = elements['uploaded-doc-price'].value
-    let docPreview = elements['uploaded-doc-preview'].value
-    if (docPrice === 'self-type') {
-        docPrice = elements['uploaded-doc-price-self-type'].value
-    }
-    if (docPreview === 'self-type') {
-        docPreview = elements['uploaded-doc-preview-self-type'].value
-    }
-    console.log('>>> res >>>', {
-        docAvatar,
-        docName,
-        docCategory,
-        docSubcategory,
-        docDescription,
-        docKeyword,
-        docPrice,
-        docPreview,
-        docAttaching,
-        docAttachingName,
-    })
-    if (
-        validateUploadData(target, {
-            docName,
-            docCategory,
-            docSubcategory,
-            docDescription,
-            docKeyword,
-            docPrice,
-            docPreview,
-        })
-    ) {
-        const submitBtn = target.querySelector('.submit-form-btn')
-        submitBtn.innerHTML = `
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>`
-        submitBtn.classList.add('inactive')
+const saveUploadDocInfoHandler = (docData) => {
+    return async function (e) {
+        e.preventDefault()
+        const { target } = e
+        const { elements } = target
 
-        try {
-            await uploadFile({
-                docAvatar,
-                docAttaching,
+        const docAvatar = elements['uploaded-doc-avatar'].files
+        const docName = elements['uploaded-doc-name'].value
+        const docCategory = elements['uploaded-doc-category'].value
+        const docSubcategory = elements['uploaded-doc-subcategory'].value
+        const docDescription = elements['uploaded-doc-description'].value
+        const docKeyword = elements['uploaded-doc-keyword'].value
+        const docAttachingName = elements['uploaded-doc-attaching'].value
+        let docPrice = elements['uploaded-doc-price'].value
+        let docPreview = elements['uploaded-doc-preview'].value
+        if (docPrice === 'self-type') {
+            docPrice = elements['uploaded-doc-price-self-type'].value
+        }
+        if (docPreview === 'self-type') {
+            docPreview = elements['uploaded-doc-preview-self-type'].value
+        }
+
+        if (
+            validateSaveDocInfo(target, {
                 docName,
                 docCategory,
                 docSubcategory,
@@ -535,15 +502,38 @@ async function saveUploadFile(e) {
                 docKeyword,
                 docPrice,
                 docPreview,
-                docAttachingName,
             })
-            toast.success({ message: 'Lưu dữ liệu tài liệu thành công!' })
-        } catch (error) {
-            toast.error({ message: error.message })
-        }
+        ) {
+            const submitBtn = target.querySelector('.submit-form-btn')
+            submitBtn.innerHTML = `
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`
+            submitBtn.classList.add('inactive')
 
-        target.querySelector('.submit-form-btn').innerHTML = 'Lưu'
-        submitBtn.classList.remove('inactive')
+            try {
+                await saveDocInfo(docData.id, {
+                    docAvatar,
+                    docName,
+                    docCategory,
+                    docSubcategory,
+                    docDescription,
+                    docKeyword,
+                    docPrice,
+                    docPreview,
+                    docAttachingName,
+                })
+                toast.success({
+                    message: 'Lưu thông tin tài liệu thành công!',
+                    title: 'Lưu thông tin thành công',
+                })
+            } catch (error) {
+                toast.error({ message: error.message, title: 'Lỗi lưu thông tin tài liệu' })
+            }
+
+            target.querySelector('.submit-form-btn').innerHTML = 'Lưu'
+            submitBtn.classList.remove('inactive')
+        }
     }
 }
 
@@ -554,41 +544,31 @@ const createDocFormTitle = (fileName) => {
     return title
 }
 
-const createUploadedDocForm = (fileId) => {
+const createUploadedDocForm = (docData) => {
     const form = document.createElement('form')
     form.classList.add('uploaded-doc-form')
     form.setAttribute('action', '#')
-    form.setAttribute('data-file-id', fileId)
-    form.setAttribute('onchange', 'saveUploadFile(event)')
+    form.setAttribute('method', 'POST')
+    form.setAttribute('data-doc-id', docData.id)
+    form.addEventListener('submit', saveUploadDocInfoHandler(docData))
     form.classList.add('inactive')
     return form
 }
 
-const createUploadedDocInput = () => {
-    const input = document.createElement('input')
-    input.setAttribute('id', 'uploaded-doc-input')
-    input.setAttribute('name', 'uploaded-doc-input')
-    input.setAttribute('type', 'file')
-    input.setAttribute('hidden', true)
-    input.setAttribute('multiple', true)
-    input.setAttribute('onchange', 'uploadFileOnProgressHandler()')
-    return input
-}
-
-const uploadFileOnDone = ({ fileId, fileName }) => {
+const uploadFileOnDone = (docData) => {
     uploadedDocsTitle.classList.remove('inactive')
     addInfoForAllDocsSection.classList.remove('inactive')
 
-    const fileUploadedDocForm = createUploadedDocForm(fileId)
+    const fileUploadedDocForm = createUploadedDocForm(docData)
 
-    const docTitle = createDocFormTitle(fileName)
+    const docTitle = createDocFormTitle(docData.name)
 
     const docAvatar = create_docAvatarBtn()
 
     const docInfo = document.createElement('div')
     docInfo.classList.add('doc-info-box')
 
-    const formGroup_docName = create_formGroup_docName(fileName)
+    const formGroup_docName = create_formGroup_docName(docData.name)
 
     const formGroup_category = create_formGroup_category()
 
@@ -598,7 +578,7 @@ const uploadFileOnDone = ({ fileId, fileName }) => {
 
     const formGroup_price = create_formGroup_priceAndPreview()
 
-    const formGroup_attachingDoc = create_formGroup_attachingDoc()
+    const formGroup_attachingDoc = create_formGroup_attachingDoc(docData.id)
 
     const submit_btn = create_submit_button()
 
@@ -618,7 +598,7 @@ const uploadFileOnDone = ({ fileId, fileName }) => {
     fileUploadedDocForm.appendChild(docTitle)
     fileUploadedDocForm.appendChild(title_and_docInfo)
 
-    docsUploaded.appendChild(fileUploadedDocForm)
+    uploadedDocs.appendChild(fileUploadedDocForm)
 }
 
 const createProgressBar_fileUploaded = ({ fileNames, fileLoaded, fileSize }) => {
@@ -650,11 +630,17 @@ const createProgressBar_fileUploaded = ({ fileNames, fileLoaded, fileSize }) => 
         </div>`
 }
 
-const warningUploadFilesFail = (message) => {
+const warningUploadFilesFail = (
+    message = 'Lỗi tải tài liệu lên! Bạn có thể liên hệ với quản trị viên nếu vấn đề này vẫn còn tiếp diễn.',
+    error_code = 500
+) => {
     uploadProgress.innerHTML = `
         <div class="upload-warning">
-            <i class="bi bi-exclamation-triangle-fill"></i>
-            <span class="warning-text">${message || 'Lỗi tải tài liệu lên!'}</span>
+            <div style="display: flex; align-items: center; column-gap: 5px;">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span class="warning-text">${message}</span>
+            </div>
+            <span class="error-code">Mã lỗi: ${error_code}.</span>
         </div>`
 }
 
@@ -688,13 +674,16 @@ const uploadFileOnProgress = (files) => {
     xhr.addEventListener('load', () => {
         const status = xhr.status
         if (status >= 200 && status < 300) {
-            const { files } = JSON.parse(xhr.responseText)
-            for (const file of files) {
-                uploadFileOnDone({ fileId: file.id, fileName: file.name })
+            const { docs } = JSON.parse(xhr.responseText)
+            for (const doc of docs) {
+                uploadFileOnDone({ id: doc.id, pagesCount: doc.pagesCount, name: doc.name })
             }
         } else {
-            warningUploadFilesFail()
-            toast.error({ message: 'Lỗi tải tài liệu lên!' })
+            warningUploadFilesFail(undefined, status)
+            toast.error({
+                message: 'Không thể tải tài liệu lên hệ thống! Mã lỗi: ' + status,
+                title: 'Lỗi tải tài liệu lên!',
+            })
         }
     })
     xhr.send(data)
@@ -769,7 +758,7 @@ const validateAddInfoForAllDocs = (
     return is_valid
 }
 
-const addInfoForAllDocs = async () => {
+const addInfoForAllDocs = async (docId_list) => {
     // call api
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -815,8 +804,13 @@ const addInfoForAllDocsHandler = async (e) => {
             </div>`
         submitBtn.classList.add('inactive')
 
+        let docId_list = []
+        for (const form of uploadedDocs.querySelectorAll('.uploaded-doc-form')) {
+            docId_list.push(form.getAttribute('data-doc-id'))
+        }
+
         try {
-            await addInfoForAllDocs({
+            await addInfoForAllDocs(docId_list, {
                 docAvatar,
                 docCategory,
                 docSubcategory,
@@ -824,9 +818,13 @@ const addInfoForAllDocsHandler = async (e) => {
                 docPrice,
                 docPreview,
             })
-            toast.success({ message: 'Lưu dữ liệu tài liệu thành công!' })
+
+            toast.success({
+                message: 'Lưu thông tin tài liệu thành công!',
+                title: 'Lưu thông tin thành công',
+            })
         } catch (error) {
-            toast.error({ message: error.message })
+            toast.error({ message: error.message, title: 'Lỗi lưu thông tin tài liệu' })
         }
 
         target.querySelector('.submit-form-btn').innerHTML = 'Lưu thông tin'

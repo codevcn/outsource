@@ -7,25 +7,26 @@
     <body>
         <%- include('partials/header', { user: user , danhmuc: danhmuc }); %>
         <main id="main-section">
-            <h2 class="title">
+            <h2 class="main-section-title">
                 Đăng bán và chia sẻ tài liệu lên thư viện điện tử lớn nhất Việt Nam
             </h2>
-            <h3 class="subtitle">
+            <h3 class="main-section-subtitle">
                 123Doc sẽ mang đến cho bạn hơn 10 triệu độc giả , thu nhập, danh tiếng và hơn thế
                 nữa
             </h3>
             <section class="upload-doc-section">
                 <h2 class="upload-doc-title">Tải tài liệu lên 123doc</h2>
-                <label class="upload-doc-btn" for="uploaded-doc-input">
+                <label class="upload-doc-btn" for="upload-docs-input">
                     <i class="bi bi-cloud-arrow-up-fill"></i>
                     <span>Tải lên</span>
                 </label>
                 <input
                     type="file"
                     multiple
-                    id="uploaded-doc-input"
+                    id="upload-docs-input"
                     hidden
                     onchange="uploadFileOnProgressHandler()"
+                    accept=".pdf,.ppt,.pptx,.doc,.docx,.xlsx"
                 />
                 <div class="helper-text-box">
                     <p class="helper-text">
@@ -63,6 +64,7 @@
                         class="doc-avatar-and-doc-info add-info-for-all-docs-form inactive"
                         action="#"
                         onsubmit="addInfoForAllDocsHandler(event)"
+                        method="post"
                     >
                         <div class="doc-avatar-btn-wrapper">
                             <label
@@ -82,7 +84,7 @@
                         </div>
                         <div class="doc-info-box">
                             <div class="doc-info-form-group doc-category">
-                                <label>
+                                <label class="form-group-title">
                                     Danh mục
                                     <span class="required-dot">(*)</span>
                                 </label>
@@ -111,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="doc-info-form-group doc-keyword">
-                                <label>
+                                <label class="form-group-title">
                                     Từ khóa
                                     <span class="required-dot">(*)</span>
                                 </label>
@@ -125,7 +127,7 @@
                                 </div>
                             </div>
                             <div class="doc-info-form-group doc-price-and-preview">
-                                <label>
+                                <label class="form-group-title">
                                     Giá bán
                                     <span class="required-dot">(*)</span>
                                 </label>
@@ -182,15 +184,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button
-                                type="submit"
-                                class="submit-form-btn"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="bottom"
-                                data-bs-title="Lưu thông tin cho toàn bộ tài liệu vừa tải lên"
-                            >
-                                Lưu thông tin
-                            </button>
+                            <button type="submit" class="submit-form-btn">Lưu thông tin</button>
                         </div>
                     </form>
                 </section>

@@ -3,7 +3,6 @@
 @use './fonts';
 
 $setting-up-container-width: 100%;
-$setting-up-container-min-width: 566px;
 $doc-price-container-max-width: 323px;
 $form-bg-cl: #f0f0f0;
 
@@ -19,7 +18,6 @@ $form-bg-cl: #f0f0f0;
 
 @mixin input-styling {
     width: $setting-up-container-width;
-    min-width: $setting-up-container-min-width;
     padding: 3px 10px;
     outline: none;
     border: 1px lightgray solid;
@@ -119,8 +117,8 @@ $form-bg-cl: #f0f0f0;
         column-gap: 50px;
         margin-top: 20px;
 
-        & label {
-            width: 150px;
+        & .form-group-title {
+            min-width: 105px;
 
             & .required-dot {
                 color: red;
@@ -222,7 +220,7 @@ $form-bg-cl: #f0f0f0;
                         border: 1px lightgray solid;
                         width: 100%;
                         padding: 5px 10px;
-                        min-width: 200px;
+                        min-width: 150px;
                         font-size: 0.9rem;
 
                         &:hover,
@@ -245,26 +243,33 @@ $form-bg-cl: #f0f0f0;
             padding-top: 5px;
 
             & .setting-up-container {
-                & .attaching-doc-btn {
-                    padding: 5px 10px;
-                    border: 1px colors.$doc123-secondary-cl solid;
-                    color: colors.$doc123-secondary-cl;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-size: 0.9rem;
-                    min-width: max-content;
-                    background-color: white;
-                    font-weight: bold;
+                & .attaching-doc-btn-container {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 10px;
+                    row-gap: 5px;
 
-                    &:hover {
-                        color: white;
-                        background-color: colors.$doc123-secondary-cl;
+                    & .attaching-doc-btn {
+                        padding: 5px 10px;
+                        border: 1px colors.$doc123-secondary-cl solid;
+                        color: colors.$doc123-secondary-cl;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 0.9rem;
+                        min-width: max-content;
+                        background-color: white;
+                        font-weight: bold;
+
+                        &:hover {
+                            color: white;
+                            background-color: colors.$doc123-secondary-cl;
+                        }
                     }
-                }
 
-                & .attaching-doc-helper-text {
-                    color: gray;
-                    font-size: 0.9rem;
+                    & .attaching-doc-helper-text {
+                        color: gray;
+                        font-size: 0.9rem;
+                    }
                 }
 
                 & .uploaded-doc-attaching-file-name {
@@ -276,6 +281,7 @@ $form-bg-cl: #f0f0f0;
                 & .attach-doc-upload-status {
                     & .warning {
                         @include attach-doc-upload-status-styling;
+                        color: red;
 
                         & i {
                             color: red;
@@ -339,27 +345,87 @@ $form-bg-cl: #f0f0f0;
             width: 28.8px;
         }
     }
+
+    @media screen and (max-width: breakpoints.$doc123-big-breakpoint-upload-page) {
+        padding: 10px;
+        flex-direction: column;
+        column-gap: 50px;
+        row-gap: 20px;
+
+        & .doc-info-box {
+            & .doc-info-form-group {
+                column-gap: 10px;
+            }
+        }
+    }
+
+    @media screen and (max-width: breakpoints.$doc123-medium-breakpoint-upload-page) {
+        flex-direction: column;
+        margin-top: 10px;
+
+        & .doc-avatar-btn-wrapper {
+            & label {
+                width: 100%;
+                height: 130px;
+                font-size: 0.9rem;
+            }
+        }
+
+        & .doc-info-form-group {
+            flex-direction: column;
+
+            & .form-group-title {
+                margin-bottom: 5px;
+                margin-left: 5px;
+            }
+
+            &.doc-price-and-preview {
+                & .setting-up-container {
+                    flex-direction: column;
+                    row-gap: 10px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-upload-page) {
+        & .doc-info-form-group {
+            &.doc-attaching {
+                & .setting-up-container {
+                    & .attaching-doc-btn-container {
+                        flex-direction: column;
+
+                        & .attaching-doc-btn {
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 #main-section {
     background-color: colors.$doc123-regular-bg-cl;
     padding-top: 70px;
 
-    & .title {
+    & .main-section-title {
         font-size: 2rem;
-        font-weight: 500;
+        font-weight: bold;
         text-align: center;
         width: 100%;
         margin: 0;
+        padding: 0 30px;
     }
 
-    & .subtitle {
+    & .main-section-subtitle {
         font-size: 1.3rem;
         font-weight: normal;
         text-align: center;
         width: 100%;
         margin: 0;
         margin-top: 10px;
+        padding: 0 30px;
     }
 
     & .upload-doc-section {
@@ -376,7 +442,6 @@ $form-bg-cl: #f0f0f0;
             font-weight: 500;
             width: fit-content;
             margin: 0;
-            margin-top: 10px;
         }
 
         & .upload-doc-btn {
@@ -457,6 +522,7 @@ $form-bg-cl: #f0f0f0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                flex-direction: column;
                 color: red;
                 column-gap: 10px;
                 font-size: 1.2rem;
@@ -479,6 +545,7 @@ $form-bg-cl: #f0f0f0;
                     display: flex;
                     align-items: center;
                     margin-bottom: 7px;
+                    column-gap: 10px;
                     justify-content: space-between;
 
                     & i {
@@ -565,10 +632,12 @@ $form-bg-cl: #f0f0f0;
 
                     &:checked {
                         background-color: colors.$doc123-primary-cl;
+                        border-color: colors.$doc123-primary-cl;
                     }
 
                     &:focus {
                         box-shadow: 0 0 0 0.25rem rgba(13, 253, 161, 0.25);
+                        border-color: colors.$doc123-primary-cl;
                     }
 
                     &:hover {
@@ -584,7 +653,7 @@ $form-bg-cl: #f0f0f0;
                 }
             }
 
-            & .doc-avatar-and-doc-info {
+            & .add-info-for-all-docs-form.doc-avatar-and-doc-info {
                 @include doc-avatar-and-doc-info-styling;
                 background-color: $form-bg-cl;
                 padding: 20px;
@@ -620,6 +689,95 @@ $form-bg-cl: #f0f0f0;
 
                 & .doc-avatar-and-doc-info {
                     @include doc-avatar-and-doc-info-styling;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-upload-page) {
+        padding-top: 50px;
+
+        & .main-section-title {
+            font-size: 1.5rem;
+        }
+
+        & .main-section-subtitle {
+            font-size: 1rem;
+        }
+
+        & .upload-doc-section {
+            margin-top: 15px;
+            padding: 15px 50px;
+
+            & .upload-doc-title {
+                font-size: 1.3rem;
+            }
+
+            & .helper-text-box {
+                margin-top: 15px;
+            }
+        }
+    }
+
+    @media screen and (max-width: breakpoints.$doc123-small-breakpoint-upload-page) {
+        & .upload-doc-section {
+            padding: 15px 20px;
+
+            & .upload-doc-btn {
+                padding: 20px 70px;
+                font-size: 1.3rem;
+            }
+        }
+
+        & .uploaded-docs-section {
+            padding-left: 10px;
+            padding-right: 10px;
+
+            & .upload-progress {
+                & .upload-progress-content {
+                    & .upload-progress-details {
+                        & .details {
+                            font-size: 0.9rem;
+                        }
+                    }
+                }
+            }
+
+            & .uploaded-docs-title {
+                & .title {
+                    padding: 0px;
+                }
+            }
+
+            & .add-info-for-all-docs-section {
+                & .switch-btn-container {
+                    padding: 10px;
+
+                    & .form-check-input {
+                        font-size: 1.3rem;
+                    }
+
+                    & label {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: breakpoints.$doc123-big-breakpoint-upload-page) {
+        & .uploaded-docs-section {
+            & .add-info-for-all-docs-section {
+                column-gap: 50px;
+            }
+        }
+    }
+
+    @media screen and (max-width: breakpoints.$doc123-medium-breakpoint-upload-page) {
+        & .uploaded-docs-section {
+            & .uploaded-docs {
+                & .uploaded-doc-form {
+                    padding: 10px;
                 }
             }
         }

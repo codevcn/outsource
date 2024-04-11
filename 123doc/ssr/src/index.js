@@ -15,16 +15,26 @@ app.use(express.static('src/public'))
 
 // Định nghĩa route
 app.get('/upload-page', (req, res) => {
+    // res.render('test', { user, danhmuc })
     res.render('upload-page', { user, danhmuc })
 })
 app.post('/upload-doc', (req, res, next) => {
     // res.status(400).json({success:false})
     res.status(200).json({
-        files: [
-            { id: 1, name: 'Yêu em dại khờ Lou Hoàng.exe' },
-            { id: 2, name: 'Yêu em quá lâu.mp3' },
+        docs: [
+            { id: 1, name: 'Yêu em dại khờ Lou Hoàng.exe', pagesCount: 199 },
+            { id: 2, name: 'Yêu em quá lâu.mp3', pagesCount: 20 },
         ],
     })
+})
+app.post('/upload-attaching-doc', (req, res, next) => {
+    res.status(400).json({success:false})
+    // res.status(200).json({
+    //     docs: [
+    //         { id: 1, name: 'Yêu em dại khờ Lou Hoàng.exe', pagesCount: 199 },
+    //         { id: 2, name: 'Yêu em quá lâu.mp3', pagesCount: 20 },
+    //     ],
+    // })
 })
 
 // Khởi động server

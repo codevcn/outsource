@@ -2,7 +2,7 @@
 @use './fonts';
 @use './breakpoints';
 
-@mixin login-register-btns-style {
+@mixin login-register-btns-styling {
     font-family: fonts.$doc123-primary-font;
     font-size: 0.9rem;
     padding: 4px 15px;
@@ -29,7 +29,7 @@
         position: relative;
 
         & .login-register-btn {
-            @include login-register-btns-style;
+            @include login-register-btns-styling;
             display: none;
             position: absolute;
             bottom: 15px;
@@ -190,10 +190,14 @@
         column-gap: 5px;
         margin-left: 50px;
 
+        @media screen and (max-width: breakpoints.$doc123-large-breakpoint-layout) {
+            display: none;
+        }
+
         & .deposit-btn,
         .upload-btn {
             display: block;
-            @include login-register-btns-style;
+            @include login-register-btns-styling;
         }
 
         & .deposit-btn {
@@ -317,7 +321,7 @@
         }
 
         & .login-register-btn {
-            @include login-register-btns-style;
+            @include login-register-btns-styling;
         }
     }
 }

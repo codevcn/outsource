@@ -173,6 +173,11 @@
        column-gap: 5px;
   margin-left: 50px;
 }
+@media screen and (max-width: 1055px) {
+  #nav-bar .logined-user-actions {
+    display: none;
+  }
+}
 #nav-bar .logined-user-actions .deposit-btn,
 #nav-bar .logined-user-actions .upload-btn {
   display: block;
