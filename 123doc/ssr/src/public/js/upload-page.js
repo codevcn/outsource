@@ -1,38 +1,70 @@
 const uploadDocSection = document.querySelector('#main-section .upload-doc-section')
 const uploadDocHelperTextBox = uploadDocSection.querySelector('.helper-text-box')
 const uploadedDocsSection = document.querySelector('#main-section .uploaded-docs-section')
-const uploadProgress = uploadedDocsSection.querySelector('.upload-progress')
-const uploadedDocs = document.querySelector('#main-section .uploaded-docs')
+const uploadedDocs = uploadedDocsSection.querySelector('.uploaded-docs')
 const uploadedDocInput = document.getElementById('upload-docs-input')
 const uploadedDocsTitle = uploadedDocsSection.querySelector('.uploaded-docs-title')
 const addInfoForAllDocsSection = uploadedDocsSection.querySelector('.add-info-for-all-docs-section')
 const addInfoForAllDocs_form = addInfoForAllDocsSection.querySelector('.add-info-for-all-docs-form')
 
-const doc_price_and_preview_regex = /^[0-9]{1,}$/
+const doc_preview_regex = /^[0-9]{1,}%?$/
+const doc_price_regex = /^[0-9]{1,}$/
 
 const clickInput = (target) => {
     target.parentElement.querySelector('input').click()
 }
 
-const create_docAvatarBtn = () => {
+const cancelDocAvatar = (target) => {
+    const docAvatarBtn = target.closest('.doc-avatar-btn-wrapper')
+    docAvatarBtn.querySelector('.doc-avatar-preview-image').remove()
+    docAvatarBtn.querySelector('input').value = ''
+    docAvatarBtn.querySelector('label').removeAttribute('hidden')
+    target.remove()
+}
+
+const uploadDocAvatarImage = (target, docId) => {
+    const file = target.files[0]
+
+    if (file) {
+        const previewImage = document.createElement('img')
+        previewImage.classList.add('doc-avatar-preview-image')
+        previewImage.setAttribute('alt', 'Ảnh đại diện')
+
+        const avatarImageURL = URL.createObjectURL(file)
+        previewImage.setAttribute('src', avatarImageURL)
+        previewImage.onload = function () {
+            URL.revokeObjectURL(avatarImageURL)
+        }
+
+        const cancelDocAvatarBtn = document.createElement('div')
+        cancelDocAvatarBtn.classList.add('cancel-doc-avatar-btn')
+        cancelDocAvatarBtn.innerHTML = `<span><i class="bi bi-x-circle-fill"></i></span>`
+        cancelDocAvatarBtn.setAttribute('onclick', 'cancelDocAvatar(this)')
+
+        const docAvatarBtn = uploadedDocs.querySelector(
+            `.uploaded-doc-form[data-doc-id="${docId}"] .doc-avatar-and-doc-info .doc-avatar-btn-wrapper`
+        )
+        docAvatarBtn.querySelector('label').setAttribute('hidden', true)
+        docAvatarBtn.appendChild(previewImage)
+        docAvatarBtn.appendChild(cancelDocAvatarBtn)
+    }
+}
+
+const create_docAvatarBtn = (docId) => {
     const docAvatarBtn = document.createElement('div')
     docAvatarBtn.classList.add('doc-avatar-btn-wrapper')
     const label = document.createElement('label')
     label.setAttribute('onclick', 'clickInput(this)')
-    label.setAttribute('data-bs-toggle', 'tooltip')
-    label.setAttribute('data-bs-placement', 'bottom')
-    label.setAttribute('data-bs-title', 'Thêm ảnh đại diện cho tài liệu của bạn')
     label.innerHTML = `
         <i class="bi bi-camera"></i>
         <span>Thêm ảnh đại diện</span>`
-
-    new bootstrap.Tooltip(label)
 
     const input = document.createElement('input')
     input.setAttribute('type', 'file')
     input.setAttribute('accept', 'image/*')
     input.setAttribute('name', 'uploaded-doc-avatar')
     input.setAttribute('hidden', true)
+    input.setAttribute('onchange', `uploadDocAvatarImage(this,${docId})`)
 
     docAvatarBtn.appendChild(label)
     docAvatarBtn.appendChild(input)
@@ -141,7 +173,7 @@ const selfTypeDocPrice = (target) => {
     const { value } = target
     if (value === '') {
         target.nextElementSibling.textContent = ''
-    } else if (doc_price_and_preview_regex.test(value) && value * 1 <= MAX_PRICE_DOCUMENT) {
+    } else if (doc_price_regex.test(value) && value * 1 <= MAX_PRICE_DOCUMENT) {
         target.nextElementSibling.textContent = `${formatNumberWithDelimiter(value, ',')}đ`
     }
 }
@@ -150,10 +182,7 @@ const selfTypeDocPreview = (target) => {
     const { value } = target
     if (value === '') {
         target.nextElementSibling.textContent = ''
-    } else if (
-        doc_price_and_preview_regex.test(value) &&
-        value * 1 <= MAX_NUMBER_OF_PREVIEW_PAGES
-    ) {
+    } else if (doc_preview_regex.test(value) && value * 1 <= MAX_NUMBER_OF_PREVIEW_PAGES) {
         target.nextElementSibling.textContent = `${value} trang`
     }
 }
@@ -233,27 +262,25 @@ const setAttachingDoc_warningMessage = (target, message) => {
 const createAttachingDoc_progressBar = (target, { fileLoaded, fileNames }) => {
     target.closest('.setting-up-container').querySelector('.attach-doc-upload-status').innerHTML = `
         <div class="on-progress">
-            <svg width="20" height="20" class="progress-circle-bar">
-                <circle
-                    class="progress-circle-solid"
-                    cx="10"
-                    cy="10"
-                    r="8"
-                    style="stroke-dashoffset: ${((100 - fileLoaded) / 100) * 50.24};"
-                ></circle>
-            </svg>
-            <span>${
-                fileNames.length > 1 ? `${fileNames[0]} và các file khác...` : fileNames[0]
-            } • ${fileLoaded === 100 ? `Đã tải lên ${fileLoaded}%` : `Đang tải lên ${fileLoaded}%`} 
-            </span>
+            ${
+                fileLoaded === 100
+                    ? `
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>${fileNames[0]} • Đã tải lên ${fileLoaded}%</span>`
+                    : `
+                    <div class="on-progress-circle">
+                        <div class="on-progress-solid" style="width: ${fileLoaded}%"></div>
+                    </div>
+                    <span>${fileNames[0]} • Đang tải lên ${fileLoaded}%</span>`
+            }
         </div>`
 }
 
 const uploadAttachingDocOnProgressHandler = async (target, docId) => {
+    //:MARK attach doc
     const files = target.files
     if (files && files.length > 0) {
         uploadDocHelperTextBox.classList.add('inactive')
-        uploadProgress.classList.remove('inactive')
 
         const data = new FormData()
         const fileNames = []
@@ -299,9 +326,8 @@ const create_formGroup_attachingDoc = (docId) => {
                     type="file"
                     hidden
                     name="uploaded-doc-attaching"
-                    multiple
                     onchange="uploadAttachingDocOnProgressHandler(this,${docId})"
-                    accept=".pdf,.ppt,.pptx,.doc,.docx,.xlsx"
+                    accept=".pdf,.ppt,.pptx,.doc,.docx,.xlsx,.exe"
                 />
                 <span class="attaching-doc-helper-text">Chỉ chấp nhận định dạng file ZIP/RAR (tối đa 32MB)</span>
             </div>
@@ -441,7 +467,7 @@ const validateSaveDocInfo = (
         setDocPrice_warningMessage(target, 'Vui lòng chọn hoặc đặt giá bán cho tài liệu!')
         is_valid = false
     } else {
-        if (!doc_price_and_preview_regex.test(docPrice)) {
+        if (!doc_price_regex.test(docPrice)) {
             setDocPrice_warningMessage(target, 'Giá bán chỉ được phép chứa số!')
             is_valid = false
         } else if (docPrice * 1 > MAX_PRICE_DOCUMENT) {
@@ -458,7 +484,7 @@ const validateSaveDocInfo = (
         )
         is_valid = false
     } else {
-        if (!doc_price_and_preview_regex.test(docPreview)) {
+        if (!doc_preview_regex.test(docPreview)) {
             setDocPreview_warningMessage(target, 'Số trang xem trước chỉ được phép chứa số!')
             is_valid = false
         } else if (docPreview * 1 > MAX_NUMBER_OF_PREVIEW_PAGES) {
@@ -492,6 +518,13 @@ const saveUploadDocInfoHandler = (docData) => {
         if (docPreview === 'self-type') {
             docPreview = elements['uploaded-doc-preview-self-type'].value
         }
+        console.log('>>> vlida >>>', {
+            docCategory,
+            docSubcategory,
+            docPrice,
+            docPreview,
+            docAvatar,
+        }) //:MARK one
 
         if (
             validateSaveDocInfo(target, {
@@ -555,7 +588,7 @@ const createUploadedDocForm = (docData) => {
     return form
 }
 
-const uploadFileOnDone = (docData) => {
+const uploadFileOnDone = (docData, uploadedDocSectionId) => {
     uploadedDocsTitle.classList.remove('inactive')
     addInfoForAllDocsSection.classList.remove('inactive')
 
@@ -563,7 +596,7 @@ const uploadFileOnDone = (docData) => {
 
     const docTitle = createDocFormTitle(docData.name)
 
-    const docAvatar = create_docAvatarBtn()
+    const docAvatar = create_docAvatarBtn(docData.id)
 
     const docInfo = document.createElement('div')
     docInfo.classList.add('doc-info-box')
@@ -598,103 +631,137 @@ const uploadFileOnDone = (docData) => {
     fileUploadedDocForm.appendChild(docTitle)
     fileUploadedDocForm.appendChild(title_and_docInfo)
 
-    uploadedDocs.appendChild(fileUploadedDocForm)
+    const uploadedDocSection = uploadedDocs.querySelector(
+        `.uploaded-doc-section-id-${uploadedDocSectionId}`
+    )
+    uploadedDocSection.appendChild(fileUploadedDocForm)
 }
 
-const createProgressBar_fileUploaded = ({ fileNames, fileLoaded, fileSize }) => {
-    const fileNamesText =
-        fileNames.length > 1 ? `${fileNames[0]} và các file khác...` : fileNames[0]
-
-    uploadProgress.innerHTML = `
-        <div class="upload-progress-content">
-            <div class="upload-progress-details">
-                <div style="display: flex; align-items: center; column-gap: 5px;">
-                    ${
-                        fileSize
-                            ? `
-                            <i class="bi bi-check-circle-fill"></i>
-                            <div class="details">
-                                <span class="name">${fileNamesText} • Đã tải lên</span>
-                                <span class="size">${fileSize}</span>
-                            </div>`
-                            : `
-                            <i class="bi bi-cloud-arrow-up-fill"></i>
-                            <span class="upload-progress-name">${fileNamesText} • Đang tải lên</span>`
-                    }
-                </div>
-                <span class="upload-progress-percent">${fileLoaded}%</span>
-            </div>
-            <div class="upload-progress-bar">
-                <div class="upload-progress-animate" style="width: ${fileLoaded}%"></div>
-            </div>
+const renderProgressBar_failToUploadFile = ({ fileName }, uploadedDocSectionId) => {
+    const uploadProgressContent_htmlString = `
+        <div class="upload-progress-details progress-fail">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span class="upload-progress-name">${fileName} • <strong>Tải lên thất bại</strong></span>
         </div>`
+
+    const uploadProgressContent_exist = uploadedDocs.querySelector(
+        `.uploaded-doc-section-id-${uploadedDocSectionId} .upload-progress`
+    )
+    if (uploadProgressContent_exist) {
+        uploadProgressContent_exist.innerHTML = uploadProgressContent_htmlString
+    } else {
+        const uploadProgressContent = document.createElement('div')
+        uploadProgressContent.classList.add('upload-progress')
+        uploadProgressContent.innerHTML = uploadProgressContent_htmlString
+
+        uploadedDocs.appendChild(uploadProgressContent)
+    }
 }
 
-const warningUploadFilesFail = (
-    message = 'Lỗi tải tài liệu lên! Bạn có thể liên hệ với quản trị viên nếu vấn đề này vẫn còn tiếp diễn.',
-    error_code = 500
+const renderProgressBar_fileUploaded = (
+    { fileName, fileLoaded, fileSize },
+    uploadedDocSectionId
 ) => {
-    uploadProgress.innerHTML = `
-        <div class="upload-warning">
+    const uploadProgressContent_htmlString = `
+        <div class="upload-progress-details">
             <div style="display: flex; align-items: center; column-gap: 5px;">
-                <i class="bi bi-exclamation-triangle-fill"></i>
-                <span class="warning-text">${message}</span>
+                ${
+                    fileSize
+                        ? `
+                        <i class="bi bi-check-circle-fill"></i>
+                        <div class="details">
+                            <span class="name">${fileName} • <strong>Đã tải lên</strong></span>
+                            <span class="size">${fileSize}</span>
+                        </div>`
+                        : `
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                        <span class="upload-progress-name">${fileName} • <strong>Đang tải lên</strong></span>`
+                }
             </div>
-            <span class="error-code">Mã lỗi: ${error_code}.</span>
+            <span class="upload-progress-percent">${fileLoaded}%</span>
+        </div>
+        <div class="upload-progress-bar">
+            <div class="upload-progress-animate" style="width: ${fileLoaded}%"></div>
         </div>`
+
+    const existing_uploadedDocSection = uploadedDocs.querySelector(
+        `.uploaded-doc-section-id-${uploadedDocSectionId} .upload-progress`
+    )
+    if (existing_uploadedDocSection) {
+        existing_uploadedDocSection.innerHTML = uploadProgressContent_htmlString
+    } else {
+        const uploadProgress = document.createElement('div')
+        uploadProgress.classList.add('upload-progress')
+        uploadProgress.innerHTML = uploadProgressContent_htmlString
+
+        const uploadedDocSection = document.createElement('section')
+        uploadedDocSection.classList.add('uploaded-doc-section')
+        uploadedDocSection.classList.add(`uploaded-doc-section-id-${uploadedDocSectionId}`)
+        uploadedDocSection.appendChild(uploadProgress)
+
+        uploadedDocs.appendChild(uploadedDocSection)
+    }
 }
 
-const uploadFileOnProgress = (files) => {
-    const data = new FormData()
-    const fileNames = []
-    for (const file of files) {
-        data.append('files[]', file)
+const uploadFilesOnProgress = (files) => {
+    for (const { file, fileIndex } of files) {
         let fileName = file.name
         if (fileName.length >= MAX_CHARS_OF_FILE_NAME) {
             const splitName = fileName.split('.')
             fileName =
                 splitName[0].substring(0, MAX_CHARS_OF_FILE_NAME + 1) + '... .' + splitName[1]
         }
-        fileNames.push(fileName)
-    }
-    const xhr = new XMLHttpRequest()
-    xhr.open('POST', '/upload-doc', true)
-    xhr.upload.addEventListener('progress', ({ loaded, total }) => {
-        const fileLoaded = Math.floor((loaded / total) * 100)
-        const fileTotal = Math.floor(total / 1000)
-        let fileSize
-        fileTotal < 1024
-            ? (fileSize = fileTotal + ' KB')
-            : (fileSize = (loaded / (1024 * 1024)).toFixed(2) + ' MB')
-        createProgressBar_fileUploaded({ fileLoaded, fileNames })
-        if (loaded == total) {
-            createProgressBar_fileUploaded({ fileNames, fileSize, fileLoaded: 100 })
-        }
-    })
-    xhr.addEventListener('load', () => {
-        const status = xhr.status
-        if (status >= 200 && status < 300) {
-            const { docs } = JSON.parse(xhr.responseText)
-            for (const doc of docs) {
-                uploadFileOnDone({ id: doc.id, pagesCount: doc.pagesCount, name: doc.name })
+
+        const xhr = new XMLHttpRequest()
+        xhr.open('POST', '/upload-doc', true)
+        xhr.upload.addEventListener('progress', ({ loaded, total }) => {
+            const fileLoaded = Math.floor((loaded / total) * 100)
+            const fileTotal = Math.floor(total / 1000)
+            let fileSize
+            fileTotal < 1024
+                ? (fileSize = fileTotal + ' KB')
+                : (fileSize = (loaded / (1024 * 1024)).toFixed(2) + ' MB')
+            renderProgressBar_fileUploaded({ fileLoaded, fileName }, fileIndex)
+            if (loaded == total) {
+                renderProgressBar_fileUploaded(
+                    {
+                        fileName,
+                        fileSize,
+                        fileLoaded: 100,
+                    },
+                    fileIndex
+                )
             }
-        } else {
-            warningUploadFilesFail(undefined, status)
-            toast.error({
-                message: 'Không thể tải tài liệu lên hệ thống! Mã lỗi: ' + status,
-                title: 'Lỗi tải tài liệu lên!',
-            })
-        }
-    })
-    xhr.send(data)
+        })
+        xhr.addEventListener('load', () => {
+            const status = xhr.status
+            if (status >= 200 && status < 300) {
+                const { docInfo } = JSON.parse(xhr.responseText)
+                uploadFileOnDone(
+                    {
+                        id: docInfo.id,
+                        pagesCount: docInfo.pagesCount,
+                        name: docInfo.name,
+                    },
+                    fileIndex
+                )
+            } else {
+                renderProgressBar_failToUploadFile({ fileName }, fileIndex)
+            }
+        })
+
+        const data = new FormData()
+        data.append('file', file)
+
+        xhr.send(data)
+    }
 }
 
-const uploadFileOnProgressHandler = async () => {
+const uploadFilesOnProgressHandler = async () => {
     const files = uploadedDocInput.files
     if (files && files.length > 0) {
         uploadDocHelperTextBox.classList.add('inactive')
-        uploadProgress.classList.remove('inactive')
-        uploadFileOnProgress(files)
+        uploadFilesOnProgress(Array.from(files).map((file, index) => ({ file, fileIndex: index })))
     }
 }
 
@@ -704,7 +771,7 @@ const openAddInfoForAllDocs = () => {
 
 const validateAddInfoForAllDocs = (
     target,
-    { docCategory, docSubcategory, docKeyword, docPrice, docPreview }
+    { docCategory, docSubcategory, docPrice, docPreview }
 ) => {
     let is_valid = true
     if (!docCategory || docCategory === 'none') {
@@ -718,17 +785,11 @@ const validateAddInfoForAllDocs = (
             setDocCategory_warningMessage(target, null)
         }
     }
-    if (!docKeyword) {
-        setDocKeyword_warningMessage(target, 'Vui lòng nhập từ khóa cho tài liệu!')
-        is_valid = false
-    } else {
-        setDocKeyword_warningMessage(target, null)
-    }
     if (!docPrice || docPrice === 'none') {
         setDocPrice_warningMessage(target, 'Vui lòng chọn hoặc đặt giá bán cho tài liệu!')
         is_valid = false
     } else {
-        if (!doc_price_and_preview_regex.test(docPrice)) {
+        if (!doc_price_regex.test(docPrice)) {
             setDocPrice_warningMessage(target, 'Giá bán chỉ được phép chứa số!')
             is_valid = false
         } else if (docPrice * 1 > MAX_PRICE_DOCUMENT) {
@@ -745,7 +806,7 @@ const validateAddInfoForAllDocs = (
         )
         is_valid = false
     } else {
-        if (!doc_price_and_preview_regex.test(docPreview)) {
+        if (!doc_preview_regex.test(docPreview)) {
             setDocPreview_warningMessage(target, 'Số trang xem trước chỉ được phép chứa số!')
             is_valid = false
         } else if (docPreview * 1 > MAX_NUMBER_OF_PREVIEW_PAGES) {
@@ -775,10 +836,8 @@ const addInfoForAllDocsHandler = async (e) => {
     e.preventDefault()
     const { target } = e
     const { elements } = target
-    const docAvatar = elements['uploaded-doc-avatar'].files
     const docCategory = elements['uploaded-doc-category'].value
     const docSubcategory = elements['uploaded-doc-subcategory'].value
-    const docKeyword = elements['uploaded-doc-keyword'].value
     let docPrice = elements['uploaded-doc-price'].value
     let docPreview = elements['uploaded-doc-preview'].value
     if (docPrice === 'self-type') {
@@ -787,12 +846,11 @@ const addInfoForAllDocsHandler = async (e) => {
     if (docPreview === 'self-type') {
         docPreview = elements['uploaded-doc-preview-self-type'].value
     }
-
+    console.log('>>> vlida >>>', { docCategory, docSubcategory, docPrice, docPreview }) //:MARK all
     if (
         validateAddInfoForAllDocs(target, {
             docCategory,
             docSubcategory,
-            docKeyword,
             docPrice,
             docPreview,
         })
@@ -811,10 +869,8 @@ const addInfoForAllDocsHandler = async (e) => {
 
         try {
             await addInfoForAllDocs(docId_list, {
-                docAvatar,
                 docCategory,
                 docSubcategory,
-                docKeyword,
                 docPrice,
                 docPreview,
             })

@@ -25,8 +25,8 @@
                     multiple
                     id="upload-docs-input"
                     hidden
-                    onchange="uploadFileOnProgressHandler()"
-                    accept=".pdf,.ppt,.pptx,.doc,.docx,.xlsx"
+                    onchange="uploadFilesOnProgressHandler()"
+                    accept=".pdf,.ppt,.pptx,.doc,.docx,.xlsx,.exe"
                 />
                 <div class="helper-text-box">
                     <p class="helper-text">
@@ -37,7 +37,6 @@
                 </div>
             </section>
             <section class="uploaded-docs-section">
-                <div class="upload-progress inactive"></div>
                 <div class="uploaded-docs-title inactive">
                     <h3 class="title">Chỉnh sửa thông tin cho tài liệu bạn đã tải lên</h3>
                     <p class="note">
@@ -66,22 +65,6 @@
                         onsubmit="addInfoForAllDocsHandler(event)"
                         method="post"
                     >
-                        <div class="doc-avatar-btn-wrapper">
-                            <label
-                                onclick="clickInput(this)"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="bottom"
-                                data-bs-title="Thêm ảnh đại diện cho tài liệu của bạn"
-                            >
-                                <i class="bi bi-camera"></i>
-                                <span>Thêm ảnh đại diện</span></label
-                            ><input
-                                type="file"
-                                accept="image/*"
-                                name="uploaded-doc-avatar"
-                                hidden="true"
-                            />
-                        </div>
                         <div class="doc-info-box">
                             <div class="doc-info-form-group doc-category">
                                 <label class="form-group-title">
@@ -109,20 +92,6 @@
                                             <option value="550000">Kinh tế - quản lí</option>
                                         </select>
                                     </div>
-                                    <div class="message"></div>
-                                </div>
-                            </div>
-                            <div class="doc-info-form-group doc-keyword">
-                                <label class="form-group-title">
-                                    Từ khóa
-                                    <span class="required-dot">(*)</span>
-                                </label>
-                                <div class="setting-up-container">
-                                    <input
-                                        type="text"
-                                        name="uploaded-doc-keyword"
-                                        placeholder="Từ khóa..."
-                                    />
                                     <div class="message"></div>
                                 </div>
                             </div>
@@ -167,8 +136,8 @@
                                             <option value="none" selected="">
                                                 Số trang xem trước
                                             </option>
-                                            <option value="20">20%</option>
-                                            <option value="50">50%</option>
+                                            <option value="20%">20%</option>
+                                            <option value="50%">50%</option>
                                             <option value="self-type">Tự chọn</option>
                                         </select>
                                         <div class="setting-up-value set-preview inactive">
