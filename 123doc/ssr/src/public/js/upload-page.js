@@ -22,7 +22,7 @@ const cancelDocAvatar = (target) => {
     target.remove()
 }
 
-const uploadDocAvatarImage = (target, docId) => {
+const uploadDocAvatarImage = async (target, docId) => {
     const file = target.files[0]
 
     if (file) {
@@ -259,48 +259,51 @@ const setAttachingDoc_warningMessage = (target, message) => {
             : ''
 }
 
-const createAttachingDoc_progressBar = (target, { fileLoaded, fileNames }) => {
+const createAttachingDoc_progressBar = (target, { fileLoaded, fileName }) => {
     target.closest('.setting-up-container').querySelector('.attach-doc-upload-status').innerHTML = `
         <div class="on-progress">
             ${
                 fileLoaded === 100
                     ? `
                     <i class="bi bi-check-circle-fill"></i>
-                    <span>${fileNames[0]} • Đã tải lên ${fileLoaded}%</span>`
+                    <span>${fileName} • Đã tải lên ${fileLoaded}%</span>`
                     : `
                     <div class="on-progress-circle">
                         <div class="on-progress-solid" style="width: ${fileLoaded}%"></div>
                     </div>
-                    <span>${fileNames[0]} • Đang tải lên ${fileLoaded}%</span>`
+                    <span>${fileName} • Đang tải lên ${fileLoaded}%</span>`
             }
         </div>`
 }
 
 const uploadAttachingDocOnProgressHandler = async (target, docId) => {
-    //:MARK attach doc
     const files = target.files
     if (files && files.length > 0) {
         uploadDocHelperTextBox.classList.add('inactive')
 
+        const file = files[0]
+        const fileSize = file.size
+        console.log('>>> fileSize >>>', { fileSize, inMB: fileSize / (1024 * 1024) })
+        if (fileSize / (1024 * 1024) > 32) {
+            setAttachingDoc_warningMessage(target, 'Tệp tin không được phép vượt quá 32MB')
+            return
+        }
+
         const data = new FormData()
-        const fileNames = []
-        for (const file of files) {
-            data.append('files[]', file)
-            let fileName = file.name
-            if (fileName.length >= MAX_CHARS_OF_FILE_NAME) {
-                const splitName = fileName.split('.')
-                fileName =
-                    splitName[0].substring(0, MAX_CHARS_OF_FILE_NAME + 1) + '... .' + splitName[1]
-            }
-            fileNames.push(fileName)
+        data.append('file', file)
+        let fileName = file.name
+        if (fileName.length >= MAX_CHARS_OF_FILE_NAME) {
+            const splitName = fileName.split('.')
+            fileName =
+                splitName[0].substring(0, MAX_CHARS_OF_FILE_NAME + 1) + '... .' + splitName[1]
         }
         const xhr = new XMLHttpRequest()
         xhr.open('POST', '/upload-attaching-doc', true)
         xhr.upload.addEventListener('progress', ({ loaded, total }) => {
             const fileLoaded = Math.floor((loaded / total) * 100)
-            createAttachingDoc_progressBar(target, { fileLoaded, fileNames })
+            createAttachingDoc_progressBar(target, { fileLoaded, fileName })
             if (loaded == total) {
-                createAttachingDoc_progressBar(target, { fileNames, fileLoaded: 100 })
+                createAttachingDoc_progressBar(target, { fileName, fileLoaded: 100 })
             }
         })
         xhr.addEventListener('load', () => {
@@ -327,7 +330,7 @@ const create_formGroup_attachingDoc = (docId) => {
                     hidden
                     name="uploaded-doc-attaching"
                     onchange="uploadAttachingDocOnProgressHandler(this,${docId})"
-                    accept=".pdf,.ppt,.pptx,.doc,.docx,.xlsx,.exe"
+                    accept=".zip,.rar"
                 />
                 <span class="attaching-doc-helper-text">Chỉ chấp nhận định dạng file ZIP/RAR (tối đa 32MB)</span>
             </div>
@@ -497,7 +500,18 @@ const validateSaveDocInfo = (
     return is_valid
 }
 
+const removeFormAfterSubmitFormInfo = (target) => {
+    const uploadedInfoSuccess = document.createElement('div')
+    uploadedInfoSuccess.classList.add('uploaded-info-success')
+    uploadedInfoSuccess.innerHTML = `
+        <i class="bi bi-check-circle-fill"></i>
+        <span>Đã lưu thông tin của tài liệu thành công.</span>`
+
+    target.closest('form.uploaded-doc-form').replaceWith(uploadedInfoSuccess)
+}
+
 const saveUploadDocInfoHandler = (docData) => {
+    //:MARK one
     return async function (e) {
         e.preventDefault()
         const { target } = e
@@ -518,13 +532,6 @@ const saveUploadDocInfoHandler = (docData) => {
         if (docPreview === 'self-type') {
             docPreview = elements['uploaded-doc-preview-self-type'].value
         }
-        console.log('>>> vlida >>>', {
-            docCategory,
-            docSubcategory,
-            docPrice,
-            docPreview,
-            docAvatar,
-        }) //:MARK one
 
         if (
             validateSaveDocInfo(target, {
@@ -560,6 +567,7 @@ const saveUploadDocInfoHandler = (docData) => {
                     message: 'Lưu thông tin tài liệu thành công!',
                     title: 'Lưu thông tin thành công',
                 })
+                removeFormAfterSubmitFormInfo(target)
             } catch (error) {
                 toast.error({ message: error.message, title: 'Lỗi lưu thông tin tài liệu' })
             }
@@ -833,6 +841,7 @@ const addInfoForAllDocs = async (docId_list) => {
 }
 
 const addInfoForAllDocsHandler = async (e) => {
+    //:MARK all
     e.preventDefault()
     const { target } = e
     const { elements } = target
@@ -846,7 +855,7 @@ const addInfoForAllDocsHandler = async (e) => {
     if (docPreview === 'self-type') {
         docPreview = elements['uploaded-doc-preview-self-type'].value
     }
-    console.log('>>> vlida >>>', { docCategory, docSubcategory, docPrice, docPreview }) //:MARK all
+
     if (
         validateAddInfoForAllDocs(target, {
             docCategory,

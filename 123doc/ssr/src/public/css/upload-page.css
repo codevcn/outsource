@@ -435,8 +435,8 @@
 }
 #main-section .uploaded-docs-section .add-info-for-all-docs-section .add-info-for-all-docs-form.doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .on-progress .on-progress-circle {
   border-radius: 50%;
-  height: 25px;
-  min-width: 25px;
+  height: 20px;
+  min-width: 20px;
   border: 3px #00a888 solid;
   overflow: hidden;
 }
@@ -515,6 +515,25 @@
 }
 #main-section .uploaded-docs-section .add-info-for-all-docs-section .add-info-for-all-docs-form.doc-avatar-and-doc-info.inactive {
   display: none;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-section .uploaded-info-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  color: #00a888;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 50px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+#main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-section .uploaded-info-success i {
+  font-size: inherit;
+  color: #00a888;
 }
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-section .upload-progress {
   width: 100%;
@@ -855,8 +874,8 @@
 }
 #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-section .uploaded-doc-form .doc-avatar-and-doc-info .doc-info-form-group.doc-attaching .setting-up-container .attach-doc-upload-status .on-progress .on-progress-circle {
   border-radius: 50%;
-  height: 25px;
-  min-width: 25px;
+  height: 20px;
+  min-width: 20px;
   border: 3px #00a888 solid;
   overflow: hidden;
 }
@@ -963,6 +982,9 @@
   #main-section .uploaded-docs-section {
     padding-left: 10px;
     padding-right: 10px;
+  }
+  #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-section .uploaded-info-success {
+    font-size: 1.1rem;
   }
   #main-section .uploaded-docs-section .uploaded-docs .uploaded-doc-section .upload-progress .upload-progress-details {
     font-size: 0.9rem;

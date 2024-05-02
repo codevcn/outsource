@@ -331,8 +331,8 @@ $form-bg-cl: #f0f0f0;
 
                         & .on-progress-circle {
                             border-radius: 50%;
-                            height: 25px;
-                            min-width: 25px;
+                            height: 20px;
+                            min-width: 20px;
                             border: 3px colors.$doc123-primary-cl solid;
                             overflow: hidden;
 
@@ -628,6 +628,26 @@ $form-bg-cl: #f0f0f0;
 
         & .uploaded-docs {
             & .uploaded-doc-section {
+                & .uploaded-info-success {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    column-gap: 10px;
+                    color: colors.$doc123-primary-cl;
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    margin-top: 5px;
+                    margin-bottom: 50px;
+                    padding: 10px;
+                    background-color: #f0f0f0;
+
+                    & i {
+                        font-size: inherit;
+                        color: colors.$doc123-primary-cl;
+                    }
+                }
+
                 & .upload-progress {
                     width: 100%;
                     background-color: $form-bg-cl;
@@ -744,6 +764,10 @@ $form-bg-cl: #f0f0f0;
 
             & .uploaded-docs {
                 & .uploaded-doc-section {
+                    & .uploaded-info-success {
+                        font-size: 1.1rem;
+                    }
+
                     & .upload-progress {
                         & .upload-progress-details {
                             font-size: 0.9rem;

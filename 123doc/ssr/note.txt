@@ -2,5 +2,5 @@
 # - avatar hiện ngay khi chọn
 # - gửi avatar cùng với thông tin doc
 # - bỏ trường từ khóa với mô tả với avt
-- sửa xong r mất form
-- nút xóa doc
+# - sửa xong r mất form
+# - nút xóa doc
